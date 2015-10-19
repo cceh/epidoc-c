@@ -8223,6 +8223,7 @@ You must supply at least two values for @target on <name/>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript description) contains a description of a single identifiable manuscript or other text-bearing object. [10.1. ]</a:documentation>
          <group>
             <ref name="tei_msIdentifier"/>
+            <ref name="tei_altIdentifier"/>
             <zeroOrMore>
                <ref name="tei_model.headLike"/>
             </zeroOrMore>
