@@ -66,7 +66,8 @@ width, height, depth, desc, note[type=topic], note[type=status] {
     display: block;
 }
 /* keinen Text anzeigen */
-msIdentifier idno, 
+msIdentifier idno,
+altIdentifier idno,
 note[type=text_type], note[type=status], locus, ab[type=custody],
 note[type=writing_direction], objectType, width, height, depth, note[type=preparation], desc,
 acquisition note[type=acquisition_type], acquisition note[type=seller], acquisition note[type=selling_date], acquisition note[type=folder],
@@ -274,6 +275,14 @@ msIdentifier collection {
     content: oxy_label(text, "Sammlung: ", width, 10em, text-align, right)
              oxy_editor(type, combo, edit, "#text", editable, true);
     visibility: -oxy-collapse-text;
+}
+
+altIdentifier idno {
+    margin-top: 1em;
+    content: oxy_label(text, "Alte Inventarnummer: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+             oxy_editor(type, button, actionID, insert_info_altIdentifier_idno, transparent, true, color, #FFFFFF)
+             " " attr("rend");    
 }
 
 
