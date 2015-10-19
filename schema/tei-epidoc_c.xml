@@ -502,7 +502,6 @@
                     <content>
                         <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
                             <rng:ref name="msIdentifier"/>
-                            <rng:ref name="altIdentifier"/>
                             <rng:zeroOrMore>
                                 <rng:ref name="model.headLike"/>
                             </rng:zeroOrMore>
@@ -871,6 +870,9 @@
                             <rng:ref name="idno"/>
                             <rng:oneOrMore>
                                 <rng:ref name="collection"/>
+                            </rng:oneOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="altIdentifier"/>
                             </rng:oneOrMore>
                         </rng:group>
                     </content>
