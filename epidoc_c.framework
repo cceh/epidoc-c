@@ -402,6 +402,12 @@
   &lt;msIdentifier>
       &lt;idno>&lt;/idno>
       &lt;collection>Köln, Papyrussammlung&lt;/collection>
+      &lt;altIdentifier type="trismegistos">
+        &lt;idno>&lt;/idno>
+      &lt;/altIdentifier>
+      &lt;altIdentifier type="old">
+        &lt;idno>&lt;/idno>
+      &lt;/altIdentifier>
    &lt;/msIdentifier>
 &lt;msContents>
 &lt;/msContents>

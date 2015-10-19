@@ -66,8 +66,7 @@ width, height, depth, desc, note[type=topic], note[type=status] {
     display: block;
 }
 /* keinen Text anzeigen */
-msIdentifier idno,
-altIdentifier idno,
+idno,
 note[type=text_type], note[type=status], locus, ab[type=custody],
 note[type=writing_direction], objectType, width, height, depth, note[type=preparation], desc,
 acquisition note[type=acquisition_type], acquisition note[type=seller], acquisition note[type=selling_date], acquisition note[type=folder],
@@ -262,7 +261,7 @@ msPart {
 }
 
 /* sourceDesc */
-msIdentifier idno {
+msIdentifier > idno {
     margin-top: 1em;
     content: oxy_label(text, "Inventarnummer: ", width, 10em, text-align, right)
              oxy_editor(type, text, edit, "#text", columns, 30)
@@ -277,9 +276,17 @@ msIdentifier collection {
     visibility: -oxy-collapse-text;
 }
 
-altIdentifier idno {
+altIdentifier[type="trismegistos"] > idno {
     margin-top: 1em;
-    content: oxy_label(text, "Alte Inventarnummer: ", width, 10em, text-align, right)
+    content: oxy_label(text, "Trismegistos-Nummer: ", width, 12em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+             " " attr("rend");    
+}
+
+
+altIdentifier[type="old"] > idno {
+    margin-top: 1em;
+    content: oxy_label(text, "Alte Inventarnummer: ", width, 12em, text-align, right)
              oxy_editor(type, text, edit, "#text", columns, 30)
              oxy_editor(type, button, actionID, insert_info_altIdentifier_idno, transparent, true, color, #FFFFFF)
              " " attr("rend");    

@@ -16,6 +16,12 @@
                     <msIdentifier>
                         <idno></idno>
                         <collection>Köln, Papyrussammlung</collection>
+                        <altIdentifier type="trismegistos">
+                            <idno></idno>
+                        </altIdentifier>
+                        <altIdentifier type="old">
+                            <idno></idno>
+                        </altIdentifier>
                     </msIdentifier>
                     <msContents>
                         <msItemStruct defective="false" xml:id="T_${id}">
