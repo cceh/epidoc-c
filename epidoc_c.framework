@@ -1,0 +1,5576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialized version="15.2" xml:space="preserve">
+	<map>
+		<entry>
+			<String>document.types</String>
+			<documentTypeDescriptor-array>
+				<documentTypeDescriptor>
+					<field name="name">
+						<String>EpiDoc C</String>
+					</field>
+					<field name="schemaDescriptor">
+						<docTypeSchema>
+							<field name="type">
+								<Integer>4</Integer>
+							</field>
+							<field name="uri">
+								<String>${framework}/schema/tei-epidoc_c.rng</String>
+							</field>
+						</docTypeSchema>
+					</field>
+					<field name="classpath">
+						<String-array/>
+					</field>
+					<field name="parentClassLoaderID">
+						<null/>
+					</field>
+					<field name="authorExtensionDescriptor">
+						<authorExtension>
+							<field name="cssDescriptors">
+								<cssFile-array>
+									<cssFile>
+										<field name="href">
+											<String>${framework}/css/epidoc_c.css</String>
+										</field>
+										<field name="title">
+											<String>EpiDoc C default</String>
+										</field>
+										<field name="alternate">
+											<Boolean>false</Boolean>
+										</field>
+									</cssFile>
+								</cssFile-array>
+							</field>
+							<field name="mergeCSSsFromDocument">
+								<Boolean>false</Boolean>
+							</field>
+							<field name="actionDescriptors">
+								<action-array>
+									<action>
+										<field name="id">
+											<String>insert_graphic</String>
+										</field>
+										<field name="name">
+											<String>+ Bild</String>
+										</field>
+										<field name="description">
+											<String>Eine Abbildung hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>local-name()='graphic'</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;graphic xmlns="http://www.tei-c.org/ns/1.0" xml:id="AB_${id}" url="../img/unknown.png">&lt;desc>&lt;/desc>&lt;/graphic></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_graphic</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Bild löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>local-name()='graphic' and preceding-sibling::graphic</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_respStmt</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Eintrag löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>count(parent::respStmt/parent::*/respStmt) gt 2</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>parent::respStmt</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_respStmt_BearbeiterIn</String>
+										</field>
+										<field name="name">
+											<String>[+]</String>
+										</field>
+										<field name="description">
+											<String>Eine(n) BearbeiterIn hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::respStmt</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;respStmt xmlns="http://www.tei-c.org/ns/1.0">
+   &lt;resp>BearbeiterIn&lt;/resp>
+   &lt;name>&lt;/name>
+&lt;/respStmt></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>parent::respStmt</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_lg</String>
+										</field>
+										<field name="name">
+											<String>+ Strophe</String>
+										</field>
+										<field name="description">
+											<String>Eine Strophe hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/lg-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/lg-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>local-name()='div' and ./@type='textpart'</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;lg xmlns="http://www.tei-c.org/ns/1.0">&lt;l>&lt;lb />&lt;/l>&lt;/lg></String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_lb</String>
+										</field>
+										<field name="name">
+											<String>+ Zeilenumbruch</String>
+										</field>
+										<field name="description">
+											<String>Einen Zeilenumbruch einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/lb-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/lb-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>local-name()='l'</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;lb xmlns="http://www.tei-c.org/ns/1.0" /></String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_line</String>
+										</field>
+										<field name="name">
+											<String>+ Vers</String>
+										</field>
+										<field name="description">
+											<String>Einen Vers hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/li-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/li-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>local-name()='ab' or local-name()='lg'</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;l xmlns="http://www.tei-c.org/ns/1.0">&lt;lb />&lt;/l></String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_msPart</String>
+										</field>
+										<field name="name">
+											<String>+ Textträger-Teil</String>
+										</field>
+										<field name="description">
+											<String>Ein Textträger-Teil hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::msDesc or self::msPart</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;msPart xmlns="http://www.tei-c.org/ns/1.0" xml:id="TTT_${id}">
+  &lt;msIdentifier>
+      &lt;idno>&lt;/idno>
+      &lt;collection>Köln, Papyrussammlung&lt;/collection>
+   &lt;/msIdentifier>
+&lt;msContents>
+&lt;/msContents>
+&lt;physDesc>
+    &lt;objectDesc>
+        &lt;supportDesc>
+            &lt;support>
+                &lt;objectType>&lt;/objectType>
+                &lt;material>
+                       &lt;material>&lt;/material>
+                       &lt;material type="note">&lt;/material>
+                &lt;/material>
+                &lt;dimensions>
+                    &lt;width unit="cm">&lt;/width>
+                    &lt;height unit="cm">&lt;/height>
+                    &lt;depth unit="cm">&lt;/depth>
+                    &lt;dim type="length" unit="cm">&lt;/dim>
+                    &lt;dim type="diameter" unit="cm">&lt;/dim>
+                    &lt;dim type="circumference" unit="cm">&lt;/dim>
+                &lt;/dimensions>
+              &lt;note type="dimensions">&lt;p>&lt;/p>&lt;/note>
+                &lt;note type="Fragment">
+                    &lt;p/>
+                &lt;/note>
+                &lt;note type="Blatt">
+                    &lt;p/>
+                &lt;/note>
+                &lt;note type="Rekto">
+                    &lt;p/>
+                &lt;/note>
+                &lt;note type="Verso">
+                    &lt;p/>
+                &lt;/note>
+                &lt;note type="preparation">&lt;/note>
+                &lt;note type="color">&lt;/note>
+            &lt;/support>
+            &lt;condition>&lt;p>&lt;/p>&lt;/condition>
+            &lt;collation>&lt;p>&lt;/p>&lt;/collation>
+        &lt;/supportDesc>
+        &lt;layoutDesc>
+            &lt;layout xml:id="LE_${id}">
+                &lt;note type="type">&lt;/note>
+                &lt;locus>&lt;/locus>
+                &lt;desc>&lt;/desc>
+            &lt;/layout>
+        &lt;/layoutDesc>
+        &lt;layoutDesc>&lt;p>&lt;/p>&lt;/layoutDesc>
+    &lt;/objectDesc>
+&lt;/physDesc>
+&lt;history>
+  &lt;provenance>
+      &lt;p>&lt;/p>
+  &lt;/provenance>
+  &lt;acquisition>
+      &lt;note type="acquisition_type">&lt;/note>
+      &lt;note type="finding_place">&lt;/note>
+      &lt;note type="finding_date">&lt;/note>
+      &lt;note type="finder">&lt;/note>
+      &lt;note type="buying_place">&lt;/note>
+      &lt;note type="buying_date">&lt;/note>
+      &lt;note type="buyer">&lt;/note>
+      &lt;note type="seller">&lt;/note>
+      &lt;note type="donor">&lt;/note>
+      &lt;note type="donation_place">&lt;/note>
+      &lt;note type="donation_date">&lt;/note>
+      &lt;note type="folder">&lt;/note>
+      &lt;note type="box">&lt;/note>
+      &lt;note type="drawing_date">&lt;/note>
+      &lt;note type="general">&lt;p>&lt;/p>&lt;/note>
+  &lt;/acquisition>
+&lt;/history>
+&lt;additional>
+  &lt;adminInfo>
+      &lt;custodialHist>
+          &lt;ab type="custody">&lt;/ab>
+      &lt;/custodialHist>
+      &lt;note type="coverage_amount">&lt;/note>
+  &lt;/adminInfo>
+&lt;/additional>           
+&lt;/msPart></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as last child</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_msPart</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Textträger-Teil löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::msPart</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_msItemStruct</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Textbeschreibung löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::msItemStruct</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_msItemStruct</String>
+										</field>
+										<field name="name">
+											<String>+ Text</String>
+										</field>
+										<field name="description">
+											<String>Beschreibung eines Textes hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::msContents</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;msItemStruct defective="false" xml:id="T_${id}" xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;locus target="#"/>
+     &lt;respStmt>
+         &lt;resp>HerausgeberIn&lt;/resp>
+         &lt;name />
+     &lt;/respStmt>
+     &lt;respStmt>
+        &lt;resp>BearbeiterIn&lt;/resp>
+        &lt;name/>
+    &lt;/respStmt>
+    &lt;title/>
+    &lt;listBibl>
+        &lt;bibl>
+            &lt;biblScope/>
+        &lt;/bibl>
+    &lt;/listBibl>
+    &lt;note type="availability">in Bearbeitung&lt;/note>
+    &lt;note type="publication"/>
+    &lt;note type="text_type">keine Angabe&lt;/note>
+    &lt;note type="content">
+        &lt;p/>
+    &lt;/note>
+    &lt;note type="illustrations">
+        &lt;p/>
+    &lt;/note>
+    &lt;note type="orig_date">
+        &lt;date type="Zeitraum" cert="high">&lt;note/>&lt;/date>
+    &lt;/note>
+    &lt;note type="orig_place">
+        &lt;place>
+               &lt;placeName cert="high">&lt;/placeName>
+               &lt;note>&lt;/note>
+        &lt;/place>
+    &lt;/note>
+  &lt;note type="general">&lt;p>&lt;/p>&lt;/note>
+    &lt;textLang mainLang="keine Angabe">
+        &lt;note type="language">
+            &lt;term type="language">&lt;/term>
+        &lt;/note>
+        &lt;note type="script">
+            &lt;term type="script">&lt;/term>
+            &lt;note type="writing_direction">keine Angabe&lt;/note>
+            &lt;note type="ink">&lt;/note>
+            &lt;note type="hand_desc">&lt;p>&lt;/p>&lt;/note>
+            &lt;note type="structural_markers">&lt;p>&lt;/p>&lt;/note>
+        &lt;/note>
+    &lt;/textLang>
+&lt;/msItemStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as last child</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_layout</String>
+										</field>
+										<field name="name">
+											<String>[+]</String>
+										</field>
+										<field name="description">
+											<String>Layoutelement hinzufügen</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::layout</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;layout xmlns="http://www.tei-c.org/ns/1.0" xml:id="LE_${id}">
+     &lt;note type="type">&lt;/note>
+     &lt;locus>&lt;/locus>
+     &lt;desc>&lt;/desc>
+&lt;/layout></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_layout</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Layoutelement löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::layout and count(parent::layoutDesc/layout) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_bibl</String>
+										</field>
+										<field name="name">
+											<String>[+]</String>
+										</field>
+										<field name="description">
+											<String>Bibliographie-Eintrag hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::bibl</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;bibl xmlns="http://www.tei-c.org/ns/1.0">
+  &lt;biblScope>&lt;/biblScope>
+&lt;/bibl></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_bibl</String>
+										</field>
+										<field name="name">
+											<String>[x]</String>
+										</field>
+										<field name="description">
+											<String>Bibliographie-Eintrag löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::bibl and count(parent::*/bibl) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_authority</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Verantwortlich für die gesamte Edition</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_publication_date</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Wann soll die Bearbeitung des Stückes abgeschlossen werden?</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_msDesc</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung des Textträgers. Diese kann auf mehreren (hierarchisch organisierten) Ebenen erfolgen. Auf der höchsten Ebene steht das Gesamtobjekt. Auf den niedrigeren Ebenen kann es jeweils ein oder mehrere Textträger-Teile geben. Die Teile können z.B. einzelne Blätter oder Fragmente sein. Trifft eine Eigenschaft für alle Textträger-Teile zu, so genügt es, sie auf der höchsten Ebene zu notieren. </String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_msIdentifier_idno</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Bitte nur dann eine Inventarnummer eingeben, wenn es sich um ein Inventarisierungsobjekt handelt.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_msContents</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Identifikation und Beschreibung der Texte, die sich auf dem Textträger befinden. Die Edition der Texte (Transkription, Übersetzung, Kommentar, etc.) erfolgt weiter unten im Editionsbereich.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_msItem_locus</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Wo befindet sich der Text auf dem Textträger? Im Dropdown kann eine ID ausgewählt werden, die auf einen Bereich des Textträgers verweist. Texttragende Bereich können weiter unten unter 'Layout' definiert werden. Im Eingabefeld kann ein freier Kommentar eingefügt werden, der die Lokalisierung des Textes auf dem Objekt beschreibt.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_resp</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Welche Zuständigkeit hat der Bearbeiter?</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_listBibl</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend)) and not(exists(./ancestor::msItemStruct))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, die in der externen Bibliografie angelegt sind, können hier anhand einer Liste von Kurztiteln ausgewählt werden. Das Anlegen neuer Einträge erfolgt direkt in der zentralen Bibliografie-Datei.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend)) and exists(./ancestor::msItemStruct)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Dies ist die Bibliografie zum Text. Bibliografische Angaben zum Textträger insgesamt können weiter unten gemacht werden.
+
+Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, die in der externen Bibliografie angelegt sind, können hier anhand einer Liste von Kurztiteln ausgewählt werden. Das Anlegen neuer Einträge erfolgt direkt in der zentralen Bibliografie-Datei.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_TEI_id</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Die Datensatz-ID wird automatisch vergeben.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_summary</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Inhaltliche Zusammenfassung des Textes. Es kann freier Text eingegeben werden. Für neue Absätze 'Enter' drücken.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_illustrations</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung von Illustrationen/Zeichnungen/Symbolen zum Text. Es kann freier Text eingegeben werden. Für neue Absätze 'Enter' drücken.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_orig_date</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Bei der Datierung des Textträgers oder Textes können ein oder mehrere alternative Daten angegeben werden. 
+
+Ein Datum kann entweder als ungenauer Zeitraum (nicht vor-nicht nach) oder als genauer Zeitpunkt (wann) angegeben werden. 
+
+In den Feldern ist jeweils ein Datumswert in Form von Zahlen einzugeben. Der Datumswert muss mindestens aus einer vierstelligen Jahreszahl bestehen. Bei drei-, zwei- oder einstelligen Jahreszahlen sollten führende Nullen verwendet werden. Für 'v.Chr.' sollte ein Minuszeichen vorangestellt werden. Über die Jahreszahl hinaus kann der Datumswert auch Angaben zum Monat und zum Tag enthalten. Diese sind jeweils als zweistellige Zahl, ggf. mit führender Null, anzugeben. Die Angaben von Jahr, Monat und Tag werden durch einen Bindestrich verbunden. Beispiele: '-0134' (134 v.Chr.), '0048-08-12' (12. August 48 n.Chr.). 
+
+Standardmäßig wird angenommen, dass die Datierung sicher ist. Unsicherheit kann durch das Setzen eines Häkchens im Feld 'unsicher' angegeben werden. 
+
+Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textform ergänzend zu beschreiben.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_orig_place</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hilfe: Zur Herkunft können eine oder mehrere Ortsangaben gemacht werden. Werden mehrere Ortsangaben gemacht, wird angenommen, dass es sich um alternative Angaben handelt.
+
+Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe unsicher ist. Im Feld 'Komnmentar' kann eine erläuternde Anmerkung gemacht werden.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hier können Flächen oder Schreibbereiche des Textträgers definiert und beschrieben werden (z.B. Vorder- und Rückseite eines Papyrus, Seiten oder Kolumnen).</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>process_newFile</String>
+										</field>
+										<field name="name">
+											<String>Neue Datei erstellen</String>
+										</field>
+										<field name="description">
+											<String>Neue Datei erstellen</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String></String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_date</String>
+										</field>
+										<field name="name">
+											<String>Datum hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Datum hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::note[@type="orig_date"] or parent::origDate</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;date xmlns="http://www.tei-c.org/ns/1.0" type="Zeitraum" cert="high">&lt;note/>&lt;/date></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_date</String>
+										</field>
+										<field name="name">
+											<String>Datum löschen.</String>
+										</field>
+										<field name="description">
+											<String>Datum löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::date and count(parent::*/date) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_place</String>
+										</field>
+										<field name="name">
+											<String>Ort hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Ort hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::note[@type="orig_place"] or parent::origPlace</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0">&lt;placeName cert="high">&lt;/placeName>&lt;note/>&lt;/place></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_place</String>
+										</field>
+										<field name="name">
+											<String>Ort löschen.</String>
+										</field>
+										<field name="description">
+											<String>Ort löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::place and count(parent::*/place) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_placeName</String>
+										</field>
+										<field name="name">
+											<String>Namen hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Namen hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::place</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;placeName xmlns="http://www.tei-c.org/ns/1.0">&lt;/placeName></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_placeName</String>
+										</field>
+										<field name="name">
+											<String>Namen löschen.</String>
+										</field>
+										<field name="description">
+											<String>Namen löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::placeName and not(.[@type="preferred"])</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_place</String>
+										</field>
+										<field name="name">
+											<String>Ort hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Ort hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::listPlace</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0" xml:id="TM${ask('Bitte geben Sie die TM-Nummer für den Ort ein.', generic)}">
+      &lt;placeName type="preferred">&lt;/placeName>
+       &lt;location>
+           &lt;geo>&lt;/geo>
+       &lt;/location>
+       &lt;idno>
+            &lt;idno type="TM">&lt;/idno>
+       &lt;/idno>
+       &lt;note>&lt;/note>
+&lt;/place></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_place</String>
+										</field>
+										<field name="name">
+											<String>Ort löschen.</String>
+										</field>
+										<field name="description">
+											<String>Ort löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::place and count(parent::listPlace/place) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_idno</String>
+										</field>
+										<field name="name">
+											<String>ID hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>ID hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::place</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;idno xmlns="http://www.tei-c.org/ns/1.0">&lt;/idno></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_idno</String>
+										</field>
+										<field name="name">
+											<String>ID löschen.</String>
+										</field>
+										<field name="description">
+											<String>ID löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::idno and count(parent::place/idno) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map/>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_index_place_geo</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hilfe: Bitte die Koordinaten in der Reihenfolge Breitengrad, Längengrad und durch Leerzeichen getrennt eingeben.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_index_place_namePreferred</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hilfe: Für jeden Ort sollte mindestens ein Name angegeben werden. Bei mehreren Namen wird der bevorzugte Name zur Anzeige verwendet.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_index_place</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hilfe: Zum Anlegen eines Eintrags im Ortsregister wird eine Trismegistos (TM)-Nummer benötigt, die als Identifikator des Ortes dient. TM-Nummern können unter http://www.trismegistos.org recherchiert werden. Jeder Ort sollte nur einmal vorkommen. Verschiedene Namen desselben Ortes sind als Namensvarianten im selben Eintrag zu notieren.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_index_place_idno</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hilfe: Hier können Identifikatoren aus Ortsverzeichnissen und Normdateien eingegeben werden. Zusätzlich zur Nummer sollte die Art des Identifikators angegeben werden, z.B. TM (Trismegistos), GND (Gemeinsame Normdatei), TGN (Getty Thesaurus of Geographic Names) oder Pleiades.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_provenance</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Angaben zur Besitzgeschichte des Stückes.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_editor</String>
+										</field>
+										<field name="name">
+											<String>HerausgeberIn einfügen.</String>
+										</field>
+										<field name="description">
+											<String>HerausgeberIn einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/user_female_purple_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/user_female_purple_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;editor xmlns="http://www.tei-c.org/ns/1.0">&lt;persName>&lt;surname>&lt;/surname>&lt;forename>&lt;/forename>&lt;/persName>&lt;/editor></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_editor</String>
+										</field>
+										<field name="name">
+											<String>HerausgeberIn löschen.</String>
+										</field>
+										<field name="description">
+											<String>HerausgeberIn löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::editor and count(parent::*/editor) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_bibl</String>
+										</field>
+										<field name="name">
+											<String>Bibliographischen Eintrag einfügen.</String>
+										</field>
+										<field name="description">
+											<String>Bibliographischen Eintrag einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::listBibl</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" xml:id="bibl-${id}" type="Monographie">
+    &lt;monogr>
+          &lt;author>
+              &lt;persName>
+                  &lt;forename/>
+                  &lt;surname/>
+              &lt;/persName>
+          &lt;/author>
+          &lt;title level="m"/>
+          &lt;imprint>
+              &lt;pubPlace/>
+              &lt;publisher/>
+              &lt;date/>
+          &lt;/imprint>
+      &lt;/monogr>
+&lt;/biblStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_bibl</String>
+										</field>
+										<field name="name">
+											<String>Bibliographischen Eintrag löschen.</String>
+										</field>
+										<field name="description">
+											<String>Bibliographischen Eintrag löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct and count(parent::listBibl/biblStruct) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_bibl2</String>
+										</field>
+										<field name="name">
+											<String>Bestätigen</String>
+										</field>
+										<field name="description">
+											<String>Änderung des Publikationstypen bestätigen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Monographie']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;author>
+        &lt;persName>&lt;forename/>&lt;surname/>&lt;/persName>
+    &lt;/author>
+    &lt;title level="m"/>
+    &lt;imprint>
+        &lt;pubPlace/>
+        &lt;publisher/>
+        &lt;date/>
+    &lt;/imprint>
+&lt;/monogr>
+&lt;series xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;title level="s" />&lt;biblScope unit="issue" />
+&lt;/series>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Zeitschriftenaufsatz']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;analytic xmlns="http://www.tei-c.org/ns/1.0">
+      &lt;author>
+          &lt;persName>&lt;forename/>&lt;surname/>&lt;/persName>
+      &lt;/author>
+      &lt;title level="a"/>
+  &lt;/analytic>
+  &lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+      &lt;title level="j"/>
+      &lt;imprint>
+          &lt;date/>
+      &lt;/imprint>
+      &lt;biblScope unit="vol"/>
+      &lt;biblScope unit="issue"/>
+      &lt;biblScope unit="pp"/>
+  &lt;/monogr>
+   &lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+   &lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type = 'Zeitschrift']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;monogr xmlns="http//www.tei-c.org/ns/1.0">
+    &lt;title level="j"/>
+    &lt;editor>
+        &lt;persName>&lt;surname/>&lt;forename/>&lt;/persName>
+    &lt;/editor>
+    &lt;imprint>
+        &lt;pubPlace/>
+        &lt;date/>
+    &lt;/imprint>
+&lt;/monogr>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Sammelbandaufsatz']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;analytic xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;author>
+        &lt;persName>&lt;forename/>&lt;surname/>&lt;/persName>
+    &lt;/author>
+    &lt;title level="a"/>
+&lt;/analytic>
+&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;editor>
+        &lt;persName>&lt;surname/>&lt;forename/>&lt;/persName>
+    &lt;/editor>
+    &lt;title level="m"/>
+    &lt;imprint>
+        &lt;pubPlace/>
+        &lt;date/>
+    &lt;/imprint>
+    &lt;biblScope unit="pp"/>
+&lt;/monogr>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Sammelband']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;editor>
+        &lt;persName>&lt;surname/>&lt;forename/>&lt;/persName>
+    &lt;/editor>
+    &lt;title level="m"/>
+    &lt;imprint>
+        &lt;pubPlace/>
+        &lt;date/>
+    &lt;/imprint>
+&lt;/monogr>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Reihe']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;editor>
+        &lt;persName>&lt;forename/>&lt;surname/>&lt;/persName>
+    &lt;/editor>
+    &lt;title level="s"/>
+    &lt;imprint>
+        &lt;pubPlace/>
+        &lt;publisher/>
+        &lt;date/>
+    &lt;/imprint>
+&lt;/monogr>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::biblStruct[@type='Internetdokument']</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
+      &lt;title level="m">&lt;/title>
+      &lt;editor>
+          &lt;persName>&lt;forename />&lt;surname />&lt;/persName>
+      &lt;/editor>
+      &lt;imprint>
+          &lt;pubPlace>&lt;/pubPlace>
+          &lt;publisher>&lt;/publisher>
+          &lt;date>&lt;/date>
+      &lt;/imprint>
+  &lt;/monogr>
+  &lt;ref type="url">&lt;/ref>
+&lt;/monogr>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="short_title">&lt;/note>
+&lt;note xmlns="http://www.tei-c.org/ns/1.0" type="citation_form">&lt;/note></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_author</String>
+										</field>
+										<field name="name">
+											<String>AutorIn einfügen.</String>
+										</field>
+										<field name="description">
+											<String>AutorIn einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/user_female_blue_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/user_female_blue_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;author xmlns="http://www.tei-c.org/ns/1.0">&lt;persName>&lt;forename/>&lt;surname/>&lt;note type="role" />&lt;/persName>&lt;/author></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_author</String>
+										</field>
+										<field name="name">
+											<String>AutorIn löschen.</String>
+										</field>
+										<field name="description">
+											<String>AutorIn löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::author and count(parent::*/author) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_forename</String>
+										</field>
+										<field name="name">
+											<String>Vornamen einfügen.</String>
+										</field>
+										<field name="description">
+											<String>Vornamen einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;forename xmlns="http://www.tei-c.org/ns/1.0">&lt;/forename></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_index_surname</String>
+										</field>
+										<field name="name">
+											<String>Nachnamen einfügen.</String>
+										</field>
+										<field name="description">
+											<String>Nachnamen einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;surname xmlns="http://www.tei-c.org/ns/1.0">&lt;/surname></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_forename</String>
+										</field>
+										<field name="name">
+											<String>Vornamen löschen.</String>
+										</field>
+										<field name="description">
+											<String>Vornamen löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::forename and count(parent::*/forename) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_surname</String>
+										</field>
+										<field name="name">
+											<String>Nachnamen löschen.</String>
+										</field>
+										<field name="description">
+											<String>Nachnamen löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::surname and count(parent::*/surname) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_index_bibl2</String>
+										</field>
+										<field name="name">
+											<String>Ändern</String>
+										</field>
+										<field name="description">
+											<String>Achtung: Wenn Sie den Publikationstypen ändern, werden evtl. bereits vorgenommene Angaben gelöscht.</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>child::*[1] and child::*[2] and child::*[3] and child::*[4]</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_Fragment</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung des Fragments. Es kann freier Text eingegeben werden. Für neue Absätze Enter drücken.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_Blatt</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung des Blattes. Es kann freier Text eingegeben werden. Für neue Absätze Enter drücken.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_Rekto</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung von Rekto. Siehe dazu auch 'Layout', wo Informationen zu den Schreiboberflächen des Textträgers angegeben werden können.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String></String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_Verso</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung von Verso. Siehe dazu auch 'Layout', wo Informationen zu den Schreiboberflächen des Textträgers angegeben werden können.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_availability</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(./@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Angaben zu dem/der BearbeiterIn können weiter oben gemacht werden.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(./@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_textLang</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Angaben zur Sprache und Schrift des Textes. Es können ein oder mehrere Sprach- und Schriftangaben sowie Anmerkungen dazu gemacht werden.
+
+Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Gliederungszeichen gemacht werden.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_handDesc</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Angaben zu Charakteristiken der Schrift und zu Schreiberhänden</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_language_term</String>
+										</field>
+										<field name="name">
+											<String>Sprache einfügen.</String>
+										</field>
+										<field name="description">
+											<String>Sprache einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::note[@type="language"]</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;term xmlns="http://www.tei-c.org/ns/1.0" type="language">&lt;/term></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_script_term</String>
+										</field>
+										<field name="name">
+											<String>Schrift einfügen.</String>
+										</field>
+										<field name="description">
+											<String>Schrift einfügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::note[@type="script"]</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;term xmlns="http://www.tei-c.org/ns/1.0" type="script">&lt;/term></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_language_term</String>
+										</field>
+										<field name="name">
+											<String>Sprache löschen.</String>
+										</field>
+										<field name="description">
+											<String>Sprache löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::term and count(parent::note[@type="language"]/term) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>delete_script_term</String>
+										</field>
+										<field name="name">
+											<String>Schrift löschen.</String>
+										</field>
+										<field name="description">
+											<String>Schrift löschen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/remove-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/remove-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::term and count(parent::note[@type="script"]/term) gt 1</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_ID</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Die Identifikatoren (IDs) der Layoutelemente dienen zum einen zur Lokalisierung der Texte auf dem Textträger (siehe oben: 'Texte') und zum anderen der Zuordnung von Bildern zu Teilen des Textträgers (siehe: 'Faksimile'), indem von den Beschreibungen der Texte und Bilder aus anhand der Identifikatoren auf die Layoutelemente verwiesen wird.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_note</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Art des Layoutelementes. Es kann zwischen 'Fläche' (z.B. Vorderseite, Rückseite) und 'Schreibbereich' (z.B. Seite, Kolumne) gewählt werden, wobei 'Fläche' einen Teil des physischen Textträgers meint, während 'Schreibbereich' eine logische Sicht auf den Textträger meint. Ein 'Schreibbereich' kann auf einer 'Fläche' lokalisiert sein.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_locus</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Wurde bei 'Art' des Layoutelementes 'Schreibbereich' ausgewählt, kann hier angegeben werden, auf welcher Fläche des Textträgers sich der Schreibbereich (z.B. die Seite oder Kolumne) befindet und wo er auf der Fläche angeordnet ist.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_desc</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung des Layoutelementes, z.B. 'Vorderseite', 'Rückseite', 'Recto', 'Verso' bei einer Fläche oder 'Seite 1', 'Seite 2', 'erste Kolumne' etc. bei einem Schreibbereich.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_locus_target</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Hier kann angegeben werden, auf welcher Fläche sich der Schreibbereich befindet, indem der Identifikator der zuvor definierten Fläche ausgewählt wird.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout_locus_n</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(exists(@rend))</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Angabe der Anordnung des Schreibbereichs auf der Fläche, z.B. 'rechts' oder 'links'.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>exists(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>add_book</String>
+										</field>
+										<field name="name">
+											<String>Eintrag 'Buch' hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Eintrag 'Buch' hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/book_blue_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/book_blue_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>child::biblStruct</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;biblStruct type="book" status="published" xml:id="${ask('Bitte eine ID nach dem Muster xxxxxx00000 eingeben - wobei x für einen Buchstaben und 0 für eine Ziffer steht - z.B. papyri00001', generic)}" xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;monogr>
+        &lt;title level="m" type="main">&lt;/title>
+        &lt;idno type="short_title">&lt;/idno>
+        &lt;author>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+            &lt;/persName>
+            &lt;note type="role">&lt;/note>
+        &lt;/author>
+        &lt;editor>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+            &lt;/persName>
+            &lt;note type="role">&lt;/note>
+        &lt;/editor>
+        &lt;textLang />
+        &lt;edition n="1">&lt;/edition>
+        &lt;imprint>
+            &lt;pubPlace>&lt;/pubPlace>
+            &lt;publisher>&lt;/publisher>
+            &lt;date>&lt;/date>
+            &lt;note type="reprint">&lt;/note>
+        &lt;/imprint>
+    &lt;/monogr>
+    &lt;series>
+        &lt;title level="s" type="main">&lt;/title>
+        &lt;biblScope type="vol">&lt;/biblScope>
+    &lt;/series>
+    &lt;relatedItem>&lt;/relatedItem>
+    &lt;note type="rel_text">&lt;/note>
+    &lt;note type="tags">&lt;/note>
+    &lt;note type="item">&lt;/note>
+    &lt;note type="abstract">&lt;p>&lt;/p>&lt;/note>
+    &lt;note type="notes">&lt;p>&lt;/p>&lt;/note>
+&lt;/biblStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as first child</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>add_bookSection</String>
+										</field>
+										<field name="name">
+											<String>Eintrag 'Buchabschnitt' hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Eintrag 'Buchabschnitt' hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/book_purple_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/book_purple_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>child::biblStruct</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="bookSection" status="published" xml:id="${ask('Bitte eine ID nach dem Muster xxxxxx00000 eingeben, wobei x für einen Buchstaben und 0 für eine Ziffer steht, z.B. papyri00001', generic)}">
+    &lt;analytic>
+        &lt;title level="a" type="main">&lt;/title>
+        &lt;idno type="short_title">&lt;/idno>
+        &lt;author>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+                &lt;note type="role">&lt;/note>
+            &lt;/persName>
+        &lt;/author>
+        &lt;textLang />
+    &lt;/analytic>
+    &lt;monogr>
+        &lt;title level="m" type="main">&lt;/title>
+        &lt;idno type="ISBN">&lt;/idno>
+        &lt;editor>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+                &lt;note type="role">&lt;/note>
+            &lt;/persName>
+        &lt;/editor>
+        &lt;imprint>
+            &lt;pubPlace>&lt;/pubPlace>
+            &lt;biblScope type="pp">&lt;/biblScope>
+            &lt;biblScope type="chap">&lt;/biblScope>
+            &lt;publisher>&lt;/publisher>
+            &lt;date>&lt;/date>
+            &lt;note type="reprint">&lt;/note>
+        &lt;/imprint>
+        &lt;series>
+            &lt;title level="s" type="main">&lt;/title>
+            &lt;biblScope type="vol">&lt;/biblScope>
+        &lt;/series>
+        &lt;relatedItem>&lt;/relatedItem>
+        &lt;note type="rel_text">&lt;/note>
+        &lt;note type="tags">&lt;/note>
+        &lt;note type="item">&lt;/note>
+        &lt;note type="abstract">&lt;p>&lt;/p>&lt;/note>
+        &lt;note type="notes">&lt;p>&lt;/p>&lt;/note>
+    &lt;/monogr>
+&lt;/biblStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as first child</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>add_journalArticle</String>
+										</field>
+										<field name="name">
+											<String>Eintrag 'Zeitschriftenartikel' hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Eintrag 'Zeitschriftenartikel' hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/book_green_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/book_green_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>child::biblStruct</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="journalArticle" status="published" xml:id="${ask('test', generic)}">
+    &lt;analytic>
+        &lt;title level="a" type="main">&lt;/title>
+        &lt;idno type="short_title">&lt;/idno>
+        &lt;author>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+            &lt;/persName>
+            &lt;note type="role">&lt;/note>
+        &lt;/author>
+        &lt;textLang />
+    &lt;/analytic>
+    &lt;monogr>
+        &lt;title level="j" type="main">&lt;/title>
+        &lt;idno type="ISBN">&lt;/idno>
+        &lt;edition n="1">&lt;/edition>
+        &lt;imprint>
+            &lt;biblScope type="vol">&lt;/biblScope>
+            &lt;biblScope unit="issue"/>
+            &lt;biblScope type="pp">&lt;/biblScope>
+            &lt;date>&lt;/date>
+            &lt;note type="reprint">&lt;/note>
+        &lt;/imprint>
+    &lt;/monogr>
+    &lt;relatedItem>&lt;/relatedItem>
+    &lt;note type="rel_text">&lt;/note>
+    &lt;note type="tags">&lt;/note>
+    &lt;note type="item">&lt;/note>
+    &lt;note type="abstract">&lt;p>&lt;/p>&lt;/note>
+    &lt;note type="notes">&lt;p>&lt;/p>&lt;/note>
+&lt;/biblStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as first child</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>add_webPublication</String>
+										</field>
+										<field name="name">
+											<String>Eintrag 'Web-Publikation' hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Eintrag 'Web-Publikation' hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/book_red_20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/book_red_16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>child::biblStruct</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="webPublication" status="published" xml:id="${ask('test', generic)}">
+    &lt;analytic>
+        &lt;title level="a" type="main">&lt;/title>
+        &lt;idno type="short_title">&lt;/idno>
+        &lt;idno type="URL">&lt;/idno>
+        &lt;author>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+            &lt;/persName>
+            &lt;note type="role">&lt;/note>
+        &lt;/author>
+        &lt;editor>
+            &lt;persName>
+                &lt;forename>&lt;/forename>
+                &lt;surname>&lt;/surname>
+            &lt;/persName>
+            &lt;note type="role">&lt;/note>
+        &lt;/editor>
+        &lt;textLang />
+        &lt;date type="posting">&lt;/date>
+    &lt;/analytic>
+    &lt;monogr>
+        &lt;title level="m" type="main">&lt;/title>
+        &lt;idno type="URL">&lt;/idno>
+        &lt;edition n="1">&lt;/edition>
+        &lt;imprint>
+            &lt;date>&lt;/date>
+            &lt;date type="access">&lt;/date>
+        &lt;/imprint>
+    &lt;/monogr>
+    &lt;relatedItem>&lt;/relatedItem>
+    &lt;note type="rel_text">&lt;/note>
+    &lt;note type="tags">&lt;/note>
+    &lt;note type="item">&lt;/note>
+    &lt;note type="abstract">&lt;p>&lt;/p>&lt;/note>
+    &lt;note type="notes">&lt;p>&lt;/p>&lt;/note>
+&lt;/biblStruct></String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_masse</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Maße werden immer in cm angegeben. Es können Zahlwerte mit Nachkommastellen eingegeben werden, z.B. 1,7, sowie Bereiche, z.B. 7-8, und kombinierte Angaben, z.B. Breite: 13/14, wenn die Breite oben und unten unterschiedlich ist. Wenn sich die Angabe auf die ursprünglichen Maße des Stückes bezieht, kann dies durch Anklicken der entsprechenden Box angegeben werden. Ebenso, wenn die Angabe einen Mindest- oder Höchstwert darstellt oder sie nur ungefähr ist (ca.).
+
+Pro Textträger-Teil können nur einmal Maße angegeben werden. Wenn es also mehrere Maßangaben gibt, sollte ein neues Textträger-Teil (z.B. für ein Fragment) angelegt werden.
+
+Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen im folgenden Feld 'Maße' gemacht werden.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>@rend</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_layout2</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Beschreibung von Layouteigenschaften (in freier Form).</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>@rend</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_general_text</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Allgemeine Bemerkungen zum Text.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>@rend</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_info_note_Masse_B</String>
+										</field>
+										<field name="name">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="description">
+											<String>Hilfe ein-/ausblenden.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/info-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/info-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>not(@rend)</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>Anmerkungen zu Maßen. Diese können ergänzend zu den Maßangaben im vorherigen Feld gemacht werden oder für den Fall, dass die Maße nicht genau angegeben, sondern nur beschrieben werden sollen.</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>@rend</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>rend</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_respStmt_HerausgeberIn</String>
+										</field>
+										<field name="name">
+											<String>[+]</String>
+										</field>
+										<field name="description">
+											<String>Eine(n) HerausgeberIn hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::respStmt</String>
+													</field>
+													<field name="argValues">
+														<map>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;respStmt xmlns="http://www.tei-c.org/ns/1.0">
+   &lt;resp>HerausgeberIn&lt;/resp>
+   &lt;name>&lt;/name>
+&lt;/respStmt></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>parent::respStmt</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</map>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+									</action>
+								</action-array>
+							</field>
+							<field name="menubarDescriptor">
+								<menu>
+									<field name="label">
+										<String>EpiDoc C</String>
+									</field>
+									<field name="accessKey">
+										<String></String>
+									</field>
+									<field name="iconPath">
+										<String></String>
+									</field>
+									<field name="menuEntriesDescriptorList">
+										<menuEntry-array>
+											<menuItem>
+												<field name="actionID">
+													<String>add_book</String>
+												</field>
+											</menuItem>
+											<menuItem>
+												<field name="actionID">
+													<String>add_bookSection</String>
+												</field>
+											</menuItem>
+											<menuItem>
+												<field name="actionID">
+													<String>add_journalArticle</String>
+												</field>
+											</menuItem>
+											<menuItem>
+												<field name="actionID">
+													<String>add_webPublication</String>
+												</field>
+											</menuItem>
+											<menuItem>
+												<field name="actionID">
+													<String>insert_index_author</String>
+												</field>
+											</menuItem>
+											<menuItem>
+												<field name="actionID">
+													<String>insert_index_editor</String>
+												</field>
+											</menuItem>
+										</menuEntry-array>
+									</field>
+								</menu>
+							</field>
+							<field name="popupMenuDescriptor">
+								<menu>
+									<field name="label">
+										<String>Kontextmenü</String>
+									</field>
+									<field name="accessKey">
+										<null/>
+									</field>
+									<field name="iconPath">
+										<null/>
+									</field>
+									<field name="menuEntriesDescriptorList">
+										<menuEntry-array/>
+									</field>
+								</menu>
+							</field>
+							<field name="toolbarDescriptor">
+								<toolbar>
+									<field name="id">
+										<String>Symbolleiste</String>
+									</field>
+									<field name="type">
+										<Integer>2</Integer>
+									</field>
+									<field name="largeIconPath">
+										<null/>
+									</field>
+									<field name="smallIconPath">
+										<null/>
+									</field>
+									<field name="toolbarEntriesDescriptorList">
+										<toolbarEntry-array>
+											<toolbarItem>
+												<field name="actionID">
+													<String>add_book</String>
+												</field>
+											</toolbarItem>
+											<toolbarItem>
+												<field name="actionID">
+													<String>add_bookSection</String>
+												</field>
+											</toolbarItem>
+											<toolbarItem>
+												<field name="actionID">
+													<String>add_journalArticle</String>
+												</field>
+											</toolbarItem>
+											<toolbarItem>
+												<field name="actionID">
+													<String>add_webPublication</String>
+												</field>
+											</toolbarItem>
+											<toolbarItem>
+												<field name="actionID">
+													<String>insert_index_author</String>
+												</field>
+											</toolbarItem>
+											<toolbarItem>
+												<field name="actionID">
+													<String>insert_index_editor</String>
+												</field>
+											</toolbarItem>
+										</toolbarEntry-array>
+									</field>
+								</toolbar>
+							</field>
+							<field name="additionalToolbarsDescriptors">
+								<null/>
+							</field>
+							<field name="contextualItems">
+								<contextProvider>
+									<field name="items">
+										<contextItem-array/>
+									</field>
+									<field name="removeItems">
+										<null/>
+									</field>
+								</contextProvider>
+							</field>
+							<field name="tableSupportClassName">
+								<null/>
+							</field>
+							<field name="tableColWidthSupportClassName">
+								<null/>
+							</field>
+							<field name="customReferencesResolver">
+								<null/>
+							</field>
+							<field name="authorExtensionStateListener">
+								<null/>
+							</field>
+							<field name="attributesRecognizer">
+								<null/>
+							</field>
+						</authorExtension>
+					</field>
+					<field name="templatesLocations">
+						<String-array>
+							<String>${frameworkDir}/templates</String>
+						</String-array>
+					</field>
+					<field name="xmlCatalogs">
+						<String-array/>
+					</field>
+					<field name="description">
+						<String>Epigraphic Documents in TEI XML - Kölner Papyrusurkunden</String>
+					</field>
+					<field name="doctypeRules">
+						<documentTypeRule-array>
+							<documentTypeRule>
+								<field name="namespace">
+									<String>http://www.tei-c.org/ns/1.0</String>
+								</field>
+								<field name="rootElem">
+									<String>TEI</String>
+								</field>
+								<field name="fileName">
+									<String>*</String>
+								</field>
+								<field name="publicID">
+									<String>*</String>
+								</field>
+								<field name="javaRuleClass">
+									<String></String>
+								</field>
+								<field name="attributeLocalName">
+									<String>rendition</String>
+								</field>
+								<field name="attributeNamespace">
+									<String>*</String>
+								</field>
+								<field name="attributeValue">
+									<String>EpiDoc_C</String>
+								</field>
+							</documentTypeRule>
+						</documentTypeRule-array>
+					</field>
+					<field name="scenarios">
+						<scenario-array/>
+					</field>
+					<field name="validationScenarios">
+						<validationScenario-array/>
+					</field>
+					<field name="defaultValidationScenarios">
+						<null/>
+					</field>
+					<field name="defaultTransformationScenarios">
+						<null/>
+					</field>
+					<field name="extensionsBundleClassName">
+						<null/>
+					</field>
+					<field name="useImposedInitialPage">
+						<Boolean>true</Boolean>
+					</field>
+					<field name="imposedInitialPage">
+						<String>Author</String>
+					</field>
+					<field name="elementLocatorExtension">
+						<null/>
+					</field>
+					<field name="schemaManagerFilterExtension">
+						<null/>
+					</field>
+					<field name="authorSWTDndExtension">
+						<null/>
+					</field>
+					<field name="textSWTDndExtension">
+						<null/>
+					</field>
+					<field name="authorSwingDndExtension">
+						<null/>
+					</field>
+					<field name="cssStylesFilterExtension">
+						<null/>
+					</field>
+					<field name="attributesValueEditor">
+						<null/>
+					</field>
+					<field name="priority">
+						<Integer>5</Integer>
+					</field>
+					<field name="xmlNodeCustomizerExtension">
+						<null/>
+					</field>
+					<field name="externalObjectInsertionHandler">
+						<null/>
+					</field>
+					<field name="customAttributeValueEditor">
+						<null/>
+					</field>
+				</documentTypeDescriptor>
+			</documentTypeDescriptor-array>
+		</entry>
+	</map>
+</serialized>

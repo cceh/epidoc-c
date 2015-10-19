@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- (S) = Inhalt/Datentyp im Schema spezifiziert -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="DS_" rendition="EpiDoc_C"><!-- Datensatz/Textträger-ID wird von uns automatisch vergeben, 
+    wird nur angezeigt (nicht veränderlich), besteht aus DS-Präfix plus Dateiname = Inventarnummer(nkombination) -->
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title></title><!-- Titel des Textträgers, freie Texteingabe -->
+            </titleStmt>
+            <publicationStmt>
+                <authority>Institut für Altertumskunde der Universität zu Köln</authority>
+                <availability>
+                    <p>Siehe Anmerkungen bei den Beschreibungen der einzelnen Texte.</p>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <!-- Verweis auf andere Beschreibungen/Objekte wo? 
+                <listRelation>
+                    <relation name="a" active="b" passive="c" type="other"></relation>
+                    <relation name="a" mutual="b c" type="other"></relation>
+                </listRelation> -->
+                <msDesc xml:id="TT_"><!-- auf oberster Ebene gibt es das Gesamtobjekt, das aus einem oder mehreren Inventarisierungsobjekten besteht.
+                 @xml:id: wird automatisch vergeben. -->
+                    <msIdentifier> <!-- (S) -->
+                        <idno>21361</idno> <!-- (bisher) zur manuellen Eingabe eine Inventarnummer/ID -->
+                        <collection>Köln, Papyrussammlung</collection><!-- (S), TO DO: mehrere (!), verschiedene, unbekannt, keine Angabe? -->
+                        <!-- <msName></msName> -->
+                    </msIdentifier>
+                    <msContents>
+                        <msItemStruct defective="false" xml:id="T_"><!-- ID wird automatisch vergeben -->
+                            <locus target="#DE-38-404-21361r">Vorderseite</locus><!-- für @target wird hier eine Liste/ein Baum der vorhandenen Adressaten gebraucht: msParts, Layout-Elemente -->
+                            <respStmt><!-- kann mehrfach vorkommen -->
+                                <resp>HerausgeberIn</resp>
+                                <name>NAME</name>
+                            </respStmt>
+                            <respStmt><!-- kann mehrfach vorkommen -->
+                                <resp>BearbeiterIn</resp>
+                                <name>NAME</name><!-- nur dies bearbeitbar -->
+                            </respStmt>
+                            <title>TITEL DES TEXTES</title>
+                            <listBibl>
+                                <bibl sameAs="#bibl-1" type="Übersetzung"><!-- @type: Edition, Übersetzung, Kommentar, Abbildung, Sonstiges -->
+                                    <biblScope></biblScope>
+                                </bibl> 
+                                <bibl sameAs="#ID_Bibl" type="Sonstiges">
+                                    <biblScope></biblScope>
+                                </bibl>
+                            </listBibl>
+                            <note type="availability">in Bearbeitung</note><!-- in Bearbeitung, publiziert, unpubliziert -->
+                            <note type="publication"></note>
+                            <note type="text_type">keine Angabe</note><!-- dokumentarisch, literarisch, paraliterarisch -->
+                            <note type="content"><p>Angaben zum Inhalt des Textes</p></note>
+                            <note type="illustrations"><p>Beschreibung von Illustrationen/Zeichnungen/Symbolen zum Text</p></note>
+                            <note type="orig_date">
+                                <date type="Zeitraum" cert="high"><note></note></date><!-- kann mehrfach vorkommen; 
+                                    hier gibt es potentiell @when (= Zeitpunkt) oder @notBefore, @notAfter (= Zeitraum);
+                                    @cert: default high, sonst low -->
+                            </note>
+                            <note type="orig_place">
+                                <place>
+                                    <placeName cert="high"></placeName>
+                                    <note/>
+                                </place>
+                                <!-- Ortsangabe, @cert: high|low, @ref: Verweis auf ID im Ortsregister? -> nein, erstmal offenes Textfeld. Kommentar in note möglich -->
+                            </note>
+                            <note type="general"><!-- allg. Anmerkung zum Text -->
+                                <p></p>
+                            </note>
+                            <textLang mainLang="keine Angabe">
+                                <note type="language"><!-- Sprache; genaue Angabe in term, Bemerkung hier möglich; mehrfache terms möglich -->
+                                    <term type="language"></term>
+                                </note>
+                                <note type="script"><!-- Schrift, genaue Angabe in term, Bemerkung hier möglich; mehrfache terms möglich -->
+                                    <term type="script"></term>
+                                    <note type="writing_direction">keine Angabe<!-- Schriftrichtung --></note>
+                                    <note type="ink"><!-- Tinte --></note>
+                                    <note type="hand_desc"><p><!-- Beschreibung der Hand --></p></note>
+                                    <note type="structural_markers"><p><!-- Gliederungszeichen --></p></note>
+                                </note>
+                            </textLang>
+                        </msItemStruct>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc>
+                            <supportDesc>
+                                <support>
+                                    <objectType>Rolle</objectType><!-- Ausführung, Objekttyp -->
+                                    <material>
+                                        <material>Papyrus</material>
+                                        <material type="note">Anmerkung zum Material</material>
+                                    </material>
+                                    <dimensions>
+                                        <width unit="cm" scope="ursprünglich" atLeast="0" atMost="0" precision="medium">0</width> <!-- nur cm; 
+                                            @scope=ursprünglich, wenn die Angabe die ursprüngliche Größe des Objektes meint 
+                                            @atLeast, @atMost
+                                            @precision=medium, wenn es eine nicht ganz genaue, ungefähre Angabe (ca.) ist
+                                        -->
+                                        <height unit="cm"></height>
+                                        <depth unit="cm"></depth> 
+                                        <dim type="length" unit="cm"></dim>
+                                        <dim type="diameter" unit="cm"></dim>
+                                        <dim type="circumference" unit="cm"></dim>
+                                    </dimensions>
+                                    <!-- freie Notizen zu Maßen -->
+                                    <note type="dimensions"><p></p></note>
+                                    <!-- Raum für freie Notizen zu diesen Teilen (ansonsten auch unter Layout) -->
+                                    <note type="Fragment"><p></p></note>
+                                    <note type="Blatt"><p></p></note>
+                                    <note type="Rekto"><p></p></note>
+                                    <note type="Verso"><p></p></note>
+                                    <note type="preparation">Zurichtung (englische Übersetzung? - makeready, finishing, preparation?)</note><!-- Auswahlliste, siehe Schema -->
+                                    <note type="color"></note>
+                                </support>
+                                <condition>
+                                    <p>verdunkelt</p>
+                                </condition>
+                                <collation><p></p></collation>
+                            </supportDesc>
+                            <layoutDesc> <!-- Doku siehe http://www.stoa.org/epidoc/gl/latest/supp-desctext.html -->
+                                <layout xml:id="LE_"><!-- columns="1" writtenLines="12"; ID: DE-38-404-21361r ? erstmal automatisch vergeben -->
+                                    <note type="type">Fläche</note>
+                                    <locus></locus>
+                                    <desc>Vorderseite</desc>
+                                    <!-- <dimensions type="columns">
+                                        <height unit="cm">12.2</height>
+                                    </dimensions> -->
+                                </layout>
+                                <layout xml:id="DE-38-404-21361v">
+                                    <note type="type">Fläche</note><!-- Fläche | Seite -->
+                                    <locus></locus>
+                                    <desc>Rückseite</desc><!-- Rückseite | Vorderseite | Recto | Verso -->
+                                </layout>
+                                <layout xml:id="DE-38-404-21361_p1">
+                                    <note type="type">Seite</note>
+                                    <locus target="#DE-38-404-21361r" n="rechts" />
+                                </layout>
+                            </layoutDesc>
+                            <layoutDesc><!-- freie Beschreibung des Layouts -->
+                                <p></p>
+                            </layoutDesc>
+                        </objectDesc>
+                        <!-- <handDesc> Doku: http://www.stoa.org/epidoc/gl/latest/supp-descletters.html
+                           <handNote corresp="#item1">
+                              <note type="writing_direction">Schriftrichtung</note>
+                              <note type="writing_kind">Schriftart/Art der Schrift</note>
+                              <note type="ink"></note>
+                              <note type="structural_markers">Gliederungszeichen (Übersetzung?)</note>
+                              Datierung des Textes auch hier?
+                           </handNote>
+                        </handDesc>
+                        <scriptDesc> zur Art der Schrift (generell), z.B. für bestimmte Region oder Zeit 
+                        spezielle Verwendung einer Schrift in dieser Handschrift
+                        in handDesc
+                            <scriptNote></scriptNote>
+                        </scriptDesc>
+                        <decoDesc> Doku: http://www.stoa.org/epidoc/gl/latest/supp-descdecor.html
+                            <decoNote>Bildmaterial / Illustrationen / Dekoration zum Text</decoNote>
+                        </decoDesc> -->
+                    </physDesc>
+                    <history>
+                        <provenance>
+                            <p></p>
+                        </provenance>
+                        <acquisition>
+                            <note type="acquisition_type">Erwerbungstyp</note>
+                            <note type="finding_place">Fundort</note>
+                            <note type="finding_date">Funddatum</note>
+                            <note type="finder">FinderIn</note>
+                            <note type="buying_place">Kaufort</note>
+                            <note type="buying_date">Kaufdatum</note>
+                            <note type="buyer">KäuferIn</note>
+                            <note type="seller">VerkäuferIn</note>
+                            <note type="donor">SchenkerIn</note>
+                            <note type="donation_place">Schenkungsort</note>
+                            <note type="donation_date">Schenkungsdatum</note>
+                            <note type="folder">Mappe</note>
+                            <note type="box">Kiste</note>
+                            <note type="drawing_date">Verlosungstag</note>
+                            <note type="general"><p>allg. Bemerkung zur Erwerbung</p></note>
+                        </acquisition>
+                    </history>
+                    <additional>
+                        <adminInfo>
+                            <!-- 
+                            <recordHist>
+                                <p><date></date></p>
+                            </recordHist> -->
+                            <custodialHist>
+                                <ab type="custody"><!-- Aufbewahrung -->Glasscheiben</ab><!-- oder oben unter support->condition->note type="custody"? -->
+                            </custodialHist>
+                            <note type="coverage_amount">Versicherungssumme</note>
+                        </adminInfo>
+                    </additional>
+                </msDesc>
+                <listBibl>
+                    <bibl>
+                        <biblScope></biblScope>
+                    </bibl>
+                </listBibl>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <facsimile>
+        <surface>
+            <graphic xml:id="AB_" 
+                url="http://www.uni-koeln.de/phil-fak/ifa/NRWakademie/papyrologie/Manikodex/Manikodex_300/M68_53_300.jpg"
+                corresp="#ID_PhysObjekt">
+                <!-- <desc type="publication_status">publiziert</desc>
+                <desc type="title">...</desc> -->
+                <desc></desc>
+                <!-- ID wird automatisch vergeben -->
+            </graphic>
+        </surface>
+    </facsimile>
+    <text>
+        <body>
+            <div type="edition">
+                <div type="edition">
+                    <ab></ab>
+                </div>
+                <div type="translation">
+                    <ab></ab>
+                </div>
+                <div type="apparatus">
+                    <ab></ab>
+                </div>
+                <div type="commentary">
+                    <ab></ab>
+                </div>
+                <div type="bibliography">
+                    <ab></ab>
+                </div>
+            </div>
+        </body>
+    </text>
+</TEI>

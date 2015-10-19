@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="DS_${id}" rendition="EpiDoc_C">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title></title>
+            </titleStmt>
+            <publicationStmt>
+                <authority>Institut für Altertumskunde der Universität zu Köln</authority>
+                <availability>
+                    <p>Siehe Anmerkungen bei den Beschreibungen der einzelnen Texte.</p>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <msDesc xml:id="TT_${id}">
+                    <msIdentifier>
+                        <idno></idno>
+                        <collection>Köln, Papyrussammlung</collection>
+                    </msIdentifier>
+                    <msContents>
+                        <msItemStruct defective="false" xml:id="T_${id}">
+                            <locus target="#"/>
+                            <respStmt>
+                                <resp>HerausgeberIn</resp>
+                                <name />
+                            </respStmt>
+                            <respStmt>
+                                <resp>BearbeiterIn</resp>
+                                <name/>
+                            </respStmt>
+                            <title/>
+                            <listBibl>
+                                <bibl>
+                                    <biblScope/>
+                                </bibl>
+                            </listBibl>
+                            <note type="availability">in Bearbeitung</note>
+                            <note type="publication"/>
+                            <note type="text_type">keine Angabe</note>
+                            <note type="content">
+                                <p/>
+                            </note>
+                            <note type="illustrations">
+                                <p/>
+                            </note>
+                            <note type="orig_date">
+                                <date type="Zeitraum" cert="high"><note/></date>
+                            </note>
+                            <note type="orig_place">
+                                <place>
+                                    <placeName cert="high">keine Angabe</placeName>
+                                    <note/>
+                                </place>
+                            </note>
+                            <note type="general">
+                                <p></p>
+                            </note>
+                            <textLang mainLang="keine Angabe">
+                                <note type="language">
+                                    <term type="language"></term>
+                                </note>
+                                <note type="script">
+                                    <term type="script"></term>
+                                    <note type="writing_direction">keine Angabe</note>
+                                    <note type="ink"></note>
+                                    <note type="hand_desc"><p></p></note>
+                                    <note type="structural_markers"><p></p></note>
+                                </note>
+                            </textLang>
+                        </msItemStruct>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc>
+                            <supportDesc>
+                                <support>
+                                    <objectType></objectType>
+                                    <material>
+                                        <material></material>
+                                        <material type="note"></material>
+                                    </material>
+                                    <dimensions>
+                                        <width unit="cm"></width>
+                                        <height unit="cm"></height>
+                                        <depth unit="cm"></depth>
+                                        <dim type="length" unit="cm"></dim>
+                                        <dim type="diameter" unit="cm"></dim>
+                                        <dim type="circumference" unit="cm"></dim>
+                                    </dimensions>
+                                    <note type="dimensions">
+                                        <p></p>
+                                    </note>
+                                    <note type="Fragment">
+                                        <p/>
+                                    </note>
+                                    <note type="Blatt">
+                                        <p/>
+                                    </note>
+                                    <note type="Rekto">
+                                        <p/>
+                                    </note>
+                                    <note type="Verso">
+                                        <p/>
+                                    </note>
+                                    <note type="preparation"></note>
+                                    <note type="color"></note>
+                                </support>
+                                <condition><p></p></condition>
+                                <collation><p></p></collation>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout xml:id="LE_${id}">
+                                    <note type="type"/>
+                                    <locus/>
+                                    <desc/>
+                                </layout>
+                            </layoutDesc>
+                            <layoutDesc>
+                                <p></p>
+                            </layoutDesc>
+                        </objectDesc>
+                    </physDesc>
+                    <history>
+                        <provenance>
+                            <p></p>
+                        </provenance>
+                        <acquisition>
+                            <note type="acquisition_type"></note>
+                            <note type="finding_place"></note>
+                            <note type="finding_date"></note>
+                            <note type="finder"></note>
+                            <note type="buying_place"></note>
+                            <note type="buying_date"></note>
+                            <note type="buyer"></note>
+                            <note type="seller"></note>
+                            <note type="donor"></note>
+                            <note type="donation_place"></note>
+                            <note type="donation_date"></note>
+                            <note type="folder"></note>
+                            <note type="box"></note>
+                            <note type="drawing_date"></note>
+                            <note type="general"><p></p></note>
+                        </acquisition>
+                    </history>
+                    <additional>
+                        <adminInfo>
+                            <custodialHist>
+                                <ab type="custody"></ab>
+                            </custodialHist>
+                            <note type="coverage_amount"></note>
+                        </adminInfo>
+                    </additional>
+                </msDesc>
+                <listBibl>
+                    <bibl>
+                        <biblScope></biblScope>
+                    </bibl>
+                </listBibl>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <facsimile>
+        <surface>
+            <graphic xml:id="AB_${id}"
+                url="../img/unknown.png"
+                corresp="#">
+                <desc></desc>
+            </graphic>
+        </surface>
+    </facsimile>
+    <text>
+        <body>
+            <div type="edition">
+                <div type="edition">
+                    <ab></ab>
+                </div>
+                <div type="translation">
+                    <ab></ab>
+                </div>
+                <div type="apparatus">
+                    <ab></ab>
+                </div>
+                <div type="commentary">
+                    <ab></ab>
+                </div>
+                <div type="bibliography">
+                    <ab></ab>
+                </div>
+            </div>
+        </body>
+    </text>
+</TEI>
