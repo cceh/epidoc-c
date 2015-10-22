@@ -19,7 +19,7 @@
                         <altIdentifier type="trismegistos">
                             <idno></idno>
                         </altIdentifier>
-                        <altIdentifier type="old">
+                        <altIdentifier type="legacy">
                             <idno></idno>
                         </altIdentifier>
                     </msIdentifier>

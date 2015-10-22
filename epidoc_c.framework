@@ -405,7 +405,7 @@
       &lt;altIdentifier type="trismegistos">
         &lt;idno>&lt;/idno>
       &lt;/altIdentifier>
-      &lt;altIdentifier type="old">
+      &lt;altIdentifier type="legacy">
         &lt;idno>&lt;/idno>
       &lt;/altIdentifier>
    &lt;/msIdentifier>
