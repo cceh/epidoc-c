@@ -908,8 +908,11 @@ width {
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
 }
 height {
@@ -917,8 +920,11 @@ height {
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
 }
 depth {
@@ -926,8 +932,11 @@ depth {
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
     padding-bottom: 1em;
 }
@@ -936,8 +945,11 @@ dim[type=length] {
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
     padding-bottom: 1em;
     display: block;
@@ -949,8 +961,11 @@ dim[type=diameter] {
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
     padding-bottom: 1em;
     display: block;
@@ -962,8 +977,11 @@ dim[type=circumference]{
              oxy_editor(type, text, edit, "#text", columns, 15)
              " cm\9"
              oxy_editor(type, check, edit, "@scope", values, "ursprünglich", uncheckedValues, "", labels, "ursprünglich", fontInherit, true)
-             oxy_editor(type, check, edit, "@atLeast", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "mindestens", fontInherit, true)
-             oxy_editor(type, check, edit, "@atMost", values, oxy_xpath('replace(., ",", ".")'), uncheckedValues, "", labels, "höchstens", fontInherit, true)
+             /* values war bei @atLeast und @atMost vorher: oxy_xpath('replace(., ",", ".")'). Ab Oxygen Version 17.1 scheint ein XPath-
+             Ausdruck an dieser Stelle nicht mehr unterstützt zu werden. Daher behelfsmäßig 0 gesetzt, wenn der Wert, der Elementinhalt 
+             ist, als "atLeast" oder "atMost" gemeint ist (statt Wiederholung des Wertes selbst) */
+             oxy_editor(type, check, edit, "@atLeast", values, '0', uncheckedValues, "", labels, "mindestens", fontInherit, true)
+             oxy_editor(type, check, edit, "@atMost", values, '0', uncheckedValues, "", labels, "höchstens", fontInherit, true)
              oxy_editor(type, check, edit, "@precision", values, "medium", uncheckedValues, "", labels, "ca.", fontInherit, true);
     padding-bottom: 1em;
     display: block;
