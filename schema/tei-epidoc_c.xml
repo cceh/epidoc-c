@@ -914,28 +914,27 @@ End license statement: do not remove -->
                         <!-- <ref xmlns="http://relaxng.org/ns/structure/1.0" name="macro.phraseSeq"></ref>-->
                     </content>
                 </elementSpec>
-                <elementSpec ident="material" module="msdescription" mode="change">
+                <elementSpec ident="material" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
                     <content>
                         <rng:element name="material">
-                            <rng:element name="material">
-                                <rng:optional>
-                                    <rng:choice>
-                                        <rng:value>Papyrus</rng:value>
-                                        <rng:value>Pergament</rng:value>
-                                        <rng:value>Holz</rng:value>
-                                        <rng:value>Leder</rng:value>
-                                        <rng:value>Ton</rng:value>
-                                        <rng:value>Wachsbeschichtung</rng:value>
-                                        <rng:value>Sonstiges</rng:value>
-                                    </rng:choice>
-                                </rng:optional>
-                            </rng:element>
-                            <rng:element name="material">
-                                <rng:attribute name="type">
-                                    <rng:value>note</rng:value>
-                                </rng:attribute>
-                                <rng:text/>
-                            </rng:element>
+                            <rng:optional>
+                                <rng:choice>
+                                    <rng:value>Papyrus</rng:value>
+                                    <rng:value>Pergament</rng:value>
+                                    <rng:value>Holz</rng:value>
+                                    <rng:value>Leder</rng:value>
+                                    <rng:value>Ton</rng:value>
+                                    <rng:value>Wachsbeschichtung</rng:value>
+                                    <rng:value>Sonstiges</rng:value>
+                                </rng:choice>
+                            </rng:optional>
+                        </rng:element>
+                        <rng:element name="material">
+                            <rng:attribute name="type">
+                                <rng:value>note</rng:value>
+                            </rng:attribute>
+                            <rng:text/>
                         </rng:element>
                     </content>
                 </elementSpec>

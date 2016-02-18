@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-02-18T16:47:46Z. .
+Schema generated from ODD source 2016-02-18T16:57:10Z. .
 TEI Edition: Version 2.9.1. Last updated on
 	15th October 2015, revision 46ac023
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.9.1/
@@ -9092,28 +9092,26 @@ Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniature
       </element>
    </define>
    <define name="tei_material">
-      <element name="material">
+      <element name="material" ns="http://www.tei-c.org/ns/1.0">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a word or phrase describing the material of which the object being described is composed. [10.3.2. Material and Object Type]</a:documentation>
          <element name="material">
-            <element name="material">
-               <optional>
-                  <choice>
-                     <value>Papyrus</value>
-                     <value>Pergament</value>
-                     <value>Holz</value>
-                     <value>Leder</value>
-                     <value>Ton</value>
-                     <value>Wachsbeschichtung</value>
-                     <value>Sonstiges</value>
-                  </choice>
-               </optional>
-            </element>
-            <element name="material">
-               <attribute name="type">
-                  <value>note</value>
-               </attribute>
-               <text/>
-            </element>
+            <optional>
+               <choice>
+                  <value>Papyrus</value>
+                  <value>Pergament</value>
+                  <value>Holz</value>
+                  <value>Leder</value>
+                  <value>Ton</value>
+                  <value>Wachsbeschichtung</value>
+                  <value>Sonstiges</value>
+               </choice>
+            </optional>
+         </element>
+         <element name="material">
+            <attribute name="type">
+               <value>note</value>
+            </attribute>
+            <text/>
          </element>
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.canonical.attributes"/>
