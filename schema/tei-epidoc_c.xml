@@ -1340,8 +1340,15 @@ End license statement: do not remove -->
                 </elementSpec>
                 <elementSpec ident="layoutDesc" module="msdescription" mode="change"
                     ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.global.rendition" mode="delete"/>
+                    </classes>
                     <content>
-                        <rng:choice>
+                        <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
+                            <rng:optional>
+                                <rng:ref name="tei_summary"/>
+                            </rng:optional>
                             <rng:oneOrMore>
                                 <rng:element name="layout">
                                     <rng:element name="note">
@@ -1382,17 +1389,8 @@ End license statement: do not remove -->
                                     <rng:ref name="tei_att.global.attributes"/>
                                 </rng:element>
                             </rng:oneOrMore>
-                            <rng:oneOrMore>
-                                <rng:element name="p">
-                                    <rng:text/>
-                                </rng:element>
-                            </rng:oneOrMore>
-                        </rng:choice>
+                        </rng:group>
                     </content>
-                    <classes mode="replace">
-                        <memberOf key="att.global"/>
-                        <memberOf key="att.global.rendition" mode="delete"/>
-                    </classes>
                 </elementSpec>
                 <elementSpec ident="condition" module="msdescription" mode="change">
                     <content>

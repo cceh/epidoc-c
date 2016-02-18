@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-02-18T16:57:10Z. .
+Schema generated from ODD source 2016-02-18T18:01:40Z. .
 TEI Edition: Version 2.9.1. Last updated on
 	15th October 2015, revision 46ac023
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.9.1/
@@ -4164,11 +4164,11 @@ Normalization 12. Critical Apparatus]</a:documentation>
                       xmlns:tei="http://www.tei-c.org/ns/1.0"
                       context="tei:gap">
                <sch:report test="@quantity and @extent">gap 
-                                    may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report>
+                                                        may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report>
                <sch:report test="@quantity and not(@unit)">If gap has @quantity then
-                                @unit is required</sch:report>
+                                                            @unit is required</sch:report>
                <sch:report test="not(@reason='ellipsis') and ancestor::tei:supplied[not(@reason='undefined')]">gap
-                                may not appear within supplied text</sch:report>
+                                                                may not appear within supplied text</sch:report>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
@@ -7733,9 +7733,9 @@ Sample values include: 1] header; 2] footer; 3] pageNum(page number) ; 4] lineNu
                       xmlns:tei="http://www.tei-c.org/ns/1.0"
                       context="tei:space">
                <sch:report test="@quantity and @extent">space 
-                                    may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report>
+                                                                                            may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report>
                <sch:report test="@quantity and not(@unit)">If space has @quantity then
-                                    @unit is required</sch:report>
+                                                                                                @unit is required</sch:report>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attribute.xmlid"/>
@@ -10141,7 +10141,10 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
    <define name="tei_layoutDesc">
       <element name="layoutDesc" ns="http://www.tei-c.org/ns/1.0">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(layout description) collects the set of layout descriptions applicable to a manuscript. [10.7.2. Writing, Decoration, and Other Notations]</a:documentation>
-         <choice>
+         <group>
+            <optional>
+               <ref name="tei_summary"/>
+            </optional>
             <oneOrMore>
                <element name="layout">
                   <element name="note">
@@ -10182,12 +10185,7 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
                   <ref name="tei_att.global.attributes"/>
                </element>
             </oneOrMore>
-            <oneOrMore>
-               <element name="p">
-                  <text/>
-               </element>
-            </oneOrMore>
-         </choice>
+         </group>
          <ref name="tei_att.global.attributes"/>
          <empty/>
       </element>

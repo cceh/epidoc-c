@@ -114,14 +114,12 @@
                                 <collation><p></p></collation>
                             </supportDesc>
                             <layoutDesc>
+                                <summary><p></p></summary>
                                 <layout xml:id="LE_${id}">
                                     <note type="type"/>
                                     <locus/>
                                     <desc/>
                                 </layout>
-                            </layoutDesc>
-                            <layoutDesc>
-                                <p></p>
                             </layoutDesc>
                         </objectDesc>
                     </physDesc>
