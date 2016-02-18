@@ -1545,23 +1545,20 @@ End license statement: do not remove -->
                                     <rng:attribute name="type">
                                         <rng:value>Zeitraum</rng:value>
                                     </rng:attribute>
-                                    <rng:choice>
-                                        <rng:group>
-                                            <rng:attribute name="notBefore">
-                                                <a:documentation
-                                                  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-                                                  >specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
-                                                <rng:ref name="tei_data.temporal.w3c"/>
-                                            </rng:attribute>
-                                            <rng:attribute name="notAfter">
-                                                <a:documentation
-                                                  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-                                                  >specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
-                                                <rng:ref name="tei_data.temporal.w3c"/>
-                                            </rng:attribute>
-                                        </rng:group>
-                                        <rng:empty/>
-                                    </rng:choice>
+                                    <rng:optional>
+                                        <rng:attribute name="notBefore">
+                                            <a:documentation
+                                                xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                                >specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+                                            <rng:ref name="tei_data.temporal.w3c"/>
+                                        </rng:attribute>
+                                        <rng:attribute name="notAfter">
+                                            <a:documentation
+                                                xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                                >specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+                                            <rng:ref name="tei_data.temporal.w3c"/>
+                                        </rng:attribute>
+                                    </rng:optional>
                                 </rng:group>
                             </rng:choice>
                         </rng:group>

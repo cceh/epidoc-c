@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-02-18T15:32:51Z. .
+Schema generated from ODD source 2016-02-18T16:47:46Z. .
 TEI Edition: Version 2.9.1. Last updated on
 	15th October 2015, revision 46ac023
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.9.1/
@@ -4461,14 +4461,14 @@ Measures]</a:documentation>
                   <attribute name="type">
                      <value>Zeitraum</value>
                   </attribute>
-                  <group>
+                  <optional>
                      <attribute name="notBefore">
                         <ref name="tei_data.temporal.w3c"/>
                      </attribute>
                      <attribute name="notAfter">
                         <ref name="tei_data.temporal.w3c"/>
                      </attribute>
-                  </group>
+                  </optional>
                </group>
             </choice>
          </group>
