@@ -1,4 +1,27 @@
 <?xml version="1.0"?>
+<!-- Start license statement: do not remove 
+    
+EpiDoc Schema
+Copyright (c) 2008-2014 by all contributors listed in <titleStmt>, below.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+Information about the EpiDoc community can be obtained via 
+http://epidoc.sf.net.
+
+End license statement: do not remove -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron"
     xml:lang="en">
@@ -9,9 +32,12 @@
                 <author xml:id="GB">Gabriel Bodard</author>
                 <author xml:id="TE">Tom Elliott</author>
                 <author xml:id="ML">Marion Lam&#xE9;</author>
+                <author xml:id="EMo">Emmanuelle Morlock</author>
                 <author xml:id="EM">Elli Mylonas</author>
+                <author xml:id="SS">Simona Stoyanova</author>
                 <author xml:id="SV">Scott Vanderbilt</author>
                 <author xml:id="UH">Ulrike Henny</author>
+                <author xml:id="MS">Marcel Schaeben</author>
             </titleStmt>
             <publicationStmt>
                 <p>Released under GNU GPL 3.0</p>
@@ -24,64 +50,101 @@
             </sourceDesc>
         </fileDesc>
         <revisionDesc>
-            <change who="#GB" when="2013-01-28">removed temp customization of space (fixed in TEI
-                2.3.0)</change>
-            <change who="#GB" when="2012-11-29">suppressed schematron constraint on
-                att.datable.custom</change>
-            <change who="#GB" when="2012-11-29">improved schematron constraints for gap, date; added
-                constraints for space</change>
+            <change who="#GB" when="2015-06-16"
+                >added temporary customization of tei:m to allow model.hiLike content</change>
+            <change who="#GB" when="2015-06-15"
+                >temporarily reversed omission of "accMat additions catchwords heraldry secFol signatures stamp watermark" (from msdescription),
+    and "metamark retrace" (from transcr)</change>
+            <change who="#GB" when="2015-06-03"
+                >removing customization of altIdentifier (see 2014-02-10) now fixed in TEI</change>
+            <change who="#GB" when="2015-06-03"
+                >stopped omitting "charProp localName mapping unicodeName value"
+        from gaiji (requested by IOSPE)</change>
+            <change who="#GB" when="2015-05-29"
+                >omitted "accMat additions catchwords heraldry secFol signatures stamp watermark" (from msdescription),
+            "appInfo" (from header), and "metamark retrace" (from transcr).</change>
+            <!-- release 8.20: 2014-12-02 - Aligned schema with TEI v. 2.7.0 -->
+            <!-- release 8.19: 2014-07-31 - Aligned schema with TEI v. 2.6.0 -->
+            <change who="#EMo" when="2014-07-18"
+                >fixed TEI errors in ODD (msdescription; unclear -&gt; core; datatype in lb/@break)</change>
+            <change who="#GB" when="2014-05-29"
+                >stopped omitting fw from trancr (as per https://sourceforge.net/p/epidoc/feature-requests/67/)</change>
+            <change who="#GB" when="2014-03-04"
+                >stopped omitting s from Analysis (requested by Perseus)</change>
+            <change who="#GB" when="2014-03-03"
+                >stopped omitting charDecl, glyph, glyphName from Gaiji (requested by DASI), and phr from Analysis (requested by Coptic Scriptorium)</change>
+            <change who="#GB" when="2014-02-24"
+                >stopped omitting variantEncoding from textcrit module (as per request from IGLouvre)</change>
+            <!-- release 8.18: 2014-02-13 - Aligned schema with TEI v. 2.6.0 -->
+            <change who="#GB" when="2014-02-10"
+                >temporarily adding att.global to altIdentifier (to fix problem with TEI 2.6.0)</change>
+            <change who="#SS" when="2013-12-05">added the value 'stacked' in hi @rend</change>
+            <change who="#SS" when="2013-10-09"
+                >stopped omitting anchor from the linking module</change>
+            <!-- release 8.17: 2013-08-08 - Aligned schema with TEI v. 2.5.0 -->
+            <!-- release 8.16: 2013-01-28 - Aligned schema with TEI v. 2.3.0 -->
+            <change who="#GB" when="2013-01-28"
+                >removed temp customization of space (fixed in TEI 2.3.0)</change>
+            <change who="#GB" when="2012-11-29"
+                >suppressed schematron constraint on att.datable.custom</change>
+            <change who="#GB" when="2012-11-29"
+                >improved schematron constraints for gap, date; added constraints for space</change>
             <change who="#GB" when="2012-11-21">stopped omitting birth and death</change>
-            <change who="#GB" when="2012-11-07">change TEI namespace to tei: to match Schematron
-                declaration</change>
-            <change who="#GB" when="2012-11-05">added comments explaining ODD customizations
-                below</change>
-            <change who="#GB" when="2012-11-05">temporarily added certLike to space to patch a TEI
-                bug</change>
-            <change who="#GB" when="2012-11-05">removed customization of person and place, now
-                catered for by TEI 2.2.0</change>
-            <change who="#GB" when="2012-10-31">added schematron constraints for @when-custom,
-                abbreviations, and gaps added corpus model (but omitted everything except particDesc
-                and settingDesc)</change>
-            <change who="#GB" when="2012-10-08">removed description/history/figure and
-                underline-supraline, following deprecation 2 years ago</change>
-            <change who="#GB" when="2012-10-05">switched to using @except on moduleRef instead of
-                @mode="delete" on elementSpec</change>
+            <change who="#GB" when="2012-11-07"
+                >change TEI namespace to tei: to match Schematron declaration</change>
+            <!-- release 8.15: 2012-11-05 - Aligned schema with TEI v. 2.2.0 -->
+            <change who="#GB" when="2012-11-05"
+                >added comments explaining ODD customizations below</change>
+            <change who="#GB" when="2012-11-05"
+                >temporarily added certLike to space to patch a TEI bug</change>
+            <change who="#GB" when="2012-11-05"
+                >removed customization of person and place, now catered for by TEI 2.2.0</change>
+            <change who="#GB" when="2012-10-31"
+                >added schematron constraints for @when-custom, abbreviations, and gaps
+                added corpus model (but omitted everything except particDesc and settingDesc)</change>
+            <change who="#GB" when="2012-10-08"
+                >removed description/history/figure and underline-supraline, following deprecation 2 years ago</change>
+            <change who="#GB" when="2012-10-05"
+                >switched to using @except on moduleRef instead of @mode="delete" on elementSpec</change>
             <change who="#GB" when="2012-09-26">Stopped omitting damage</change>
-            <change who="#GB" when="2012-09-20">Added spoken module; deleted all elements from that
-                module</change>
+            <change who="#GB" when="2012-09-20"
+                >Added spoken module; deleted all elements from that module</change>
             <change who="#GB" when="2012-09-07">stopped omitting relation</change>
             <change who="#GB" when="2012-08-13">stopped omitting floruit and state</change>
-            <change who="#GB" when="2012-07-09">stopped omitting join; added idno to content of
-                person and place</change>
-            <change who="#GB" when="2012-01-11">added "inverted" and "small" to suggested values for
-                hi[@rend]</change>
-            <change who="#GB" when="2012-01-11">removed customization of provenance, origPlace,
-                msItem</change>
+            <change who="#GB" when="2012-07-09"
+                >stopped omitting join; added idno to content of person and place</change>
+            <change who="#GB" when="2012-01-11"
+                >added "inverted" and "small" to suggested values for hi[@rend]</change>
+            <change who="#GB" when="2012-01-11"
+                >removed customization of provenance, origPlace, msItem</change>
             <change who="#SV" when="2012-01-09">stop omitting location</change>
-            <change who="#GB" when="2011-09-26">added att.responsibility to provenance (temporary
-                fix)</change>
-            <change who="#GB" when="2011-09-25">removed modification of lb/@type and added vocab
-                control for lb/@break</change>
-            <change who="#GB" when="2011-09-24">added att.typed to provenance and origPlace
-                (temporary fix)</change>
-            <change who="#GB" when="2011-09-14">added type to origPlace (temporary fix); made
-                msItem/@class repeatable (temporary fix)</change>
-            <change who="#SV" when="2011-03-03">stop omitting tags: bloc, country, district,
-                rdgGrp</change>
+            <change who="#GB" when="2011-09-26"
+                >added att.responsibility to provenance (temporary fix)</change>
+            <change who="#GB" when="2011-09-25"
+                >removed modification of lb/@type and added vocab control for lb/@break</change>
+            <change who="#GB" when="2011-09-24"
+                >added att.typed to provenance and origPlace (temporary fix)</change>
+            <change who="#GB" when="2011-09-14"
+                >added type to origPlace (temporary fix);
+                    made msItem/@class repeatable (temporary fix)</change>
+            <change who="#SV" when="2011-03-03"
+                >stop omitting tags: bloc, country, district, rdgGrp</change>
             <change who="#GB" when="2011-01-20">stopped excluding tei:offset</change>
-            <change who="#GB" when="2010-10-14">deprecated description and history; changed values
-                of @evidence</change>
+            <change who="#GB" when="2010-10-14"
+                >deprecated description and history; changed values of @evidence</change>
             <change who="#GB" when="2010-08-10">deprecated hi/@rend='supraline-underline'</change>
             <change who="#GB" when="2010-07-05">made hi/@rend optional, repeatable (x5)</change>
-            <change who="#TE" when="2010-05-14">added xincludes for 3 example components in
-                guidelines</change>
+            <change who="#TE" when="2010-05-14"
+                >added xincludes for 3 example components in guidelines</change>
             <change who="#GB" when="2010-06-10">stopped omitting event and listEvent</change>
-            <change who="#GB" when="2010-02-01">tweaked some descriptions; reversed high and
-                low</change>
-            <change who="#GB" when="2009-09-24">created new valList for @unit; added valList for
-                @extent</change>
-            <change who="#EM" when="2009-09-17">undid deleted analysis elements: interp,
-                interpGrp</change>
+            <change who="#GB" when="2010-02-01"
+                >tweaked some descriptions; reversed high and
+                        low</change>
+            <change who="#GB" when="2009-09-24"
+                >created new valList for @unit; added valList for
+                            @extent</change>
+            <change who="#EM" when="2009-09-17"
+                >undid deleted analysis elements: interp, interpGrp</change>
             <change who="#GB" when="2009-08-11">changed 'worddiv' to 'inWord'</change>
             <change who="#ML" when="2009-07-12">stop omitting few tags: orgName element</change>
             <change who="#GB" when="2009-06-10">removed dummy 'precision' element</change>
@@ -93,27 +156,26 @@
             <divGen type="toc"/>
         </front>
         <body>
-            <p>EpiDoc TEI Customization starts with modules tei, core, textstructure and header.
-                Customization for the Papyri Charter Project (Cologne).</p>
+            <p>EpiDoc TEI Customization starts with modules tei, core, textstructure and header.&#xD;
+                                Customization for the Papyri Charter Project (Cologne).</p>
             <schemaSpec ident="tei-epidoc_c" docLang="en" prefix="tei_" start="TEI" xml:lang="en">
                 <!--       MODULES USED BY THE EPIDOC SCHEMA       -->
                 <moduleRef key="core"/>
                 <moduleRef key="tei"/>
-                <moduleRef key="header"/>
+                <moduleRef key="header" except="appInfo"/>
                 <moduleRef key="textstructure"
                     except="argument byline closer div1 div2 div3 div4 div5 div6 div7 imprimatur                     opener postscript salute signed titlePage titlePart trailer"/>
-                <moduleRef key="transcr" except="damageSpan fw restore"/>
+                <moduleRef key="transcr" except="damageSpan restore"/>
                 <moduleRef key="verse" except="caesura metDecl metSym rhyme"/>
-                <moduleRef key="analysis" except="cl phr s span spanGrp"/>
+                <moduleRef key="analysis" except="cl span spanGrp"/>
                 <moduleRef key="certainty" except="respons"/>
-                <moduleRef key="gaiji"
-                    except="char charDecl charName charProp glyph glyphName localName mapping                     unicodeName value"/>
-                <moduleRef key="linking" except="alt altGrp anchor joinGrp timeline when"/>
-                <moduleRef key="msdescription" except=""/>
+                <moduleRef key="gaiji" except="char charName unicodeName"/>
+                <moduleRef key="linking" except="alt altGrp joinGrp timeline when"/>
+                <moduleRef key="msdescription"/>
                 <moduleRef key="namesdates"
                     except="affiliation age climate education faith geoFeat langKnowledge                     langKnown nameLink nationality occupation population relationGrp residence sex socecStatus terrain trait"/>
                 <moduleRef key="textcrit"
-                    except="lacunaEnd lacunaStart listWit variantEncoding witDetail witEnd witStart witness"/>
+                    except="lacunaEnd lacunaStart listWit witDetail witEnd witStart witness"/>
                 <moduleRef key="figures" except="cell formula row table"/>
                 <moduleRef key="spoken"
                     except="broadcast equipment incident kinesic pause recording recordingStmt                     scriptStmt shift u vocal writing"/>
@@ -153,7 +215,7 @@
                                 </valItem>
                                 <valItem ident="bibliography">
                                     <desc>to contain bibliographical information, previous
-                                        publications, etc.</desc>
+                                    publications, etc.</desc>
                                 </valItem>
                                 <valItem ident="commentary">
                                     <desc>to contain all editorial commentary,
@@ -161,15 +223,15 @@
                                 </valItem>
                                 <valItem ident="edition">
                                     <desc>to contain the text of the edition itself; may include
-                                        multiple text-parts</desc>
+                                            multiple text-parts</desc>
                                 </valItem>
                                 <valItem ident="textpart">
                                     <desc>used to divide a div[type=edition] into multiple parts
-                                        (fragments, columns, faces, etc.)</desc>
+                                                (fragments, columns, faces, etc.)</desc>
                                 </valItem>
                                 <valItem ident="translation">
                                     <desc>to contain a translation of the text into one or more
-                                        modern languages</desc>
+                                                    modern languages</desc>
                                 </valItem>
                             </valList>
                         </attDef>
@@ -179,30 +241,33 @@
                     <!-- testing for <ex> outside of <expan> -->
                     <constraintSpec scheme="isoschematron" ident="ex">
                         <constraint><sch:rule context="tei:ex"><sch:report
-                                    test="not(ancestor::tei:expan)">ex should only appear inside
-                                    expan</sch:report><sch:report test="parent::tei:abbr">ex should
-                                    not be a child of abbr</sch:report></sch:rule></constraint>
+                                    test="not(ancestor::tei:expan)"
+                                    >ex should only appear inside expan</sch:report><sch:report
+                                    test="parent::tei:abbr"
+                                    >ex should not be a child of abbr</sch:report></sch:rule></constraint>
                     </constraintSpec>
                 </elementSpec>
                 <elementSpec ident="expan" module="transcr" mode="change">
                     <!-- testing for <expan> with no descendant <ex> -->
                     <constraintSpec scheme="isoschematron" ident="expan">
                         <constraint><sch:rule context="tei:expan"><sch:report
-                                    test="not(descendant::tei:ex)">expan should contain
-                                    ex</sch:report></sch:rule></constraint>
+                                    test="not(descendant::tei:ex)"
+                                    >expan should contain ex</sch:report></sch:rule></constraint>
                     </constraintSpec>
                 </elementSpec>
                 <elementSpec ident="gap" module="core" mode="change">
                     <!-- testing for <gap> with both quantity/extent, no unit, or contained in supplied -->
                     <constraintSpec ident="gap" scheme="isoschematron">
                         <constraint><sch:rule context="tei:gap"><sch:report
-                                    test="@quantity and @extent">gap may have @quantity (a figure)
-                                    or @extent (a descriptive text value) but not
-                                    both</sch:report><sch:report test="@quantity and not(@unit)">If
-                                    gap has @quantity then @unit is required</sch:report><sch:report
+                                    test="@quantity and @extent"
+                                    >gap 
+                                                        may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report><sch:report
+                                    test="@quantity and not(@unit)"
+                                    >If gap has @quantity then
+                                                            @unit is required</sch:report><sch:report
                                     test="not(@reason='ellipsis') and ancestor::tei:supplied[not(@reason='undefined')]"
-                                    >gap may not appear within supplied
-                            text</sch:report></sch:rule></constraint>
+                                    >gap
+                                                                may not appear within supplied text</sch:report></sch:rule></constraint>
                     </constraintSpec>
                     <!-- constraining values of gap/@reason -->
                     <attList>
@@ -210,19 +275,19 @@
                             <valList type="closed">
                                 <valItem ident="lost">
                                     <desc>Text completely lost from the surface and
-                                        unrecoverable</desc>
+                                                                    unrecoverable</desc>
                                 </valItem>
                                 <valItem ident="illegible">
                                     <desc>Traces of text remains on the surface but cannot be
-                                        interpreted</desc>
+                                                                        interpreted</desc>
                                 </valItem>
                                 <valItem ident="omitted">
                                     <desc>Text erroneously omitted from the surface by the
-                                        scribe/cutter</desc>
+                                                                            scribe/cutter</desc>
                                 </valItem>
                                 <valItem ident="ellipsis">
                                     <desc>Text omitted from the edition by the editor, for whatever
-                                        reason (brevity, context, language, etc.)</desc>
+                                                                                reason (brevity, context, language, etc.)</desc>
                                 </valItem>
                             </valList>
                         </attDef>
@@ -257,12 +322,10 @@
                                     <desc>ancient grave (varia) diacritic</desc>
                                 </valItem>
                                 <valItem ident="intraline">
-                                    <desc>characters scored or struck through at the mid-line
-                                        level</desc>
+                                    <desc>characters scored or struck through at the mid-line level</desc>
                                 </valItem>
                                 <valItem ident="inverted">
-                                    <desc>character(s) inverted or rotated with respect to the rest
-                                        of the text</desc>
+                                    <desc>character(s) inverted or rotated with respect to the rest of the text</desc>
                                 </valItem>
                                 <valItem ident="italic">
                                     <desc/>
@@ -271,15 +334,13 @@
                                     <desc>ancient lenis (smooth breathing) diacritic</desc>
                                 </valItem>
                                 <valItem ident="ligature">
-                                    <desc>two (or more) letters ligatured, monogrammed, or therwise
-                                        joined</desc>
+                                    <desc>two (or more) letters ligatured, monogrammed, or therwise joined</desc>
                                 </valItem>
                                 <valItem ident="normal">
                                     <desc/>
                                 </valItem>
                                 <valItem ident="reversed">
-                                    <desc>characters reversed (backward-facing) with respect to the
-                                        rest of the line of text</desc>
+                                    <desc>characters reversed (backward-facing) with respect to the rest of the line of text</desc>
                                 </valItem>
                                 <valItem ident="sling-above">
                                     <desc/>
@@ -298,13 +359,16 @@
                                 </valItem>
                                 <valItem ident="supraline">
                                     <desc>characters written with a supralinear line above (e.g. for
-                                        abbreviation or numerals)</desc>
+                                                                                    abbreviation or numerals)</desc>
                                 </valItem>
                                 <valItem ident="tall">
                                     <desc>Letter(s) taller than those around it, e.g. I-longa</desc>
                                 </valItem>
                                 <valItem ident="underline">
                                     <desc>text written with solid line beneath</desc>
+                                </valItem>
+                                <valItem ident="stacked">
+                                    <desc>a character written directly above another character (as opposed to superscript)</desc>
                                 </valItem>
                             </valList>
                         </attDef>
@@ -313,18 +377,37 @@
                 <!-- change definition of <lb> to "line beginning" -->
                 <elementSpec ident="lb" mode="change" module="core">
                     <gloss>line-beginning</gloss>
-                    <desc>marks the start of each line of the text, including the first</desc>
+                    <desc>marks the start of each line of the transcribed text, including the first</desc>
                     <!-- offer value "no" for lb/@break -->
                     <attList>
                         <attDef ident="break" mode="replace" usage="opt">
+                            <datatype>
+                                <rng:ref name="data.enumerated"/>
+                            </datatype>
                             <valList type="semi">
                                 <valItem ident="no">
-                                    <desc>this line-beginning should not be taken as a word-break,
-                                        i.e. word would be hyphenated in a printed text</desc>
+                                    <desc>this line-beginning should not be taken as a word-break, i.e. word would be
+                                                                                        hyphenated in a printed text</desc>
                                 </valItem>
                             </valList>
                         </attDef>
                     </attList>
+                </elementSpec>
+                <!-- adding temporary customization of <m> (2015-06-16), to be removed once TEI have implemented this -->
+                <elementSpec ident="m" module="analysis" mode="change">
+                    <content>
+                        <zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+                            <choice>
+                                <text/>
+                                <ref name="model.gLike"/>
+                                <ref name="model.hiLike"/>
+                                <ref name="seg"/>
+                                <ref name="m"/>
+                                <ref name="c"/>
+                                <ref name="model.global"/>
+                            </choice>
+                        </zeroOrMore>
+                    </content>
                 </elementSpec>
                 <!-- suggested attribute values for origDate/@evidence -->
                 <elementSpec ident="origDate" module="msdescription" mode="change">
@@ -341,12 +424,10 @@
                                     <desc>Text dated by nomenclature or onomastics</desc>
                                 </valItem>
                                 <valItem ident="prosopography">
-                                    <desc>Text dated by known persons named or implied within
-                                        it</desc>
+                                    <desc>Text dated by known persons named or implied within it</desc>
                                 </valItem>
                                 <valItem ident="reign">
-                                    <desc>Text dated by the reign of an emperor or other
-                                        ruler</desc>
+                                    <desc>Text dated by the reign of an emperor or other ruler</desc>
                                 </valItem>
                                 <valItem ident="titulature">
                                     <desc>Text dated by the use of official titles</desc>
@@ -355,8 +436,7 @@
                                     <desc>Text dated by explicit internal date</desc>
                                 </valItem>
                                 <valItem ident="context">
-                                    <desc>Archaeological, epigraphic, iconographic or other context
-                                        of the text support</desc>
+                                    <desc>Archaeological, epigraphic, iconographic or other context of the text support</desc>
                                 </valItem>
                             </valList>
                         </attDef>
@@ -366,11 +446,12 @@
                     <!-- testing for <space> with both quantity/extent or no unit -->
                     <constraintSpec ident="space" scheme="isoschematron">
                         <constraint><sch:rule context="tei:space"><sch:report
-                                    test="@quantity and @extent">space may have @quantity (a figure)
-                                    or @extent (a descriptive text value) but not
-                                    both</sch:report><sch:report test="@quantity and not(@unit)">If
-                                    space has @quantity then @unit is
-                                required</sch:report></sch:rule></constraint>
+                                    test="@quantity and @extent"
+                                    >space 
+                                                                                            may have @quantity (a figure) or @extent (a descriptive text value) but not both</sch:report><sch:report
+                                    test="@quantity and not(@unit)"
+                                    >If space has @quantity then
+                                                                                                @unit is required</sch:report></sch:rule></constraint>
                     </constraintSpec>
                 </elementSpec>
                 <elementSpec ident="supplied" module="transcr" mode="change">
@@ -382,12 +463,10 @@
                             </datatype>
                             <valList type="semi">
                                 <valItem ident="parallel">
-                                    <desc>Characters supplied from a parallel version of this text,
-                                        absent from this one</desc>
+                                    <desc>Characters supplied from a parallel version of this text, absent from this one</desc>
                                 </valItem>
                                 <valItem ident="previouseditor">
-                                    <desc>Characters visible to a previous editor, now lost/unclear
-                                        due to damage</desc>
+                                    <desc>Characters visible to a previous editor, now lost/unclear due to damage</desc>
                                 </valItem>
                             </valList>
                         </attDef>
@@ -396,30 +475,30 @@
                             <valList type="closed">
                                 <valItem ident="lost">
                                     <desc>Restoration of text completely lost from the
-                                        surface</desc>
+                                                                                                    surface</desc>
                                 </valItem>
                                 <valItem ident="omitted">
                                     <desc>Supplement of text erroneously omitted from the surface by
-                                        the scribe/cutter</desc>
+                                                                                                        the scribe/cutter</desc>
                                 </valItem>
                                 <valItem ident="subaudible">
                                     <desc>Editorial supplement of words subaudible to the native
-                                        reader</desc>
+                                                                                                            reader</desc>
                                 </valItem>
                                 <valItem ident="explanation">
                                     <desc>Editorial explanation of oblique text in original</desc>
                                 </valItem>
                                 <valItem ident="undefined">
                                     <desc>Text restored (e.g. from earlier witness or alternate
-                                        copy) without specification of current state of this
-                                        text</desc>
+                                                                                                                copy) without specification of current state of this
+                                                                                                                text</desc>
                                 </valItem>
                             </valList>
                         </attDef>
                     </attList>
                 </elementSpec>
                 <!-- modifying <unclear> because in EpiDoc it should not contain anything but text and <g/> -->
-                <elementSpec ident="unclear" module="textranscr" mode="change">
+                <elementSpec ident="unclear" module="core" mode="change">
                     <content>
                         <rng:ref name="macro.xtext"/>
                     </content>
@@ -487,18 +566,6 @@
                 </elementSpec>
                 <!-- OBS: das Folgende manuell hinzugefügt! noch über ROMA anpassen! -->
                 <elementSpec ident="msPart" module="msdescription" mode="change">
-                    <attList>
-                        <attDef ident="sameAs" mode="delete" usage="req">
-                            <defaultVal>inventory_object</defaultVal>
-                            <valList type="closed" mode="replace">
-                                <valItem ident="inventory_object"/>
-                                <valItem ident="object"/>
-                                <valItem ident="bifolium"/>
-                                <valItem ident="folium"/>
-                                <valItem ident="fragment"/>
-                            </valList>
-                        </attDef>
-                    </attList>
                     <content>
                         <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
                             <rng:ref name="msIdentifier"/>
@@ -529,6 +596,18 @@
                             </rng:choice>
                         </rng:group>
                     </content>
+                    <attList>
+                        <attDef ident="sameAs" mode="delete" usage="req">
+                            <defaultVal>inventory_object</defaultVal>
+                            <valList type="closed" mode="replace">
+                                <valItem ident="inventory_object"/>
+                                <valItem ident="object"/>
+                                <valItem ident="bifolium"/>
+                                <valItem ident="folium"/>
+                                <valItem ident="fragment"/>
+                            </valList>
+                        </attDef>
+                    </attList>
                 </elementSpec>
                 <elementSpec ident="msItemStruct" module="msdescription" mode="change">
                     <content>
@@ -613,75 +692,79 @@
                                         <rng:element name="placeName">
                                             <rng:attribute name="cert">
                                                 <rng:choice>
-                                                    <rng:value>high</rng:value>
-                                                    <rng:value>low</rng:value>
+                                                  <rng:value>high</rng:value>
+                                                  <rng:value>low</rng:value>
                                                 </rng:choice>
                                             </rng:attribute>
                                             <rng:choice>
                                                 <rng:choice>
-                                                    <rng:value>Achmim</rng:value>
-                                                    <rng:value>Ägypten</rng:value>
-                                                    <rng:value>Alexandria</rng:value>
-                                                    <rng:value>Antaiopolites</rng:value>
-                                                    <rng:value>Antinoupolis</rng:value>
-                                                    <rng:value>Apollonopolis</rng:value>
-                                                    <rng:value>Apollonos Polis</rng:value>
-                                                    <rng:value>Arsinoe</rng:value>
-                                                    <rng:value>Arsinoites</rng:value>
-                                                    <rng:value>Assiut</rng:value>
-                                                    <rng:value>Bakchias</rng:value>
-                                                    <rng:value>Baouit</rng:value>
-                                                    <rng:value>Bubastos</rng:value>
-                                                    <rng:value>Euergetis</rng:value>
-                                                    <rng:value>Fayum</rng:value>
-                                                    <rng:value>Gebelen</rng:value>
-                                                    <rng:value>Heptakomias</rng:value>
-                                                    <rng:value>Herakleidou Meris</rng:value>
-                                                    <rng:value>Herakleonos Epoikion</rng:value>
-                                                    <rng:value>Herakleopolis</rng:value>
-                                                    <rng:value>Herakleopolis Magna</rng:value>
-                                                    <rng:value>Herakleopolites</rng:value>
-                                                    <rng:value>Hermopolis</rng:value>
-                                                    <rng:value>Hermopolites</rng:value>
-                                                    <rng:value>Karanis</rng:value>
-                                                    <rng:value>Kerkesoucha Orus</rng:value>
-                                                    <rng:value>Kerkeura</rng:value>
-                                                    <rng:value>Krokodeilon Polis</rng:value>
-                                                    <rng:value>Kynopolites</rng:value>
-                                                    <rng:value>Memphis</rng:value>
-                                                    <rng:value>Memphites</rng:value>
-                                                    <rng:value>Moithymis</rng:value>
-                                                    <rng:value>Nemaris</rng:value>
-                                                    <rng:value>Oberer Kynopolites</rng:value>
-                                                    <rng:value>Oberägypten</rng:value>
-                                                    <rng:value>Oxyrhynchites</rng:value>
-                                                    <rng:value>Oxyrhynchos</rng:value>
-                                                    <rng:value>Pamphylien</rng:value>
-                                                    <rng:value>Panopolis</rng:value>
-                                                    <rng:value>Papa megale</rng:value>
-                                                    <rng:value>Pathyris</rng:value>
-                                                    <rng:value>Pela</rng:value>
-                                                    <rng:value>Pharbaithos</rng:value>
-                                                    <rng:value>Prosopites</rng:value>
-                                                    <rng:value>Psinaryo</rng:value>
-                                                    <rng:value>Ptolemais Euergetis</rng:value>
-                                                    <rng:value>Ptolemais Hormou</rng:value>
-                                                    <rng:value>Side</rng:value>
-                                                    <rng:value>Sinary</rng:value>
-                                                    <rng:value>Soknopaiou Nesos</rng:value>
-                                                    <rng:value>Syene</rng:value>
-                                                    <rng:value>Syron Kome</rng:value>
-                                                    <rng:value>Tanais</rng:value>
-                                                    <rng:value>Terenuthis</rng:value>
-                                                    <rng:value>Themistu Meris</rng:value>
-                                                    <rng:value>Thinites</rng:value>
-                                                    <rng:value>Tura</rng:value>
-                                                    <rng:value>unbekannt</rng:value>
+                                                  <rng:value>Achmim</rng:value>
+                                                  <rng:value>&#xC4;gypten</rng:value>
+                                                  <rng:value>Alexandria</rng:value>
+                                                  <rng:value>Antaiopolites</rng:value>
+                                                  <rng:value>Antinoupolis</rng:value>
+                                                  <rng:value>Apollonopolis</rng:value>
+                                                  <rng:value>Apollonos Polis</rng:value>
+                                                  <rng:value>Arsinoe</rng:value>
+                                                  <rng:value>Arsinoites</rng:value>
+                                                  <rng:value>Assiut</rng:value>
+                                                  <rng:value>Bakchias</rng:value>
+                                                  <rng:value>Baouit</rng:value>
+                                                  <rng:value>Bubastos</rng:value>
+                                                  <rng:value>Euergetis</rng:value>
+                                                  <rng:value>Fayum</rng:value>
+                                                  <rng:value>Gebelen</rng:value>
+                                                  <rng:value>Heptakomias</rng:value>
+                                                  <rng:value>Herakleidou Meris</rng:value>
+                                                  <rng:value>Herakleonos Epoikion</rng:value>
+                                                  <rng:value>Herakleopolis</rng:value>
+                                                  <rng:value>Herakleopolis Magna</rng:value>
+                                                  <rng:value>Herakleopolites</rng:value>
+                                                  <rng:value>Hermopolis</rng:value>
+                                                  <rng:value>Hermopolites</rng:value>
+                                                  <rng:value>Karanis</rng:value>
+                                                  <rng:value>Kerkesoucha Orus</rng:value>
+                                                  <rng:value>Kerkeura</rng:value>
+                                                  <rng:value>Krokodeilon Polis</rng:value>
+                                                  <rng:value>Kynopolites</rng:value>
+                                                  <rng:value>Memphis</rng:value>
+                                                  <rng:value>Memphites</rng:value>
+                                                  <rng:value>Moithymis</rng:value>
+                                                  <rng:value>Nemaris</rng:value>
+                                                  <rng:value>Oberer Kynopolites</rng:value>
+                                                  <rng:value>Ober&#xE4;gypten</rng:value>
+                                                  <rng:value>Oxyrhynchites</rng:value>
+                                                  <rng:value>Oxyrhynchos</rng:value>
+                                                  <rng:value>Pamphylien</rng:value>
+                                                  <rng:value>Panopolis</rng:value>
+                                                  <rng:value>Papa megale</rng:value>
+                                                  <rng:value>Pathyris</rng:value>
+                                                  <rng:value>Pela</rng:value>
+                                                  <rng:value>Pharbaithos</rng:value>
+                                                  <rng:value>Prosopites</rng:value>
+                                                  <rng:value>Psinaryo</rng:value>
+                                                  <rng:value>Ptolemais Euergetis</rng:value>
+                                                  <rng:value>Ptolemais Hormou</rng:value>
+                                                  <rng:value>Side</rng:value>
+                                                  <rng:value>Sinary</rng:value>
+                                                  <rng:value>Soknopaiou Nesos</rng:value>
+                                                  <rng:value>Syene</rng:value>
+                                                  <rng:value>Syron Kome</rng:value>
+                                                  <rng:value>Tanais</rng:value>
+                                                  <rng:value>Terenuthis</rng:value>
+                                                  <rng:value>Themistu Meris</rng:value>
+                                                  <rng:value>Thinites</rng:value>
+                                                  <rng:value>Tura</rng:value>
+                                                  <rng:value>unbekannt</rng:value>
                                                 </rng:choice>
-                                                <rng:text />
+                                                <rng:text/>
                                             </rng:choice>
                                         </rng:element>
-                                        <rng:optional><rng:element name="note"><rng:text /></rng:element></rng:optional>
+                                        <rng:optional>
+                                            <rng:element name="note">
+                                                <rng:text/>
+                                            </rng:element>
+                                        </rng:optional>
                                     </rng:element>
                                 </rng:oneOrMore>
                             </rng:element>
@@ -698,12 +781,16 @@
                             </rng:element>
                             <rng:element name="textLang">
                                 <rng:attribute name="mainLang">
-                                    <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(main language) supplies a code which identifies the chief language used in the bibliographic work.</a:documentation>
+                                    <a:documentation
+                                        xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                        >(main language) supplies a code which identifies the chief language used in the bibliographic work.</a:documentation>
                                     <rng:value>keine Angabe</rng:value>
                                 </rng:attribute>
                                 <rng:optional>
                                     <rng:attribute name="otherLangs">
-                                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(other languages) one or more codes identifying any other languages used in the bibliographic work.</a:documentation>
+                                        <a:documentation
+                                            xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                            >(other languages) one or more codes identifying any other languages used in the bibliographic work.</a:documentation>
                                         <rng:list>
                                             <rng:zeroOrMore>
                                                 <rng:ref name="tei_data.language"/>
@@ -715,7 +802,7 @@
                                     <rng:attribute name="type">
                                         <rng:value>language</rng:value>
                                     </rng:attribute>
-                                    <rng:text />
+                                    <rng:text/>
                                     <rng:oneOrMore>
                                         <rng:element name="term">
                                             <rng:attribute name="type">
@@ -723,16 +810,16 @@
                                             </rng:attribute>
                                             <rng:choice>
                                                 <rng:choice>
-                                                    <rng:value>Ägyptisch</rng:value>
-                                                    <rng:value>Arabisch</rng:value>
-                                                    <rng:value>Aramäisch</rng:value>
-                                                    <rng:value>Griechisch</rng:value>
-                                                    <rng:value>Hebräisch</rng:value>
-                                                    <rng:value>Lateinisch</rng:value>
-                                                    <rng:value>andere</rng:value>
-                                                    <rng:value>unidentifiziert</rng:value>
+                                                  <rng:value>&#xC4;gyptisch</rng:value>
+                                                  <rng:value>Arabisch</rng:value>
+                                                  <rng:value>Aram&#xE4;isch</rng:value>
+                                                  <rng:value>Griechisch</rng:value>
+                                                  <rng:value>Hebr&#xE4;isch</rng:value>
+                                                  <rng:value>Lateinisch</rng:value>
+                                                  <rng:value>andere</rng:value>
+                                                  <rng:value>unidentifiziert</rng:value>
                                                 </rng:choice>
-                                                <rng:text></rng:text>
+                                                <rng:text/>
                                             </rng:choice>
                                         </rng:element>
                                     </rng:oneOrMore>
@@ -741,7 +828,7 @@
                                     <rng:attribute name="type">
                                         <rng:value>script</rng:value>
                                     </rng:attribute>
-                                    <rng:text />
+                                    <rng:text/>
                                     <rng:oneOrMore>
                                         <rng:element name="term">
                                             <rng:attribute name="type">
@@ -749,19 +836,19 @@
                                             </rng:attribute>
                                             <rng:choice>
                                                 <rng:choice>
-                                                    <rng:value>Arabisch</rng:value>
-                                                    <rng:value>Aramäisch</rng:value>
-                                                    <rng:value>Demotisch</rng:value>
-                                                    <rng:value>Griechisch</rng:value>
-                                                    <rng:value>Hebräisch</rng:value>
-                                                    <rng:value>Hieratisch</rng:value>
-                                                    <rng:value>Hieroglyphisch</rng:value>
-                                                    <rng:value>Koptisch</rng:value>
-                                                    <rng:value>Lateinisch</rng:value>
-                                                    <rng:value>andere</rng:value>
-                                                    <rng:value>unidentifiziert</rng:value>
+                                                  <rng:value>Arabisch</rng:value>
+                                                  <rng:value>Aram&#xE4;isch</rng:value>
+                                                  <rng:value>Demotisch</rng:value>
+                                                  <rng:value>Griechisch</rng:value>
+                                                  <rng:value>Hebr&#xE4;isch</rng:value>
+                                                  <rng:value>Hieratisch</rng:value>
+                                                  <rng:value>Hieroglyphisch</rng:value>
+                                                  <rng:value>Koptisch</rng:value>
+                                                  <rng:value>Lateinisch</rng:value>
+                                                  <rng:value>andere</rng:value>
+                                                  <rng:value>unidentifiziert</rng:value>
                                                 </rng:choice>
-                                                <rng:text></rng:text>
+                                                <rng:text/>
                                             </rng:choice>
                                         </rng:element>
                                     </rng:oneOrMore>
@@ -816,7 +903,7 @@
                                 <rng:value>Ostrakon</rng:value>
                                 <rng:value>Fluchtafel</rng:value>
                                 <rng:value>Schreibtafel</rng:value>
-                                <rng:value>Mumientäfelchen</rng:value>
+                                <rng:value>Mumient&#xE4;felchen</rng:value>
                                 <rng:value>Blatt</rng:value>
                                 <rng:value>Rolle oder Blatt</rng:value>
                                 <rng:value>Sonstiges</rng:value>
@@ -844,8 +931,10 @@
                                 </rng:optional>
                             </rng:element>
                             <rng:element name="material">
-                                <rng:attribute name="type"><rng:value>note</rng:value></rng:attribute>
-                                <rng:text />
+                                <rng:attribute name="type">
+                                    <rng:value>note</rng:value>
+                                </rng:attribute>
+                                <rng:text/>
                             </rng:element>
                         </rng:element>
                     </content>
@@ -881,17 +970,16 @@
                     <content>
                         <rng:choice xmlns="http://relaxng.org/ns/structure/1.0">
                             <rng:choice>
-                                <rng:value>Köln, Papyrussammlung</rng:value>
+                                <rng:value>K&#xF6;ln, Papyrussammlung</rng:value>
                                 <rng:value>unbekannt</rng:value>
                                 <rng:value>keine Angabe</rng:value>
                             </rng:choice>
-                            <rng:text></rng:text>
+                            <rng:text/>
                         </rng:choice>
                     </content>
                 </elementSpec>
                 <elementSpec ident="textLang" module="core" mode="change">
-                    <content>
-                    </content>
+                    <content> </content>
                     <attList>
                         <attDef ident="mainLang" mode="change" usage="req">
                             <valList type="closed" mode="replace">
@@ -907,90 +995,125 @@
                             <rng:ref name="material"/>
                             <rng:element name="dimensions">
                                 <rng:optional>
-                                    <rng:attribute name="rend"><rng:text /></rng:attribute>
+                                    <rng:attribute name="rend">
+                                        <rng:text/>
+                                    </rng:attribute>
                                 </rng:optional>
-                                <rng:ref name="width" />
-                                <rng:ref name="height" />
-                                <rng:ref name="depth" />
+                                <rng:ref name="width"/>
+                                <rng:ref name="height"/>
+                                <rng:ref name="depth"/>
                                 <rng:element name="dim">
                                     <rng:data type="string">
-                                        <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
+                                        <rng:param name="pattern"
+                                            >(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
                                     </rng:data>
-                                    <rng:attribute name="type"><rng:value>length</rng:value></rng:attribute>
-                                    <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
+                                    <rng:attribute name="type">
+                                        <rng:value>length</rng:value>
+                                    </rng:attribute>
+                                    <rng:attribute name="unit">
+                                        <rng:value>cm</rng:value>
+                                    </rng:attribute>
                                     <rng:optional>
-                                        <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
+                                        <rng:attribute name="scope">
+                                            <rng:value>urspr&#xFC;nglich</rng:value>
+                                        </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
                                         <rng:attribute name="atLeast">
                                             <rng:data type="string">
-                                                <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                            </rng:data>   
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                            </rng:data>
                                         </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
                                         <rng:attribute name="atMost">
                                             <rng:data type="string">
-                                                <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
                                             </rng:data>
                                         </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
-                                        <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
-                                    </rng:optional>
-                                </rng:element>
-                                <rng:element name="dim">
-                                        <rng:data type="string">
-                                            <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
-                                        </rng:data>
-                                    <rng:attribute name="type"><rng:value>diameter</rng:value></rng:attribute>
-                                        <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
-                                        <rng:optional>
-                                            <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
-                                        </rng:optional>
-                                        <rng:optional>
-                                            <rng:attribute name="atLeast">
-                                                <rng:data type="string">
-                                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                                </rng:data>   
-                                            </rng:attribute>
-                                        </rng:optional>
-                                        <rng:optional>
-                                            <rng:attribute name="atMost">
-                                                <rng:data type="string">
-                                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                                </rng:data>
-                                            </rng:attribute>
-                                        </rng:optional>
-                                    <rng:optional>
-                                        <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
+                                        <rng:attribute name="precision">
+                                            <rng:value>medium</rng:value>
+                                        </rng:attribute>
                                     </rng:optional>
                                 </rng:element>
                                 <rng:element name="dim">
                                     <rng:data type="string">
-                                        <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
+                                        <rng:param name="pattern"
+                                            >(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
                                     </rng:data>
-                                    <rng:attribute name="type"><rng:value>circumference</rng:value></rng:attribute>
-                                    <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
+                                    <rng:attribute name="type">
+                                        <rng:value>diameter</rng:value>
+                                    </rng:attribute>
+                                    <rng:attribute name="unit">
+                                        <rng:value>cm</rng:value>
+                                    </rng:attribute>
                                     <rng:optional>
-                                        <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
+                                        <rng:attribute name="scope">
+                                            <rng:value>urspr&#xFC;nglich</rng:value>
+                                        </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
                                         <rng:attribute name="atLeast">
                                             <rng:data type="string">
-                                                <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                            </rng:data>   
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                            </rng:data>
                                         </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
                                         <rng:attribute name="atMost">
                                             <rng:data type="string">
-                                                <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
                                             </rng:data>
                                         </rng:attribute>
                                     </rng:optional>
                                     <rng:optional>
-                                        <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
+                                        <rng:attribute name="precision">
+                                            <rng:value>medium</rng:value>
+                                        </rng:attribute>
+                                    </rng:optional>
+                                </rng:element>
+                                <rng:element name="dim">
+                                    <rng:data type="string">
+                                        <rng:param name="pattern"
+                                            >(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
+                                    </rng:data>
+                                    <rng:attribute name="type">
+                                        <rng:value>circumference</rng:value>
+                                    </rng:attribute>
+                                    <rng:attribute name="unit">
+                                        <rng:value>cm</rng:value>
+                                    </rng:attribute>
+                                    <rng:optional>
+                                        <rng:attribute name="scope">
+                                            <rng:value>urspr&#xFC;nglich</rng:value>
+                                        </rng:attribute>
+                                    </rng:optional>
+                                    <rng:optional>
+                                        <rng:attribute name="atLeast">
+                                            <rng:data type="string">
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                            </rng:data>
+                                        </rng:attribute>
+                                    </rng:optional>
+                                    <rng:optional>
+                                        <rng:attribute name="atMost">
+                                            <rng:data type="string">
+                                                <rng:param name="pattern"
+                                                  >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                            </rng:data>
+                                        </rng:attribute>
+                                    </rng:optional>
+                                    <rng:optional>
+                                        <rng:attribute name="precision">
+                                            <rng:value>medium</rng:value>
+                                        </rng:attribute>
                                     </rng:optional>
                                 </rng:element>
                             </rng:element>
@@ -1060,7 +1183,7 @@
                                         <rng:value>Heftung</rng:value>
                                         <rng:value>Klebung</rng:value>
                                     </rng:choice>
-                                    <text></text>
+                                    <text/>
                                 </rng:choice>
                             </rng:element>
                             <rng:element name="note">
@@ -1072,93 +1195,138 @@
                         </rng:group>
                     </content>
                 </elementSpec>
-                <elementSpec ident="width" module="msdescription" mode="change">
+                <elementSpec ident="width" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="model.dimLike"/>
+                        <memberOf key="model.measureLike"/>
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.dimensions" mode="delete"/>
+                    </classes>
                     <content>
                         <!--<rng:data xmlns="http://relaxng.org/ns/structure/1.0" type="double"
                             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"/>-->
                         <rng:data type="string">
                             <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
                         </rng:data>
-                        <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
+                        <rng:attribute name="unit">
+                            <rng:value>cm</rng:value>
+                        </rng:attribute>
                         <rng:optional>
-                            <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
+                            <rng:attribute name="scope">
+                                <rng:value>urspr&#xFC;nglich</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atLeast">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                </rng:data>   
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atMost">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
                                 </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
-                            <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
+                            <rng:attribute name="precision">
+                                <rng:value>medium</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                     </content>
                 </elementSpec>
-                <elementSpec ident="height" module="msdescription" mode="change">
+                <elementSpec ident="height" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="model.dimLike"/>
+                        <memberOf key="model.measureLike"/>
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.dimensions" mode="delete"/>
+                    </classes>
                     <content>
                         <!--<rng:data xmlns="http://relaxng.org/ns/structure/1.0" type="double"
                             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"/>-->
                         <rng:data type="string">
                             <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
                         </rng:data>
-                        <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
+                        <rng:attribute name="unit">
+                            <rng:value>cm</rng:value>
+                        </rng:attribute>
                         <rng:optional>
-                            <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
+                            <rng:attribute name="scope">
+                                <rng:value>urspr&#xFC;nglich</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atLeast">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                </rng:data>   
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atMost">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
                                 </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
-                            <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
+                            <rng:attribute name="precision">
+                                <rng:value>medium</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                     </content>
                 </elementSpec>
-                <elementSpec ident="depth" module="msdescription" mode="change">
+                <elementSpec ident="depth" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="model.dimLike"/>
+                        <memberOf key="model.measureLike"/>
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.dimensions" mode="delete"/>
+                    </classes>
                     <content>
-                       <!-- <rng:data xmlns="http://relaxng.org/ns/structure/1.0" type="double"
+                        <!-- <rng:data xmlns="http://relaxng.org/ns/structure/1.0" type="double"
                             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"/> -->
                         <rng:data type="string">
                             <rng:param name="pattern">(\d+(,\d+)?([\-/]\d+(,\d+)?)?|)</rng:param>
                         </rng:data>
-                        <rng:attribute name="unit"><rng:value>cm</rng:value></rng:attribute>
+                        <rng:attribute name="unit">
+                            <rng:value>cm</rng:value>
+                        </rng:attribute>
                         <rng:optional>
-                            <rng:attribute name="scope"><rng:value>ursprünglich</rng:value></rng:attribute>
+                            <rng:attribute name="scope">
+                                <rng:value>urspr&#xFC;nglich</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atLeast">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
-                                </rng:data>   
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
                             <rng:attribute name="atMost">
                                 <rng:data type="string">
-                                    <rng:param name="pattern">\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
+                                    <rng:param name="pattern"
+                                        >\d+(\.\d+)?([\-/]\d+(\.\d+)?)?</rng:param>
                                 </rng:data>
                             </rng:attribute>
                         </rng:optional>
                         <rng:optional>
-                            <rng:attribute name="precision"><rng:value>medium</rng:value></rng:attribute>
+                            <rng:attribute name="precision">
+                                <rng:value>medium</rng:value>
+                            </rng:attribute>
                         </rng:optional>
                     </content>
                 </elementSpec>
@@ -1171,60 +1339,61 @@
                         </rng:group>
                     </content>
                 </elementSpec>
-                <elementSpec ident="layoutDesc" module="msdescription" mode="change">
+                <elementSpec ident="layoutDesc" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
                     <content>
-                        <rng:choice><rng:oneOrMore>
-                            <rng:element name="layout">
-                                <rng:element name="note">
-                                    <rng:attribute name="type">
-                                        <rng:value>type</rng:value>
-                                    </rng:attribute>
-                                    <rng:optional>
-                                        <rng:attribute name="rend">
-                                            <rng:text />
+                        <rng:choice>
+                            <rng:oneOrMore>
+                                <rng:element name="layout">
+                                    <rng:element name="note">
+                                        <rng:attribute name="type">
+                                            <rng:value>type</rng:value>
                                         </rng:attribute>
-                                    </rng:optional>
-                                    <rng:choice>
+                                        <rng:optional>
+                                            <rng:attribute name="rend">
+                                                <rng:text/>
+                                            </rng:attribute>
+                                        </rng:optional>
                                         <rng:choice>
-                                            <rng:value>Fläche</rng:value>
-                                            <rng:value>Schreibbereich</rng:value>
+                                            <rng:choice>
+                                                <rng:value>Fl&#xE4;che</rng:value>
+                                                <rng:value>Schreibbereich</rng:value>
+                                            </rng:choice>
+                                            <rng:text/>
                                         </rng:choice>
-                                        <rng:text/>
-                                    </rng:choice>
+                                    </rng:element>
+                                    <rng:element name="locus">
+                                        <rng:optional>
+                                            <rng:attribute name="target">
+                                                <rng:text/>
+                                            </rng:attribute>
+                                        </rng:optional>
+                                        <rng:optional>
+                                            <rng:attribute name="n">
+                                                <rng:text/>
+                                            </rng:attribute>
+                                        </rng:optional>
+                                        <rng:optional>
+                                            <rng:attribute name="rend">
+                                                <rng:text/>
+                                            </rng:attribute>
+                                        </rng:optional>
+                                    </rng:element>
+                                    <rng:ref name="tei_macro.specialPara"/>
+                                    <rng:ref name="tei_att.global.attributes"/>
                                 </rng:element>
-                                <rng:element name="locus">
-                                    <rng:optional>
-                                        <rng:attribute name="target">
-                                            <rng:text />
-                                        </rng:attribute>
-                                    </rng:optional>
-                                    <rng:optional>
-                                        <rng:attribute name="n">
-                                            <rng:text />
-                                        </rng:attribute>
-                                    </rng:optional>
-                                    <rng:optional>
-                                        <rng:attribute name="rend">
-                                            <rng:text />
-                                        </rng:attribute>
-                                    </rng:optional>
-                                </rng:element>
-                                <rng:ref name="tei_macro.specialPara"/>
-                                <rng:ref name="tei_att.global.attributes"/>
-                            </rng:element>
-                        </rng:oneOrMore>
-                            <rng:optional>
-                                <rng:attribute name="rend">
-                                    <rng:text></rng:text>
-                                </rng:attribute>
-                            </rng:optional>
+                            </rng:oneOrMore>
                             <rng:oneOrMore>
                                 <rng:element name="p">
-                                    <rng:text></rng:text>
+                                    <rng:text/>
                                 </rng:element>
                             </rng:oneOrMore>
                         </rng:choice>
                     </content>
+                    <classes mode="replace">
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.global.rendition" mode="delete"/>
+                    </classes>
                 </elementSpec>
                 <elementSpec ident="condition" module="msdescription" mode="change">
                     <content>
@@ -1252,26 +1421,26 @@
                                         <rng:value>Schenkung</rng:value>
                                         <rng:value>Papyrus-Kartell</rng:value>
                                     </rng:choice>
-                                    <rng:text />
+                                    <rng:text/>
                                 </rng:choice>
                             </rng:element>
                             <rng:element name="note">
                                 <rng:attribute name="type">
                                     <rng:value>finding_place</rng:value>
                                 </rng:attribute>
-                                <rng:text />
+                                <rng:text/>
                             </rng:element>
                             <rng:element name="note">
                                 <rng:attribute name="type">
                                     <rng:value>finding_date</rng:value>
                                 </rng:attribute>
-                                <rng:text />
+                                <rng:text/>
                             </rng:element>
                             <rng:element name="note">
                                 <rng:attribute name="type">
                                     <rng:value>finder</rng:value>
                                 </rng:attribute>
-                                <rng:text />
+                                <rng:text/>
                             </rng:element>
                             <rng:element name="note">
                                 <rng:attribute name="type">
@@ -1301,7 +1470,7 @@
                                 <rng:attribute name="type">
                                     <rng:value>donor</rng:value>
                                 </rng:attribute>
-                                <rng:text />
+                                <rng:text/>
                             </rng:element>
                             <rng:element name="note">
                                 <rng:attribute name="type">
