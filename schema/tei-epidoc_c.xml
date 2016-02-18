@@ -1513,6 +1513,67 @@ End license statement: do not remove -->
                         </rng:group>
                     </content>
                 </elementSpec>
+                <elementSpec ident="date" module="core" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="model.dateLike"/>
+                        <memberOf key="model.publicationStmtPart.detail"/>
+                        <memberOf key="att.duration"/>
+                        <memberOf key="att.editLike"/>
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.datable" mode="delete"/>
+                        <memberOf key="att.typed" mode="delete"/>
+                    </classes>
+                    <content xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+                        <rng:zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+                            <rng:choice>
+                                <rng:text/>
+                                <rng:ref name="model.gLike"/>
+                                <rng:ref name="model.phrase"/>
+                                <rng:ref name="model.global"/>
+                            </rng:choice>
+                        </rng:zeroOrMore>
+                        <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
+                            <rng:choice>
+                                <rng:group>
+                                    <rng:attribute name="type">
+                                        <rng:value>Zeitpunkt</rng:value>
+                                    </rng:attribute>
+                                    <rng:ref name="tei_att.datable.w3c.attribute.when"/>
+                                </rng:group>
+                                <rng:group>
+                                    <rng:attribute name="type">
+                                        <rng:value>Zeitraum</rng:value>
+                                    </rng:attribute>
+                                    <rng:choice>
+                                        <rng:group>
+                                            <rng:attribute name="notBefore">
+                                                <a:documentation
+                                                  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                                  >specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+                                                <rng:ref name="tei_data.temporal.w3c"/>
+                                            </rng:attribute>
+                                            <rng:attribute name="notAfter">
+                                                <a:documentation
+                                                  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                                                  >specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+                                                <rng:ref name="tei_data.temporal.w3c"/>
+                                            </rng:attribute>
+                                        </rng:group>
+                                        <rng:empty/>
+                                    </rng:choice>
+                                </rng:group>
+                            </rng:choice>
+                        </rng:group>
+                    </content>
+                </elementSpec>
+                <elementSpec ident="layout" module="msdescription" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="att.global"/>
+                        <memberOf key="att.global.rendition" mode="delete"/>
+                    </classes>
+                </elementSpec>
             </schemaSpec>
         </body>
     </text>
