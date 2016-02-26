@@ -643,8 +643,8 @@ End license statement: do not remove -->
                                     <rng:value>literarisch</rng:value>
                                     <rng:value>paraliterarisch</rng:value>
                                     <rng:value>andere</rng:value>
-                                    <rng:value>unbekannt</rng:value>
-                                    <rng:value>keine Angabe</rng:value>
+                                    <rng:value>unbestimmbar</rng:value>
+                                    <rng:value>nicht ermittelt</rng:value>
                                 </rng:choice>
                             </rng:element>
                             <rng:element name="note">
@@ -755,9 +755,12 @@ End license statement: do not remove -->
                                                   <rng:value>Themistu Meris</rng:value>
                                                   <rng:value>Thinites</rng:value>
                                                   <rng:value>Tura</rng:value>
-                                                  <rng:value>unbekannt</rng:value>
+                                                  <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
-                                                <rng:text/>
+                                                <rng:data type="string">
+                                                    <rng:param name="pattern">.*[\S]+.*</rng:param>
+                                                </rng:data>
                                             </rng:choice>
                                         </rng:element>
                                         <rng:optional>
@@ -784,7 +787,7 @@ End license statement: do not remove -->
                                     <a:documentation
                                         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
                                         >(main language) supplies a code which identifies the chief language used in the bibliographic work.</a:documentation>
-                                    <rng:value>keine Angabe</rng:value>
+                                    <rng:value>nicht ermittelt</rng:value>
                                 </rng:attribute>
                                 <rng:optional>
                                     <rng:attribute name="otherLangs">
@@ -817,9 +820,12 @@ End license statement: do not remove -->
                                                   <rng:value>Hebr&#xE4;isch</rng:value>
                                                   <rng:value>Lateinisch</rng:value>
                                                   <rng:value>andere</rng:value>
-                                                  <rng:value>unidentifiziert</rng:value>
+                                                  <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
-                                                <rng:text/>
+                                                <rng:data type="string">
+                                                    <rng:param name="pattern">.*[\S]+.*</rng:param>
+                                                </rng:data>
                                             </rng:choice>
                                         </rng:element>
                                     </rng:oneOrMore>
@@ -846,7 +852,8 @@ End license statement: do not remove -->
                                                   <rng:value>Koptisch</rng:value>
                                                   <rng:value>Lateinisch</rng:value>
                                                   <rng:value>andere</rng:value>
-                                                  <rng:value>unidentifiziert</rng:value>
+                                                  <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:text/>
                                             </rng:choice>
@@ -863,8 +870,8 @@ End license statement: do not remove -->
                                             <rng:value>andere (kein Papyrus)</rng:value>
                                             <rng:value>Haarseite (bei Pergament)</rng:value>
                                             <rng:value>Fleischseite (bei Pergament)</rng:value>
-                                            <rng:value>unbekannt</rng:value>
-                                            <rng:value>keine Angabe</rng:value>
+                                            <rng:value>unbestimmbar</rng:value>
+                                            <rng:value>nicht ermittelt</rng:value>
                                         </rng:choice>
                                     </rng:element>
                                     <rng:element name="note">
@@ -907,8 +914,8 @@ End license statement: do not remove -->
                                 <rng:value>Blatt</rng:value>
                                 <rng:value>Rolle oder Blatt</rng:value>
                                 <rng:value>Sonstiges</rng:value>
-                                <rng:value>unbekannt</rng:value>
-                                <rng:value>nicht bestimmbar</rng:value>
+                                <rng:value>unbestimmbar</rng:value>
+                                <rng:value>nicht ermittelt</rng:value>
                             </rng:choice>
                         </rng:optional>
                         <!-- <ref xmlns="http://relaxng.org/ns/structure/1.0" name="macro.phraseSeq"></ref>-->
@@ -927,6 +934,7 @@ End license statement: do not remove -->
                                     <rng:value>Ton</rng:value>
                                     <rng:value>Wachsbeschichtung</rng:value>
                                     <rng:value>Sonstiges</rng:value>
+                                    <rng:value>nicht ermittelt</rng:value>
                                 </rng:choice>
                             </rng:optional>
                         </rng:element>
@@ -970,8 +978,6 @@ End license statement: do not remove -->
                         <rng:choice xmlns="http://relaxng.org/ns/structure/1.0">
                             <rng:choice>
                                 <rng:value>K&#xF6;ln, Papyrussammlung</rng:value>
-                                <rng:value>unbekannt</rng:value>
-                                <rng:value>keine Angabe</rng:value>
                             </rng:choice>
                             <rng:text/>
                         </rng:choice>
@@ -982,7 +988,7 @@ End license statement: do not remove -->
                     <attList>
                         <attDef ident="mainLang" mode="change" usage="req">
                             <valList type="closed" mode="replace">
-                                <valItem ident="keine Angabe"/>
+                                <valItem ident="nicht ermittelt"/>
                             </valList>
                         </attDef>
                     </attList>

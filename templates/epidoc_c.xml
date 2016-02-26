@@ -28,7 +28,7 @@
                             <locus target="#"/>
                             <respStmt>
                                 <resp>HerausgeberIn</resp>
-                                <name />
+                                <name/>
                             </respStmt>
                             <respStmt>
                                 <resp>BearbeiterIn</resp>
@@ -42,7 +42,7 @@
                             </listBibl>
                             <note type="availability">in Bearbeitung</note>
                             <note type="publication"/>
-                            <note type="text_type">keine Angabe</note>
+                            <note type="text_type">nicht ermittelt</note>
                             <note type="content">
                                 <p/>
                             </note>
@@ -54,23 +54,27 @@
                             </note>
                             <note type="orig_place">
                                 <place>
-                                    <placeName cert="high">keine Angabe</placeName>
+                                    <placeName cert="high">nicht ermittelt</placeName>
                                     <note/>
                                 </place>
                             </note>
                             <note type="general">
-                                <p></p>
+                                <p/>
                             </note>
-                            <textLang mainLang="keine Angabe">
+                            <textLang mainLang="nicht ermittelt">
                                 <note type="language">
-                                    <term type="language"></term>
+                                    <term type="language">nicht ermittelt</term>
                                 </note>
                                 <note type="script">
-                                    <term type="script"></term>
-                                    <note type="writing_direction">keine Angabe</note>
-                                    <note type="ink"></note>
-                                    <note type="hand_desc"><p></p></note>
-                                    <note type="structural_markers"><p></p></note>
+                                    <term type="script"/>
+                                    <note type="writing_direction">nicht ermittelt</note>
+                                    <note type="ink"/>
+                                    <note type="hand_desc">
+                                        <p/>
+                                    </note>
+                                    <note type="structural_markers">
+                                        <p/>
+                                    </note>
                                 </note>
                             </textLang>
                         </msItemStruct>

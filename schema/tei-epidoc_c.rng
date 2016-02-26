@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-02-18T18:01:40Z. .
+Schema generated from ODD source 2016-02-26T15:17:00Z. .
 TEI Edition: Version 2.9.1. Last updated on
 	15th October 2015, revision 46ac023
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.9.1/
@@ -5570,7 +5570,7 @@ Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist</a:documentation
          <attribute name="mainLang">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(main language) supplies a code which identifies the chief language used in the bibliographic work.</a:documentation>
             <choice>
-               <value>keine Angabe</value>
+               <value>nicht ermittelt</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
@@ -9104,6 +9104,7 @@ Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniature
                   <value>Ton</value>
                   <value>Wachsbeschichtung</value>
                   <value>Sonstiges</value>
+                  <value>nicht ermittelt</value>
                </choice>
             </optional>
          </element>
@@ -9132,8 +9133,8 @@ Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniature
                <value>Blatt</value>
                <value>Rolle oder Blatt</value>
                <value>Sonstiges</value>
-               <value>unbekannt</value>
-               <value>nicht bestimmbar</value>
+               <value>unbestimmbar</value>
+               <value>nicht ermittelt</value>
             </choice>
          </optional>
          <ref name="tei_att.global.attributes"/>
@@ -9385,11 +9386,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
       <element name="collection">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a collection of manuscripts, not necessarily located within a single repository. [10.4. The Manuscript Identifier]</a:documentation>
          <choice>
-            <choice>
-               <value>Köln, Papyrussammlung</value>
-               <value>unbekannt</value>
-               <value>keine Angabe</value>
-            </choice>
+            <value>Köln, Papyrussammlung</value>
             <text/>
          </choice>
          <ref name="tei_att.global.attributes"/>
@@ -9578,8 +9575,8 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                   <value>literarisch</value>
                   <value>paraliterarisch</value>
                   <value>andere</value>
-                  <value>unbekannt</value>
-                  <value>keine Angabe</value>
+                  <value>unbestimmbar</value>
+                  <value>nicht ermittelt</value>
                </choice>
             </element>
             <element name="note">
@@ -9690,9 +9687,12 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Themistu Meris</value>
                               <value>Thinites</value>
                               <value>Tura</value>
-                              <value>unbekannt</value>
+                              <value>unbestimmbar</value>
+                              <value>nicht ermittelt</value>
                            </choice>
-                           <text/>
+                           <data type="string">
+                              <param name="pattern">.*[\S]+.*</param>
+                           </data>
                         </choice>
                      </element>
                      <optional>
@@ -9716,7 +9716,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
             </element>
             <element name="textLang">
                <attribute name="mainLang">
-                  <value>keine Angabe</value>
+                  <value>nicht ermittelt</value>
                </attribute>
                <optional>
                   <attribute name="otherLangs">
@@ -9746,9 +9746,12 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Hebräisch</value>
                               <value>Lateinisch</value>
                               <value>andere</value>
-                              <value>unidentifiziert</value>
+                              <value>unbestimmbar</value>
+                              <value>nicht ermittelt</value>
                            </choice>
-                           <text/>
+                           <data type="string">
+                              <param name="pattern">.*[\S]+.*</param>
+                           </data>
                         </choice>
                      </element>
                   </oneOrMore>
@@ -9775,7 +9778,8 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Koptisch</value>
                               <value>Lateinisch</value>
                               <value>andere</value>
-                              <value>unidentifiziert</value>
+                              <value>unbestimmbar</value>
+                              <value>nicht ermittelt</value>
                            </choice>
                            <text/>
                         </choice>
@@ -9792,8 +9796,8 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                         <value>andere (kein Papyrus)</value>
                         <value>Haarseite (bei Pergament)</value>
                         <value>Fleischseite (bei Pergament)</value>
-                        <value>unbekannt</value>
-                        <value>keine Angabe</value>
+                        <value>unbestimmbar</value>
+                        <value>nicht ermittelt</value>
                      </choice>
                   </element>
                   <element name="note">
