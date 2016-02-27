@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-02-26T15:17:00Z. .
+Schema generated from ODD source 2016-02-27T12:23:22Z. .
 TEI Edition: Version 2.9.1. Last updated on
 	15th October 2015, revision 46ac023
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.9.1/
@@ -9135,6 +9135,7 @@ Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniature
                <value>Rolle oder Blatt</value>
                <value>Sonstiges</value>
                <value>unbestimmbar</value>
+               <value>nicht anwendbar</value>
                <value>nicht ermittelt</value>
             </choice>
          </optional>
@@ -9577,6 +9578,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                   <value>paraliterarisch</value>
                   <value>andere</value>
                   <value>unbestimmbar</value>
+                  <value>nicht anwendbar</value>
                   <value>nicht ermittelt</value>
                </choice>
             </element>
@@ -9689,6 +9691,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Thinites</value>
                               <value>Tura</value>
                               <value>unbestimmbar</value>
+                              <value>nicht anwendbar</value>
                               <value>nicht ermittelt</value>
                            </choice>
                            <data type="string">
@@ -9748,6 +9751,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Lateinisch</value>
                               <value>andere</value>
                               <value>unbestimmbar</value>
+                              <value>nicht anwendbar</value>
                               <value>nicht ermittelt</value>
                            </choice>
                            <data type="string">
@@ -9780,6 +9784,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                               <value>Lateinisch</value>
                               <value>andere</value>
                               <value>unbestimmbar</value>
+                              <value>nicht anwendbar</value>
                               <value>nicht ermittelt</value>
                            </choice>
                            <text/>
@@ -9798,6 +9803,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
                         <value>Haarseite (bei Pergament)</value>
                         <value>Fleischseite (bei Pergament)</value>
                         <value>unbestimmbar</value>
+                        <value>nicht anwendbar</value>
                         <value>nicht ermittelt</value>
                      </choice>
                   </element>

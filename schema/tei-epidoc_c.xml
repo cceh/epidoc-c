@@ -644,6 +644,7 @@ End license statement: do not remove -->
                                     <rng:value>paraliterarisch</rng:value>
                                     <rng:value>andere</rng:value>
                                     <rng:value>unbestimmbar</rng:value>
+                                    <rng:value>nicht anwendbar</rng:value>
                                     <rng:value>nicht ermittelt</rng:value>
                                 </rng:choice>
                             </rng:element>
@@ -756,6 +757,7 @@ End license statement: do not remove -->
                                                   <rng:value>Thinites</rng:value>
                                                   <rng:value>Tura</rng:value>
                                                   <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht anwendbar</rng:value>
                                                   <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:data type="string">
@@ -821,6 +823,7 @@ End license statement: do not remove -->
                                                   <rng:value>Lateinisch</rng:value>
                                                   <rng:value>andere</rng:value>
                                                   <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht anwendbar</rng:value>
                                                   <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:data type="string">
@@ -853,6 +856,7 @@ End license statement: do not remove -->
                                                   <rng:value>Lateinisch</rng:value>
                                                   <rng:value>andere</rng:value>
                                                   <rng:value>unbestimmbar</rng:value>
+                                                  <rng:value>nicht anwendbar</rng:value>
                                                   <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:text/>
@@ -871,6 +875,7 @@ End license statement: do not remove -->
                                             <rng:value>Haarseite (bei Pergament)</rng:value>
                                             <rng:value>Fleischseite (bei Pergament)</rng:value>
                                             <rng:value>unbestimmbar</rng:value>
+                                            <rng:value>nicht anwendbar</rng:value>
                                             <rng:value>nicht ermittelt</rng:value>
                                         </rng:choice>
                                     </rng:element>
@@ -915,6 +920,7 @@ End license statement: do not remove -->
                                 <rng:value>Rolle oder Blatt</rng:value>
                                 <rng:value>Sonstiges</rng:value>
                                 <rng:value>unbestimmbar</rng:value>
+                                <rng:value>nicht anwendbar</rng:value>
                                 <rng:value>nicht ermittelt</rng:value>
                             </rng:choice>
                         </rng:optional>
