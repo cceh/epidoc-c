@@ -1563,6 +1563,7 @@ End license statement: do not remove -->
                                         </rng:attribute>
                                     </rng:optional>
                                 </rng:group>
+                                <text/>
                             </rng:choice>
                         </rng:group>
                     </content>

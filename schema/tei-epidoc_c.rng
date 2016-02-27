@@ -4470,6 +4470,7 @@ Measures]</a:documentation>
                      </attribute>
                   </optional>
                </group>
+               <text/>
             </choice>
          </group>
          <ref name="tei_att.duration.attributes"/>
