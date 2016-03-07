@@ -632,7 +632,7 @@
     &lt;/listBibl>
     &lt;note type="availability">in Bearbeitung&lt;/note>
     &lt;note type="publication"/>
-    &lt;note type="text_type">keine Angabe&lt;/note>
+    &lt;note type="text_type">nicht ermittelt&lt;/note>
     &lt;note type="content">
         &lt;p/>
     &lt;/note>
@@ -649,13 +649,13 @@
         &lt;/place>
     &lt;/note>
   &lt;note type="general">&lt;p>&lt;/p>&lt;/note>
-    &lt;textLang mainLang="keine Angabe">
+    &lt;textLang mainLang="nicht ermittelt">
         &lt;note type="language">
             &lt;term type="language">&lt;/term>
         &lt;/note>
         &lt;note type="script">
             &lt;term type="script">&lt;/term>
-            &lt;note type="writing_direction">keine Angabe&lt;/note>
+            &lt;note type="writing_direction">nicht ermittelt&lt;/note>
             &lt;note type="ink">&lt;/note>
             &lt;note type="hand_desc">&lt;p>&lt;/p>&lt;/note>
             &lt;note type="structural_markers">&lt;p>&lt;/p>&lt;/note>
