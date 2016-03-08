@@ -644,7 +644,7 @@
     &lt;/note>
     &lt;note type="orig_place">
         &lt;place>
-               &lt;placeName cert="high">&lt;/placeName>
+               &lt;placeName cert="high">unbestimmbar&lt;/placeName>
                &lt;note>&lt;/note>
         &lt;/place>
     &lt;/note>
@@ -2053,7 +2053,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<map>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0">&lt;placeName cert="high">&lt;/placeName>&lt;note/>&lt;/place></String>
+																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0">&lt;placeName cert="high">unbestimmbar&lt;/placeName>&lt;note/>&lt;/place></String>
 															</entry>
 															<entry>
 																<String>insertLocation</String>
@@ -2142,7 +2142,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<map>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;placeName xmlns="http://www.tei-c.org/ns/1.0">&lt;/placeName></String>
+																<String>&lt;placeName xmlns="http://www.tei-c.org/ns/1.0">unbestimmbar&lt;/placeName></String>
 															</entry>
 															<entry>
 																<String>insertLocation</String>
@@ -2232,7 +2232,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 															<entry>
 																<String>fragment</String>
 																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0" xml:id="TM${ask('Bitte geben Sie die TM-Nummer für den Ort ein.', generic)}">
-      &lt;placeName type="preferred">&lt;/placeName>
+      &lt;placeName type="preferred">unbestimmbar&lt;/placeName>
        &lt;location>
            &lt;geo>&lt;/geo>
        &lt;/location>
