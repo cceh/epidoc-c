@@ -758,6 +758,7 @@ End license statement: do not remove -->
                                                   <rng:value>Tura</rng:value>
                                                   <rng:value>unbestimmbar</rng:value>
                                                   <rng:value>nicht anwendbar</rng:value>
+                                                  <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:data type="string">
                                                     <rng:param name="pattern">.*[\S]+.*</rng:param>
