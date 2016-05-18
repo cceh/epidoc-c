@@ -168,11 +168,7 @@
     </teiHeader>
     <facsimile>
         <surface>
-            <graphic xml:id="AB_${id}"
-                url="../img/unknown.png"
-                corresp="#">
-                <desc></desc>
-            </graphic>
+
         </surface>
     </facsimile>
     <text>

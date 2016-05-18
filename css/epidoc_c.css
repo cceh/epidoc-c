@@ -1,4 +1,5 @@
 @namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace file url('http://exist-db.org/xquery/file');
 
 oxy|document {
     background-color: #BBBBBB !important;
@@ -104,7 +105,7 @@ div[type=edition], div[type=translation], div[type=apparatus], div[type=commenta
      background-color: #E3E3E3;
 }
 div[type=edition]:before, div[type=translation]:before, div[type=apparatus]:before, div[type=commentary]:before, div[type=bibliography]:before,
-graphic:before {
+graphic:before(2) {
     background-color: #79A6D2;
     color: #FFFFFF;
     font-weight: bold;
@@ -1542,21 +1543,40 @@ body supplied:after {
 ************************************************************************************************************************************************/
 
 surface {
-    -oxy-placeholder-content: "";
+   content:         
+        oxy_label(text, "Bild verknüpfen: ", width, 8.5em, text-align, right)
+        oxy_editor(type, combo, edit, "@temp-url", editable, false,
+            values, oxy_xpath(oxy_concat("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)") ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"))
+            /*labels, oxy_xpath(oxy_concat("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=labels&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"))*/
+            )
+        oxy_editor(type, button, actionID, choose_graphic, transparent, true, color, #FFFFFF)
+        oxy_editor(type, button, actionID, insert_all_graphics, transparent, true);
 }
-graphic:before {
+
+graphic! > desc[type="type"][subtype="thumb"], graphic! > desc[type="type"][subtype="preview"] {
+    display: none;
+}
+
+graphic:before(2) {
     content: 
-        "Bild"
-        oxy_editor(type, button, actionID, insert_graphic, transparent, true, color, #FFFFFF)
+        "Bild: " oxy_substring(oxy_substring(oxy_xpath("@url/data(.)"), oxy_lastindexof(oxy_xpath("@url/data(.)"), "/")), 1)
+        oxy_concat(" (", attr(mimeType),")")
         oxy_editor(type, button, actionID, delete_graphic, transparent, true, color, #FFFFFF)
         ;
     vertical-align: middle;
+    display: block;
+    
 }
+
+graphic:before(1) {
+    content: url(oxy_concat(attr(url), "?thumb=1"));
+    height: 120px;
+    text-align: right;
+    position: absolute;
+}
+
 graphic {
     content:  
-        "\A"
-        oxy_label(text, "URL: ", width, 8.5em, text-align, right)
-        oxy_editor(type, text, edit, "@url", columns, 50)
         /* "\A\A"
         "\9\9\9" oxy_url(attr(url)) */
         "\A"
@@ -1565,11 +1585,35 @@ graphic {
     padding-bottom: 1em;
     margin-bottom: 1em;
 }
-graphic desc {
+
+graphic desc[type="description"] {
     content: oxy_label(text, "Beschreibung: ", width, 8.5em, text-align, right)
             oxy_editor(type, text, edit, "#text", columns, 30)
-            "\A\9\9"
-            oxy_editor(type, check, edit, "@type", values, "preferred", uncheckedValues, "", labels, "bevorzugt");
+}
+
+graphic desc[type="preferred"] {
+    content: oxy_label(text, "Bevorzugt: ", width, 8.5em, text-align, right)
+             oxy_editor(type, check, edit, "@subtype", values, "true", uncheckedValues, "false", labels, "ja");
+}
+
+graphic desc[type="size"] {
+    content: oxy_label(text, "Größe: ", width, 8.5em, text-align, right)
+            oxy_editor(type, text, edit, "#text", columns, 10, text-align, right);
+    -oxy-editable: false;
+}
+
+graphic desc[subtype="bytes"] {
+    display: none;
+}
+
+graphic desc[type="type"] {
+    display: none;
+}
+
+graphic desc[type="modified"] {
+    content: oxy_label(text, "Zuletzt geändert:", width, 8.5em, text-align, right)
+            oxy_editor(type, text, edit, "#text", columns, 30, text-align, right);
+    -oxy-editable: false;
 }
 
 /* REGISTER

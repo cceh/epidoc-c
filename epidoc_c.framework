@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialized version="15.1" xml:space="preserve">
-	<map>
+<serialized version="17.1" xml:space="preserve">
+	<serializableOrderedMap>
 		<entry>
 			<String>document.types</String>
 			<documentTypeDescriptor-array>
 				<documentTypeDescriptor>
+					<field name="extensionPatch">
+						<null/>
+					</field>
 					<field name="name">
 						<String>EpiDoc C</String>
 					</field>
@@ -44,6 +47,9 @@
 							<field name="mergeCSSsFromDocument">
 								<Boolean>false</Boolean>
 							</field>
+							<field name="multipleAlternateSelectionEnabled">
+								<Boolean>false</Boolean>
+							</field>
 							<field name="actionDescriptors">
 								<action-array>
 									<action>
@@ -72,13 +78,13 @@
 											<actionMode-array>
 												<actionMode>
 													<field name="xpathCondition">
-														<String>local-name()='graphic'</String>
+														<String>self::surface</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;graphic xmlns="http://www.tei-c.org/ns/1.0" xml:id="AB_${id}" url="../img/unknown.png">&lt;desc>&lt;/desc>&lt;/graphic></String>
+																<String>&lt;graphic url="${xpath_eval(./@temp-url/data(.))}">&lt;/graphic></String>
 															</entry>
 															<entry>
 																<String>insertLocation</String>
@@ -88,13 +94,16 @@
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -123,21 +132,24 @@
 											<actionMode-array>
 												<actionMode>
 													<field name="xpathCondition">
-														<String>local-name()='graphic' and preceding-sibling::graphic</String>
+														<String>./local-name() = "graphic"</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
-																<String>elementLocation</String>
-																<String>.</String>
+																<String>elementLocations</String>
+																<String>parent::surface/graphic[@n=./@n]</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
-														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementsOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -169,18 +181,21 @@
 														<String>count(parent::respStmt/parent::*/respStmt) gt 2</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>parent::respStmt</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -212,7 +227,7 @@
 														<String>parent::respStmt</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;respStmt xmlns="http://www.tei-c.org/ns/1.0">
@@ -228,13 +243,16 @@
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -266,18 +284,21 @@
 														<String>local-name()='div' and ./@type='textpart'</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;lg xmlns="http://www.tei-c.org/ns/1.0">&lt;l>&lt;lb />&lt;/l>&lt;/lg></String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -309,18 +330,21 @@
 														<String>local-name()='l'</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;lb xmlns="http://www.tei-c.org/ns/1.0" /></String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -352,18 +376,21 @@
 														<String>local-name()='ab' or local-name()='lg'</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;l xmlns="http://www.tei-c.org/ns/1.0">&lt;lb />&lt;/l></String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -395,7 +422,7 @@
 														<String>self::msDesc or self::msPart</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;msPart xmlns="http://www.tei-c.org/ns/1.0" xml:id="TTT_${id}">
@@ -448,13 +475,13 @@
             &lt;collation>&lt;p>&lt;/p>&lt;/collation>
         &lt;/supportDesc>
         &lt;layoutDesc>
-        	&lt;summary>&lt;p>&lt;/p>&lt;/summary>
             &lt;layout xml:id="LE_${id}">
                 &lt;note type="type">&lt;/note>
                 &lt;locus>&lt;/locus>
                 &lt;desc>&lt;/desc>
             &lt;/layout>
         &lt;/layoutDesc>
+        &lt;layoutDesc>&lt;p>&lt;/p>&lt;/layoutDesc>
     &lt;/objectDesc>
 &lt;/physDesc>
 &lt;history>
@@ -497,13 +524,16 @@
 																<String>insertPosition</String>
 																<String>Inside as last child</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -535,13 +565,16 @@
 														<String>self::msPart</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -573,13 +606,16 @@
 														<String>self::msItemStruct</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -611,7 +647,7 @@
 														<String>self::msContents</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;msItemStruct defective="false" xml:id="T_${id}" xmlns="http://www.tei-c.org/ns/1.0">
@@ -632,7 +668,7 @@
     &lt;/listBibl>
     &lt;note type="availability">in Bearbeitung&lt;/note>
     &lt;note type="publication"/>
-    &lt;note type="text_type">nicht ermittelt&lt;/note>
+    &lt;note type="text_type">keine Angabe&lt;/note>
     &lt;note type="content">
         &lt;p/>
     &lt;/note>
@@ -644,18 +680,18 @@
     &lt;/note>
     &lt;note type="orig_place">
         &lt;place>
-               &lt;placeName cert="high">unbestimmbar&lt;/placeName>
+               &lt;placeName cert="high">&lt;/placeName>
                &lt;note>&lt;/note>
         &lt;/place>
     &lt;/note>
   &lt;note type="general">&lt;p>&lt;/p>&lt;/note>
-    &lt;textLang mainLang="nicht ermittelt">
+    &lt;textLang mainLang="keine Angabe">
         &lt;note type="language">
             &lt;term type="language">&lt;/term>
         &lt;/note>
         &lt;note type="script">
             &lt;term type="script">&lt;/term>
-            &lt;note type="writing_direction">nicht ermittelt&lt;/note>
+            &lt;note type="writing_direction">keine Angabe&lt;/note>
             &lt;note type="ink">&lt;/note>
             &lt;note type="hand_desc">&lt;p>&lt;/p>&lt;/note>
             &lt;note type="structural_markers">&lt;p>&lt;/p>&lt;/note>
@@ -671,13 +707,16 @@
 																<String>insertPosition</String>
 																<String>Inside as last child</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -709,7 +748,7 @@
 														<String>self::layout</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;layout xmlns="http://www.tei-c.org/ns/1.0" xml:id="LE_${id}">
@@ -726,13 +765,16 @@
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -764,13 +806,16 @@
 														<String>self::layout and count(parent::layoutDesc/layout) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -802,7 +847,7 @@
 														<String>self::bibl</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;bibl xmlns="http://www.tei-c.org/ns/1.0">
@@ -817,13 +862,16 @@
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -855,13 +903,16 @@
 														<String>self::bibl and count(parent::*/bibl) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -893,7 +944,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -906,7 +957,7 @@
 																<String>value</String>
 																<String>Verantwortlich für die gesamte Edition</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -917,7 +968,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -926,13 +977,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -964,7 +1018,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -977,7 +1031,7 @@
 																<String>value</String>
 																<String>Wann soll die Bearbeitung des Stückes abgeschlossen werden?</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -988,7 +1042,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -997,13 +1051,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1035,7 +1092,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1048,7 +1105,7 @@
 																<String>value</String>
 																<String>Beschreibung des Textträgers. Diese kann auf mehreren (hierarchisch organisierten) Ebenen erfolgen. Auf der höchsten Ebene steht das Gesamtobjekt. Auf den niedrigeren Ebenen kann es jeweils ein oder mehrere Textträger-Teile geben. Die Teile können z.B. einzelne Blätter oder Fragmente sein. Trifft eine Eigenschaft für alle Textträger-Teile zu, so genügt es, sie auf der höchsten Ebene zu notieren. </String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1059,7 +1116,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1068,13 +1125,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1106,7 +1166,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1119,7 +1179,7 @@
 																<String>value</String>
 																<String>Bitte nur dann eine Inventarnummer eingeben, wenn es sich um ein Inventarisierungsobjekt handelt.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1130,7 +1190,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1139,13 +1199,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1177,7 +1240,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1190,7 +1253,7 @@
 																<String>value</String>
 																<String>Identifikation und Beschreibung der Texte, die sich auf dem Textträger befinden. Die Edition der Texte (Transkription, Übersetzung, Kommentar, etc.) erfolgt weiter unten im Editionsbereich.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1201,7 +1264,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1210,13 +1273,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1248,7 +1314,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1261,7 +1327,7 @@
 																<String>value</String>
 																<String>Wo befindet sich der Text auf dem Textträger? Im Dropdown kann eine ID ausgewählt werden, die auf einen Bereich des Textträgers verweist. Texttragende Bereich können weiter unten unter 'Layout' definiert werden. Im Eingabefeld kann ein freier Kommentar eingefügt werden, der die Lokalisierung des Textes auf dem Objekt beschreibt.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1272,7 +1338,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1281,13 +1347,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1319,7 +1388,7 @@
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1332,7 +1401,7 @@
 																<String>value</String>
 																<String>Welche Zuständigkeit hat der Bearbeiter?</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1343,7 +1412,7 @@
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1352,13 +1421,16 @@
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1390,7 +1462,7 @@
 														<String>not(exists(./@rend)) and not(exists(./ancestor::msItemStruct))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1403,7 +1475,7 @@
 																<String>value</String>
 																<String>Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, die in der externen Bibliografie angelegt sind, können hier anhand einer Liste von Kurztiteln ausgewählt werden. Das Anlegen neuer Einträge erfolgt direkt in der zentralen Bibliografie-Datei.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1414,7 +1486,7 @@
 														<String>not(exists(./@rend)) and exists(./ancestor::msItemStruct)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1429,7 +1501,7 @@
 
 Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, die in der externen Bibliografie angelegt sind, können hier anhand einer Liste von Kurztiteln ausgewählt werden. Das Anlegen neuer Einträge erfolgt direkt in der zentralen Bibliografie-Datei.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1440,7 +1512,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1449,13 +1521,16 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1487,7 +1562,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1500,7 +1575,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>value</String>
 																<String>Die Datensatz-ID wird automatisch vergeben.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1511,7 +1586,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1520,13 +1595,16 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1558,7 +1636,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1571,7 +1649,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>value</String>
 																<String>Inhaltliche Zusammenfassung des Textes. Es kann freier Text eingegeben werden. Für neue Absätze 'Enter' drücken.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1582,7 +1660,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1591,13 +1669,16 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1629,7 +1710,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1642,7 +1723,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>value</String>
 																<String>Beschreibung von Illustrationen/Zeichnungen/Symbolen zum Text. Es kann freier Text eingegeben werden. Für neue Absätze 'Enter' drücken.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1653,7 +1734,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1662,13 +1743,16 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1700,7 +1784,7 @@ Die Bibliografie wird zentral in einer Bibliografie-Datei verwaltet. Einträge, 
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1721,7 +1805,7 @@ Standardmäßig wird angenommen, dass die Datierung sicher ist. Unsicherheit kan
 
 Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textform ergänzend zu beschreiben.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1732,7 +1816,7 @@ Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textf
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1741,13 +1825,16 @@ Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textf
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1779,7 +1866,7 @@ Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textf
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1794,7 +1881,7 @@ Zusätzlich besteht die Möglichkeit, die Datierung im Feld 'Kommentar' in Textf
 
 Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe unsicher ist. Im Feld 'Komnmentar' kann eine erläuternde Anmerkung gemacht werden.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1805,7 +1892,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1814,13 +1901,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1852,7 +1942,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1865,7 +1955,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Hier können Flächen oder Schreibbereiche des Textträgers definiert und beschrieben werden (z.B. Vorder- und Rückseite eines Papyrus, Seiten oder Kolumnen).</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -1876,7 +1966,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -1885,13 +1975,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1923,13 +2016,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String></String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -1961,7 +2057,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::note[@type="orig_date"] or parent::origDate</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;date xmlns="http://www.tei-c.org/ns/1.0" type="Zeitraum" cert="high">&lt;note/>&lt;/date></String>
@@ -1974,13 +2070,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2012,13 +2111,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::date and count(parent::*/date) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2050,10 +2152,10 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::note[@type="orig_place"] or parent::origPlace</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0">&lt;placeName cert="high">unbestimmbar&lt;/placeName>&lt;note/>&lt;/place></String>
+																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0">&lt;placeName cert="high">&lt;/placeName>&lt;note/>&lt;/place></String>
 															</entry>
 															<entry>
 																<String>insertLocation</String>
@@ -2063,13 +2165,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2101,13 +2206,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::place and count(parent::*/place) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2139,10 +2247,10 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::place</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;placeName xmlns="http://www.tei-c.org/ns/1.0">unbestimmbar&lt;/placeName></String>
+																<String>&lt;placeName xmlns="http://www.tei-c.org/ns/1.0">&lt;/placeName></String>
 															</entry>
 															<entry>
 																<String>insertLocation</String>
@@ -2152,13 +2260,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2190,13 +2301,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::placeName and not(.[@type="preferred"])</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2228,11 +2342,11 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::listPlace</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;place xmlns="http://www.tei-c.org/ns/1.0" xml:id="TM${ask('Bitte geben Sie die TM-Nummer für den Ort ein.', generic)}">
-      &lt;placeName type="preferred">unbestimmbar&lt;/placeName>
+      &lt;placeName type="preferred">&lt;/placeName>
        &lt;location>
            &lt;geo>&lt;/geo>
        &lt;/location>
@@ -2250,13 +2364,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2288,13 +2405,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::place and count(parent::listPlace/place) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2326,7 +2446,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::place</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;idno xmlns="http://www.tei-c.org/ns/1.0">&lt;/idno></String>
@@ -2339,13 +2459,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2377,13 +2500,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::idno and count(parent::place/idno) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map/>
+														<serializableOrderedMap/>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2415,7 +2541,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2428,7 +2554,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Hilfe: Bitte die Koordinaten in der Reihenfolge Breitengrad, Längengrad und durch Leerzeichen getrennt eingeben.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -2439,7 +2565,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2448,13 +2574,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2486,7 +2615,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2499,7 +2628,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Hilfe: Für jeden Ort sollte mindestens ein Name angegeben werden. Bei mehreren Namen wird der bevorzugte Name zur Anzeige verwendet.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -2510,7 +2639,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2519,13 +2648,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2557,7 +2689,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2570,7 +2702,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Hilfe: Zum Anlegen eines Eintrags im Ortsregister wird eine Trismegistos (TM)-Nummer benötigt, die als Identifikator des Ortes dient. TM-Nummern können unter http://www.trismegistos.org recherchiert werden. Jeder Ort sollte nur einmal vorkommen. Verschiedene Namen desselben Ortes sind als Namensvarianten im selben Eintrag zu notieren.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -2581,7 +2713,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2590,13 +2722,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2628,7 +2763,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2641,7 +2776,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Hilfe: Hier können Identifikatoren aus Ortsverzeichnissen und Normdateien eingegeben werden. Zusätzlich zur Nummer sollte die Art des Identifikators angegeben werden, z.B. TM (Trismegistos), GND (Gemeinsame Normdatei), TGN (Getty Thesaurus of Geographic Names) oder Pleiades.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -2652,7 +2787,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2661,13 +2796,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2699,7 +2837,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2712,7 +2850,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Angaben zur Besitzgeschichte des Stückes.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -2723,7 +2861,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -2732,13 +2870,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2770,7 +2911,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;editor xmlns="http://www.tei-c.org/ns/1.0">&lt;persName>&lt;surname>&lt;/surname>&lt;forename>&lt;/forename>&lt;/persName>&lt;/editor></String>
@@ -2783,13 +2924,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2821,18 +2965,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::editor and count(parent::*/editor) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2864,7 +3011,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>parent::listBibl</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" xml:id="bibl-${id}" type="Monographie">
@@ -2892,13 +3039,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2930,18 +3080,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct and count(parent::listBibl/biblStruct) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -2973,7 +3126,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Monographie']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
@@ -2997,7 +3150,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3008,7 +3161,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Zeitschriftenaufsatz']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;analytic xmlns="http://www.tei-c.org/ns/1.0">
@@ -3033,7 +3186,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3044,7 +3197,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type = 'Zeitschrift']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;monogr xmlns="http//www.tei-c.org/ns/1.0">
@@ -3064,7 +3217,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3075,7 +3228,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Sammelbandaufsatz']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;analytic xmlns="http://www.tei-c.org/ns/1.0">
@@ -3102,7 +3255,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3113,7 +3266,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Sammelband']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
@@ -3133,7 +3286,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3144,7 +3297,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Reihe']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
@@ -3165,7 +3318,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
@@ -3176,7 +3329,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::biblStruct[@type='Internetdokument']</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;monogr xmlns="http://www.tei-c.org/ns/1.0">
@@ -3199,13 +3352,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3237,7 +3393,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;author xmlns="http://www.tei-c.org/ns/1.0">&lt;persName>&lt;forename/>&lt;surname/>&lt;note type="role" />&lt;/persName>&lt;/author></String>
@@ -3250,13 +3406,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3288,18 +3447,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::author and count(parent::*/author) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3331,7 +3493,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;forename xmlns="http://www.tei-c.org/ns/1.0">&lt;/forename></String>
@@ -3344,13 +3506,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3382,7 +3547,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;surname xmlns="http://www.tei-c.org/ns/1.0">&lt;/surname></String>
@@ -3395,13 +3560,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3433,18 +3601,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::forename and count(parent::*/forename) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3476,18 +3647,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>self::surname and count(parent::*/surname) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3519,18 +3693,21 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String></String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>child::*[1] and child::*[2] and child::*[3] and child::*[4]</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3562,7 +3739,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3575,7 +3752,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Beschreibung des Fragments. Es kann freier Text eingegeben werden. Für neue Absätze Enter drücken.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3586,7 +3763,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3595,13 +3772,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3633,7 +3813,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3646,7 +3826,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Beschreibung des Blattes. Es kann freier Text eingegeben werden. Für neue Absätze Enter drücken.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3657,7 +3837,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3666,13 +3846,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3704,7 +3887,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3717,7 +3900,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Beschreibung von Rekto. Siehe dazu auch 'Layout', wo Informationen zu den Schreiboberflächen des Textträgers angegeben werden können.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3728,7 +3911,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3741,13 +3924,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String></String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3779,7 +3965,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3792,7 +3978,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Beschreibung von Verso. Siehe dazu auch 'Layout', wo Informationen zu den Schreiboberflächen des Textträgers angegeben werden können.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3803,7 +3989,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3812,13 +3998,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3850,7 +4039,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3863,7 +4052,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>value</String>
 																<String>Angaben zu dem/der BearbeiterIn können weiter oben gemacht werden.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3874,7 +4063,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3883,13 +4072,16 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3921,7 +4113,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3936,7 +4128,7 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 
 Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Gliederungszeichen gemacht werden.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -3947,7 +4139,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -3956,13 +4148,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -3994,7 +4189,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4007,7 +4202,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Angaben zu Charakteristiken der Schrift und zu Schreiberhänden</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4018,7 +4213,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4027,13 +4222,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4065,7 +4263,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>parent::note[@type="language"]</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;term xmlns="http://www.tei-c.org/ns/1.0" type="language">&lt;/term></String>
@@ -4078,13 +4276,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4116,7 +4317,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>parent::note[@type="script"]</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;term xmlns="http://www.tei-c.org/ns/1.0" type="script">&lt;/term></String>
@@ -4129,13 +4330,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4167,18 +4371,21 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>self::term and count(parent::note[@type="language"]/term) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4210,18 +4417,21 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>self::term and count(parent::note[@type="script"]/term) gt 1</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4253,7 +4463,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4266,7 +4476,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Die Identifikatoren (IDs) der Layoutelemente dienen zum einen zur Lokalisierung der Texte auf dem Textträger (siehe oben: 'Texte') und zum anderen der Zuordnung von Bildern zu Teilen des Textträgers (siehe: 'Faksimile'), indem von den Beschreibungen der Texte und Bilder aus anhand der Identifikatoren auf die Layoutelemente verwiesen wird.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4277,7 +4487,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4286,13 +4496,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4324,7 +4537,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4337,7 +4550,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Art des Layoutelementes. Es kann zwischen 'Fläche' (z.B. Vorderseite, Rückseite) und 'Schreibbereich' (z.B. Seite, Kolumne) gewählt werden, wobei 'Fläche' einen Teil des physischen Textträgers meint, während 'Schreibbereich' eine logische Sicht auf den Textträger meint. Ein 'Schreibbereich' kann auf einer 'Fläche' lokalisiert sein.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4348,7 +4561,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4357,13 +4570,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4395,7 +4611,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4408,7 +4624,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Wurde bei 'Art' des Layoutelementes 'Schreibbereich' ausgewählt, kann hier angegeben werden, auf welcher Fläche des Textträgers sich der Schreibbereich (z.B. die Seite oder Kolumne) befindet und wo er auf der Fläche angeordnet ist.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4419,7 +4635,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4428,13 +4644,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4466,7 +4685,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4479,7 +4698,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Beschreibung des Layoutelementes, z.B. 'Vorderseite', 'Rückseite', 'Recto', 'Verso' bei einer Fläche oder 'Seite 1', 'Seite 2', 'erste Kolumne' etc. bei einem Schreibbereich.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4490,7 +4709,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4499,13 +4718,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4537,7 +4759,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4550,7 +4772,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Hier kann angegeben werden, auf welcher Fläche sich der Schreibbereich befindet, indem der Identifikator der zuvor definierten Fläche ausgewählt wird.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4561,7 +4783,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4570,13 +4792,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4608,7 +4833,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(exists(@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4621,7 +4846,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>value</String>
 																<String>Angabe der Anordnung des Schreibbereichs auf der Fläche, z.B. 'rechts' oder 'links'.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -4632,7 +4857,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>exists(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -4641,13 +4866,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4679,7 +4907,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>child::biblStruct</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;biblStruct type="book" status="published" xml:id="${ask('Bitte eine ID nach dem Muster xxxxxx00000 eingeben - wobei x für einen Buchstaben und 0 für eine Ziffer steht - z.B. papyri00001', generic)}" xmlns="http://www.tei-c.org/ns/1.0">
@@ -4729,13 +4957,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>insertPosition</String>
 																<String>Inside as first child</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4767,7 +4998,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>child::biblStruct</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="bookSection" status="published" xml:id="${ask('Bitte eine ID nach dem Muster xxxxxx00000 eingeben, wobei x für einen Buchstaben und 0 für eine Ziffer steht, z.B. papyri00001', generic)}">
@@ -4822,13 +5053,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>insertPosition</String>
 																<String>Inside as first child</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4860,7 +5094,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>child::biblStruct</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="journalArticle" status="published" xml:id="${ask('test', generic)}">
@@ -4904,13 +5138,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 																<String>insertPosition</String>
 																<String>Inside as first child</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -4942,7 +5179,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>child::biblStruct</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" type="webPublication" status="published" xml:id="${ask('test', generic)}">
@@ -4984,13 +5221,16 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
     &lt;note type="notes">&lt;p>&lt;/p>&lt;/note>
 &lt;/biblStruct></String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5022,7 +5262,7 @@ Zur Schrift können zusätzlich Angaben zu Schriftrichtung, Tinte, Hand und Glie
 														<String>not(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5039,7 +5279,7 @@ Pro Textträger-Teil können nur einmal Maße angegeben werden. Wenn es also meh
 
 Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen im folgenden Feld 'Maße' gemacht werden.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -5050,7 +5290,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>@rend</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5059,13 +5299,16 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5097,7 +5340,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>not(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5110,7 +5353,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>value</String>
 																<String>Beschreibung von Layouteigenschaften (in freier Form).</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -5121,7 +5364,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>@rend</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5130,13 +5373,16 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5168,7 +5414,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>not(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5181,7 +5427,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>value</String>
 																<String>Allgemeine Bemerkungen zum Text.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -5192,7 +5438,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>@rend</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5201,13 +5447,16 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5239,7 +5488,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>not(@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5252,7 +5501,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>value</String>
 																<String>Anmerkungen zu Maßen. Diese können ergänzend zu den Maßangaben im vorherigen Feld gemacht werden oder für den Fall, dass die Maße nicht genau angegeben, sondern nur beschrieben werden sollen.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -5263,7 +5512,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>@rend</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5272,13 +5521,16 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5310,7 +5562,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>parent::respStmt</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
 																<String>&lt;respStmt xmlns="http://www.tei-c.org/ns/1.0">
@@ -5326,13 +5578,16 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>insertPosition</String>
 																<String>After</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 									<action>
@@ -5364,7 +5619,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>not(exists(./@rend))</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5377,7 +5632,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>value</String>
 																<String>Die im Rahmen der Vereinheitlichung der Inventarnummern geänderte alte Inventarunummer. Bitte bei neuen Datensätzen leer lassen.</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
@@ -5388,7 +5643,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 														<String>exists(./@rend)</String>
 													</field>
 													<field name="argValues">
-														<map>
+														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
 																<String>.</String>
@@ -5397,13 +5652,183 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>name</String>
 																<String>rend</String>
 															</entry>
-														</map>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
 														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>choose_graphic</String>
+										</field>
+										<field name="name">
+											<String>Grafik wählen</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>self::surface and @temp-url</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>script</String>
+																<String>xquery version "3.0";
+
+declare default element namespace "http://www.tei-c.org/ns/1.0";
+declare namespace file="http://exist-db.org/xquery/file";
+
+
+let $filename := ./@temp-url/data(.)
+let $id := ./root()/TEI/@xml:id/data(.)
+let $graphic := doc("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir=${cfn}.xml&amp;amp;file="||$filename||"&amp;amp;id="||$id)
+return (
+  insert node $graphic into .,
+  delete node ./@temp-url
+)</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.XQueryUpdateOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_graphic_remove_temp_attribute</String>
+										</field>
+										<field name="name">
+											<String>Nach Grafik einfügen temporäres Attribut löschen</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>parent::surface</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocation</String>
+																<String>parent::surface</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>temp-url</String>
+															</entry>
+															<entry>
+																<String>removeIfEmpty</String>
+																<String>true</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_all_graphics</String>
+										</field>
+										<field name="name">
+											<String>Alle Grafiken verknüpfen</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>count(./graphic) = 0</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>script</String>
+																<String>xquery version "3.0";
+
+declare default element namespace "http://www.tei-c.org/ns/1.0";
+declare namespace file="http://exist-db.org/xquery/file";
+
+
+let $id := ./root()/TEI/@xml:id/data(.)
+let $graphics := doc("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir=${cfn}.xml&amp;amp;id="||$id)//graphic
+return 
+  insert node $graphics into .</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.XQueryUpdateOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
 										</field>
 									</action>
 								</action-array>
@@ -5649,5 +6074,5 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 				</documentTypeDescriptor>
 			</documentTypeDescriptor-array>
 		</entry>
-	</map>
+	</serializableOrderedMap>
 </serialized>
