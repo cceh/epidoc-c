@@ -16,12 +16,12 @@ TEI {
     margin: 0;
 }
 TEI:before {
-    content: oxy_label(text, "Datensatz-ID: ", width, 6.75em, text-align, right) attr('xml:id')
+    content: oxy_label(text, "Datensatz-ID: ", width, 6.75em, text-align, right) attr('xml:id') " (im Browser öffnen)"
              oxy_editor(type, button, actionID, insert_info_TEI_id, transparent, true, color, #FFFFFF)
              " " attr("rend")
             ;
     -oxy-editable: false;
-    link: "http://papyri.uni-koeln.de:8080/apps/papyri-data/wissen/bibl.xml";
+    link: "http://papyri.uni-koeln.de:8080/apps/papyri/stueck/"attr('xml:id');
 }
 teiHeader, text, facsimile {
     margin: 0.5em;
