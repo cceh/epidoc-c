@@ -317,13 +317,13 @@ listBibl {
     -oxy-foldable: true;
     -oxy-folded: true;
 }
-/* listBibl:after {
+listBibl:after {
     content: url(../img/book.png) " Bibliographie bearbeiten";
     color: #000000;
     padding: 1em 0;
     vertical-align: middle;
-    link: "http://papyri.uni-koeln.de:8080/apps/papyri/data/wissen/bibl.xml";
-} */
+    link: "http://papyri.uni-koeln.de:8080/apps/papyri-data/wissen/bibl.xml";
+}
 listBibl * {
     color: #000000;
 }
