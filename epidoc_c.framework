@@ -22,7 +22,9 @@
 						</docTypeSchema>
 					</field>
 					<field name="classpath">
-						<String-array/>
+						<String-array>
+							<String>${framework}/lib</String>
+						</String-array>
 					</field>
 					<field name="parentClassLoaderID">
 						<null/>
@@ -5666,64 +5668,6 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 									</action>
 									<action>
 										<field name="id">
-											<String>choose_graphic</String>
-										</field>
-										<field name="name">
-											<String>Grafik wählen</String>
-										</field>
-										<field name="description">
-											<String></String>
-										</field>
-										<field name="largeIconPath">
-											<String>${framework}/img/add-20.png</String>
-										</field>
-										<field name="smallIconPath">
-											<String>${framework}/img/add-16.png</String>
-										</field>
-										<field name="accessKey">
-											<String></String>
-										</field>
-										<field name="accelerator">
-											<null/>
-										</field>
-										<field name="actionModes">
-											<actionMode-array>
-												<actionMode>
-													<field name="xpathCondition">
-														<String>self::surface and @temp-url</String>
-													</field>
-													<field name="argValues">
-														<serializableOrderedMap>
-															<entry>
-																<String>script</String>
-																<String>xquery version "3.0";
-
-declare default element namespace "http://www.tei-c.org/ns/1.0";
-declare namespace file="http://exist-db.org/xquery/file";
-
-
-let $filename := ./@temp-url/data(.)
-let $id := ./root()/TEI/@xml:id/data(.)
-let $graphic := doc("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir=${cfn}.xml&amp;amp;file="||$filename||"&amp;amp;id="||$id)
-return (
-  insert node $graphic into .,
-  delete node ./@temp-url
-)</String>
-															</entry>
-														</serializableOrderedMap>
-													</field>
-													<field name="operationID">
-														<String>ro.sync.ecss.extensions.commons.operations.XQueryUpdateOperation</String>
-													</field>
-												</actionMode>
-											</actionMode-array>
-										</field>
-										<field name="enabledInReadOnlyContext">
-											<Boolean>false</Boolean>
-										</field>
-									</action>
-									<action>
-										<field name="id">
 											<String>insert_graphic_remove_temp_attribute</String>
 										</field>
 										<field name="name">
@@ -5748,13 +5692,13 @@ return (
 											<actionMode-array>
 												<actionMode>
 													<field name="xpathCondition">
-														<String>parent::surface</String>
+														<String></String>
 													</field>
 													<field name="argValues">
 														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
-																<String>parent::surface</String>
+																<String>//surface</String>
 															</entry>
 															<entry>
 																<String>name</String>
@@ -5807,6 +5751,182 @@ return (
 													<field name="argValues">
 														<serializableOrderedMap>
 															<entry>
+																<String>actionIDs</String>
+																<String>insert_all_graphics_delete_temp
+insert_all_graphics_insert</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_all_graphics_insert</String>
+										</field>
+										<field name="name">
+											<String>insert_all_graphics_insert</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>count(./graphic) = 0</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>action</String>
+																<String>Inside as first child</String>
+															</entry>
+															<entry>
+																<String>caretPosition</String>
+																<String>Preserve</String>
+															</entry>
+															<entry>
+																<String>expandEditorVariables</String>
+																<String>true</String>
+															</entry>
+															<entry>
+																<String>script</String>
+																<String>xquery version "3.0";
+
+declare default element namespace "http://www.tei-c.org/ns/1.0";
+declare namespace file="http://exist-db.org/xquery/file";
+
+let $cfn := tokenize(document-uri(), "/")[last()]
+let $id := //TEI/@xml:id/data(.)
+let $url := concat("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;amp;dir=", $cfn, "&amp;amp;id=",$id)
+let $graphics := doc($url)//graphic
+return  $graphics</String>
+															</entry>
+															<entry>
+																<String>sourceLocation</String>
+																<String>//TEI</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.XQueryOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_all_graphics_delete_temp</String>
+										</field>
+										<field name="name">
+											<String>insert_all_graphics_delete_temp</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocation</String>
+																<String>//surface</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>temp-url</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>choose_graphic_insert</String>
+										</field>
+										<field name="name">
+											<String>choose_graphic_insert</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>action</String>
+																<String>Inside as last child</String>
+															</entry>
+															<entry>
+																<String>caretPosition</String>
+																<String>Preserve</String>
+															</entry>
+															<entry>
 																<String>script</String>
 																<String>xquery version "3.0";
 
@@ -5814,15 +5934,72 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
 declare namespace file="http://exist-db.org/xquery/file";
 
 
-let $id := ./root()/TEI/@xml:id/data(.)
-let $graphics := doc("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir=${cfn}.xml&amp;amp;id="||$id)//graphic
-return 
-  insert node $graphics into .</String>
+let $filename := //surface/@temp-url/data(.)
+let $id := //TEI/@xml:id/data(.)
+let $url :=  "http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir="||tokenize(document-uri(), "/")[last()]||"&amp;amp;file="||$filename||"&amp;amp;id="||$id
+
+let $graphic := doc($url)
+return $graphic</String>
+															</entry>
+															<entry>
+																<String>sourceLocation</String>
+																<String>//TEI</String>
+															</entry>
+															<entry>
+																<String>targetLocation</String>
+																<String></String>
 															</entry>
 														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
-														<String>ro.sync.ecss.extensions.commons.operations.XQueryUpdateOperation</String>
+														<String>ro.sync.ecss.extensions.commons.operations.XQueryOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>choose_graphic</String>
+										</field>
+										<field name="name">
+											<String>choose_graphic</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>actionIDs</String>
+																<String>choose_graphic_insert
+insert_graphic_remove_temp_attribute</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>

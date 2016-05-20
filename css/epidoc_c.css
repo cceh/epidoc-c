@@ -21,6 +21,7 @@ TEI:before {
              " " attr("rend")
             ;
     -oxy-editable: false;
+    link: "http://papyri.uni-koeln.de:8080/apps/papyri-data/wissen/bibl.xml";
 }
 teiHeader, text, facsimile {
     margin: 0.5em;
