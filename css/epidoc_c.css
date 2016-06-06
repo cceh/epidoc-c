@@ -1558,9 +1558,9 @@ graphic! > desc[type="type"][subtype="thumb"], graphic! > desc[type="type"][subt
     display: none;
 }
 
-graphic:before(2) {
+graphic[url]:before(2) {
     content: 
-        "Bild: " oxy_substring(oxy_substring(oxy_xpath("@url/data(.)"), oxy_lastindexof(oxy_xpath("@url/data(.)"), "/")), 1)
+        "Bild: " oxy_substring(oxy_substring(attr(url), oxy_lastindexof(attr(url), "/")), 1)
         oxy_concat(" (", attr(mimeType),")")
         oxy_editor(type, button, actionID, delete_graphic, transparent, true, color, #FFFFFF)
         ;
