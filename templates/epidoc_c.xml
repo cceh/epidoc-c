@@ -41,7 +41,7 @@
                                 </bibl>
                             </listBibl>
                             <note type="availability">in Bearbeitung</note>
-                            <note type="publication"/>
+                            <note type="publication" subtype="struct"><bibl><idno></idno><biblScope></biblScope></bibl></note>
                             <note type="text_type">nicht ermittelt</note>
                             <note type="content">
                                 <p/>
