@@ -5813,13 +5813,13 @@ insert_all_graphics_insert</String>
 																<String>script</String>
 																<String>xquery version "3.0";
 
-declare default element namespace "http://www.tei-c.org/ns/1.0";
+declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace file="http://exist-db.org/xquery/file";
 
 let $cfn := tokenize(document-uri(), "/")[last()]
-let $id := //TEI/@xml:id/data(.)
+let $id := //tei:TEI/@xml:id/data(.)
 let $url := concat("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;amp;dir=", $cfn, "&amp;amp;id=",$id)
-let $graphics := doc($url)//graphic
+let $graphics := doc($url)/graphics/tei:graphic
 return  $graphics</String>
 															</entry>
 															<entry>
@@ -5987,7 +5987,7 @@ return $graphic</String>
 											<actionMode-array>
 												<actionMode>
 													<field name="xpathCondition">
-														<String></String>
+														<String>//surface/@temp-url</String>
 													</field>
 													<field name="argValues">
 														<serializableOrderedMap>
