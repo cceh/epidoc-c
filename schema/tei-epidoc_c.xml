@@ -1566,18 +1566,10 @@ End license statement: do not remove -->
                                         <rng:value>Zeitraum</rng:value>
                                     </rng:attribute>
                                     <rng:optional>
-                                        <rng:attribute name="notBefore">
-                                            <a:documentation
-                                                xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-                                                >specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
-                                            <rng:ref name="tei_data.temporal.w3c"/>
-                                        </rng:attribute>
-                                        <rng:attribute name="notAfter">
-                                            <a:documentation
-                                                xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
-                                                >specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
-                                            <rng:ref name="tei_data.temporal.w3c"/>
-                                        </rng:attribute>
+                                        <rng:optional>
+                                            <rng:ref name="tei_att.datable.w3c.attribute.notBefore"/>
+                                            <rng:ref name="tei_att.datable.w3c.attribute.notAfter"/>
+                                        </rng:optional>
                                     </rng:optional>
                                 </rng:group>
                                 <text/>
