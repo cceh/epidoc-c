@@ -297,7 +297,7 @@ altIdentifier[type="legacy"] > idno {
 
 /************************************ listBibl *****************************************/
 
-listBibl:before {
+sourceDesc > listBibl:before, msItemStruct > listBibl:before {
     display: block;
     content: 
         "Bibliographie"
@@ -309,7 +309,7 @@ listBibl:before {
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
 }
-listBibl {
+sourceDesc > listBibl, msItemStruct > listBibl {
     display: block;
     content: oxy_xpath("if (@rend) then concat('\A', @rend, '\A') else ()");
     /* color: #0059B3; */
@@ -318,20 +318,20 @@ listBibl {
     -oxy-foldable: true;
     -oxy-folded: true;
 }
-listBibl:after {
+/* listBibl:after {
     content: url(../img/book.png) " Bibliographie bearbeiten";
     color: #000000;
     padding: 1em 0;
     vertical-align: middle;
-    link: "http://papyri.uni-koeln.de:8080/apps/papyri-data/wissen/bibl.xml";
-}
+    link: "http://papyri.uni-koeln.de:8080/apps/papyri/data/wissen/bibl.xml";
+} */
 listBibl * {
     color: #000000;
 }
 listBibl > * {
     padding-bottom: 1em;
 }
-bibl:before {
+sourceDesc > listBibl > bibl:before, msItemStruct > listBibl > bibl:before {
     display: block;
     content: "Eintrag"
              oxy_editor(type, button, actionID, insert_bibl, transparent, true, color, #000000)
@@ -344,7 +344,7 @@ bibl:before {
     font-weight: bold;
 }
 
-bibl {
+sourceDesc > listBibl > bibl, msItemStruct > listBibl > bibl {
     display: block;
     content: oxy_label(text, "Werk: ", width, 4.25em, text-align, right)
     /* oxy_editor(type, combo, edit, "@sameAs", editable, false, 
@@ -362,10 +362,10 @@ bibl {
     -oxy-foldable: true;
     visibility: -oxy-collapse-text;
 }
-biblScope:before {
+sourceDesc > listBibl > bibl > biblScope:before, msItemStruct > listBibl > bibl > biblScope:before {
     content: oxy_label(text, "Seiten: ", width, 4.25em, text-align, right);
 }
-biblScope {
+sourceDesc > listBibl > bibl > biblScope, msItemStruct > listBibl > bibl > biblScope {
     display: block;
     content: oxy_editor(type, text, edit, "#text", columns, 30);
     -oxy-display-tags: none;
@@ -486,12 +486,76 @@ note[type=availability]{
              " " attr("rend");
     visibility: -oxy-collapse-text;
 }
-note[type=publication]{
+
+
+note[type=publication] {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
+note[type=publication]:not([subtype=struct]) {
     display: block;
-    content: oxy_label(text, "Publikation: ", width, 10em, text-align, right)
-             oxy_editor(type, text, edit, "#text", columns, 30);
+    content: 
+            oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
+            oxy_editor(type, text, edit, "#text", columns, 30);
     visibility: -oxy-collapse-text;
 }
+note[type=publication] idno {
+    content:oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
+    
+            oxy_editor(type, combo, edit, "#text", columns, 30, editable, false,
+            values, oxy_xpath("doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubs')//text()"));
+
+    visibility: -oxy-collapse-text;
+} 
+
+note[type=publication] > bibl > biblScope {
+    display: block;
+    margin-left: 10em;
+    content: oxy_label(text, "Nummer / Seiten: ", width, 10em, text-align, right)   
+             oxy_editor(type, text, edit, "#text", columns, 10);
+}
+
+note[type=publication]:not([subtype=struct]):after {
+    display: block;
+    margin-left: 10em;
+    content:
+        oxy_button(
+             actionID, 'change_publication_type_to_structured',
+             showText, true,
+             transparent, true
+        );
+}
+
+note[type=publication][subtype=struct]:after(1) {
+    display: block;
+    margin-left: 10em;
+    content:
+        oxy_button(
+             actionID, 'change_publication_type_to_unstructured',
+             showText, true,
+             transparent, true
+        );
+}
+
+note[type=publication][subtype=struct]:after(2){
+    display: block;
+    margin-top: 2em;
+    margin-left: 13em;
+    height: 5em;
+    width:  90%;
+    font-style: italic;
+    font-size: small;
+    content: oxy_xpath(
+        oxy_concat(
+                    oxy_concat(
+                        "doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubdesc&key=", 
+                        oxy_xpath("tei:bibl/tei:idno/text()")),
+                    "')//text()")
+                 );
+}
+
 note[type=text_type]{
     content: oxy_label(text, "Textsorte: ", width, 10em, text-align, right)
              oxy_editor(type, combo, edit, "#text", editable, false);
