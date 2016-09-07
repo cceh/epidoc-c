@@ -160,7 +160,7 @@ End license statement: do not remove -->
                                 Customization for the Papyri Charter Project (Cologne).</p>
             <schemaSpec ident="tei-epidoc_c" docLang="en" prefix="tei_" start="TEI" xml:lang="en">
                 <!--       MODULES USED BY THE EPIDOC SCHEMA       -->
-                <moduleRef key="core"/>
+                <moduleRef key="core" except=""/>
                 <moduleRef key="tei"/>
                 <moduleRef key="header" except="appInfo"/>
                 <moduleRef key="textstructure"
@@ -977,7 +977,6 @@ End license statement: do not remove -->
                         <rng:oneOrMore>
                             <rng:ref name="tei_model.respLike"/>
                         </rng:oneOrMore>
-
                     </content>
                 </elementSpec>
                 <elementSpec ident="msIdentifier" module="msdescription" mode="change">
@@ -1586,6 +1585,205 @@ End license statement: do not remove -->
                         <memberOf key="att.global"/>
                         <memberOf key="att.global.rendition" mode="delete"/>
                     </classes>
+                </elementSpec>
+                <elementSpec ident="listBibl" module="core" mode="change">
+                    <content>
+                        <sequence>
+                            <classRef key="model.headLike" minOccurs="0" maxOccurs="unbounded"> </classRef>
+                            <alternate minOccurs="1" maxOccurs="unbounded">
+                                <classRef key="model.biblLike"/>
+                                <classRef key="model.milestoneLike"/>
+                            </alternate>
+                            <alternate minOccurs="0" maxOccurs="unbounded">
+                                <elementRef key="relation"/>
+                                <elementRef key="listRelation"/>
+                            </alternate>
+                        </sequence>
+                    </content>
+                </elementSpec>
+                <elementSpec ident="monogr" module="core" mode="change">
+                    <content>
+                        <sequence>
+                            <alternate minOccurs="0">
+                                <sequence>
+                                    <alternate>
+                                        <elementRef key="author"/>
+                                        <elementRef key="editor"/>
+                                        <elementRef key="meeting"/>
+                                        <elementRef key="respStmt"/>
+                                    </alternate>
+                                    <alternate minOccurs="0" maxOccurs="unbounded">
+                                        <elementRef key="author"/>
+                                        <elementRef key="editor"/>
+                                        <elementRef key="meeting"/>
+                                        <elementRef key="respStmt"/>
+                                    </alternate>
+                                    <elementRef key="title" minOccurs="1" maxOccurs="unbounded"/>
+                                    <alternate minOccurs="0" maxOccurs="unbounded">
+                                        <classRef key="model.ptrLike"/>
+                                        <elementRef key="idno"/>
+                                        <elementRef key="textLang"/>
+                                        <elementRef key="editor"/>
+                                        <elementRef key="respStmt"/>
+                                    </alternate>
+                                </sequence>
+                                <sequence>
+                                    <alternate minOccurs="1" maxOccurs="unbounded">
+                                        <elementRef key="title"/>
+                                        <classRef key="model.ptrLike"/>
+                                        <elementRef key="idno"/>
+                                    </alternate>
+                                    <alternate minOccurs="0" maxOccurs="unbounded">
+                                        <elementRef key="textLang"/>
+                                        <elementRef key="author"/>
+                                        <elementRef key="editor"/>
+                                        <elementRef key="meeting"/>
+                                        <elementRef key="respStmt"/>
+                                    </alternate>
+                                </sequence>
+                                <sequence>
+                                    <!-- specific to patents -->
+                                    <elementRef key="authority"/>
+                                    <elementRef key="idno"/>
+                                </sequence>
+                            </alternate>
+                            <elementRef key="availability" minOccurs="0" maxOccurs="unbounded"/>
+                            <classRef key="model.noteLike" minOccurs="0" maxOccurs="unbounded"/>
+                            <sequence minOccurs="0" maxOccurs="unbounded">
+                                <elementRef key="edition"/>
+                                <alternate minOccurs="0" maxOccurs="unbounded">
+                                    <elementRef key="idno"/>
+                                    <classRef key="model.ptrLike"/>
+                                    <elementRef key="editor"/>
+                                    <elementRef key="sponsor"/>
+                                    <elementRef key="funder"/>
+                                    <elementRef key="respStmt"/>
+                                </alternate>
+                            </sequence>
+                            <elementRef key="imprint"/>
+                            <alternate minOccurs="0" maxOccurs="unbounded">
+                                <elementRef key="imprint"/>
+                                <elementRef key="extent"/>
+                                <elementRef key="biblScope"/>
+                            </alternate>
+                        </sequence>
+                    </content>
+                </elementSpec>
+                <elementSpec ident="biblStruct" module="core" mode="change">
+                    <content>
+                        <element name="biblStruct" xmlns="http://relaxng.org/ns/structure/1.0">
+                            <group >
+                                
+                                <zeroOrMore>
+                                    <ref name="tei_analytic"/>
+                                </zeroOrMore>
+                                
+                                
+                                <group>
+                                    
+                                    <choice>
+                                        <group>
+                                            <attribute name="type">
+                                                <value>manuscript_publication</value>
+                                            </attribute>
+                                            <element name="monogr">
+                                                <group>                          
+                                                    <element name="idno">
+                                                        <ref name="tei_att.typed.attributes"/>
+                                                        <data type="string">
+                                                            <param name="pattern">[^,]+</param>
+                                                        </data>
+                                                    </element>
+                                                    
+                                                    <element name="title">
+                                                        <attribute name="type">
+                                                            <value>main</value>
+                                                        </attribute>
+                                                        <text/>
+                                                    </element>
+                                                    <element name="title">
+                                                        <attribute name="type">
+                                                            <value>short</value>
+                                                        </attribute>
+                                                        <text/>
+                                                    </element>
+                                                    
+                                                    <oneOrMore>
+                                                        <ref name="tei_editor"/>
+                                                    </oneOrMore>
+                                                    
+                                                    <element name="note">
+                                                        <attribute name="type">
+                                                            <value>citation</value>
+                                                        </attribute>
+                                                        <text/>
+                                                    </element>
+                                                    
+                                                    <element name="note">
+                                                        <attribute name="type">
+                                                            <value>description</value>
+                                                        </attribute>
+                                                        <choice>
+                                                            <text/>
+                                                            <empty/>
+                                                        </choice>
+                                                    </element>
+                                                    
+                                                    <ref name="tei_edition"/>
+                                                    <ref name="tei_imprint"/>
+                                                    
+                                                </group>
+                                            </element>
+                                        </group>
+                                        <group>   
+                                            <ref name="tei_att.typed.attributes"/>
+                                            <ref name="tei_monogr"/>
+                                        </group>
+                                    </choice>
+                                    
+                                    <zeroOrMore>
+                                        <ref name="tei_series"/>
+                                    </zeroOrMore>
+                                    
+                                </group>
+                                
+                                
+                                <zeroOrMore>
+                                    <choice>
+                                        <ref name="tei_model.noteLike"/>
+                                        <ref name="tei_idno"/>
+                                        
+                                        <ref name="tei_model.ptrLike"/>
+                                        <ref name="tei_relatedItem"/>
+                                        <ref name="tei_citedRange"/>
+                                    </choice>
+                                </zeroOrMore>
+                                
+                            </group>
+                            <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                                id="tei-epidoc_c-biblStruct-deprecate-altIdentifier-child-constraint-12">
+                                <rule context="tei:biblStruct">
+                                    <sch:report xmlns="http://www.tei-c.org/ns/1.0"
+                                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                                        xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="nonfatal"
+                                        test="child::tei:idno"
+                                        >WARNING: use of deprecated method — the use of the idno element as a direct child of the biblStruct element will be removed from the TEI on 2016-09-18</sch:report>
+                                </rule>
+                                <rule context="tei:biblStruct">
+                                    <sch:report xmlns="http://www.tei-c.org/ns/1.0"
+                                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                                        xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="nonfatal"
+                                        test="not(child::@xml:id)"
+                                        >ERROR: @xml:id must be set</sch:report>
+                                </rule>
+                            </pattern>
+                            <ref name="tei_att.global.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
+                            <ref name="tei_att.declarable.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
+                            <ref name="tei_att.sortable.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
+                            <ref name="tei_att.docStatus.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
+                            <empty xmlns="http://relaxng.org/ns/structure/1.0"/>
+                        </element>
+                    </content>
                 </elementSpec>
             </schemaSpec>
         </body>
