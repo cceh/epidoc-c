@@ -628,7 +628,7 @@ End license statement: do not remove -->
                                     <rng:value>unpubliziert</rng:value>
                                 </rng:choice>
                             </rng:element>
-                             <rng:element name="note">
+                            <rng:element name="note">
                                 <rng:attribute name="type">
                                     <rng:value>publication</rng:value>
                                 </rng:attribute>
@@ -772,7 +772,7 @@ End license statement: do not remove -->
                                                   <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:data type="string">
-                                                    <rng:param name="pattern">.*[\S]+.*</rng:param>
+                                                  <rng:param name="pattern">.*[\S]+.*</rng:param>
                                                 </rng:data>
                                             </rng:choice>
                                         </rng:element>
@@ -838,7 +838,7 @@ End license statement: do not remove -->
                                                   <rng:value>nicht ermittelt</rng:value>
                                                 </rng:choice>
                                                 <rng:data type="string">
-                                                    <rng:param name="pattern">.*[\S]+.*</rng:param>
+                                                  <rng:param name="pattern">.*[\S]+.*</rng:param>
                                                 </rng:data>
                                             </rng:choice>
                                         </rng:element>
@@ -968,13 +968,16 @@ End license statement: do not remove -->
                         <rng:text xmlns="http://relaxng.org/ns/structure/1.0"/>
                     </content>
                 </elementSpec>
-                <elementSpec ident="titleStmt" module="header" mode="change">
+                <elementSpec ident="titleStmt" module="header" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
                     <content>
-                        <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
-                            <rng:element name="title">
-                                <rng:text/>
-                            </rng:element>
-                        </rng:group>
+                        <rng:oneOrMore>
+                            <rng:ref name="tei_title"/>
+                        </rng:oneOrMore>
+                        <rng:oneOrMore>
+                            <rng:ref name="tei_model.respLike"/>
+                        </rng:oneOrMore>
+
                     </content>
                 </elementSpec>
                 <elementSpec ident="msIdentifier" module="msdescription" mode="change">
