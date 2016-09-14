@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-09-07T14:10:36Z. .
+Schema generated from ODD source 2016-09-14T14:17:56Z. .
 TEI Edition: Version 3.0.0. Last updated on
 	29th March 2016, revision 89ba24e
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.0.0/
@@ -5387,86 +5387,87 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
       </element>
    </define>
    <define name="tei_biblStruct">
-      <element name="biblStruct">
+      <element name="biblStruct" ns="http://www.tei-c.org/ns/1.0">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements appear and in a specified order. [3.11.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 15.3.2. Declarable Elements]</a:documentation>
-         <element name="biblStruct">
+         <group>
+            <zeroOrMore>
+               <ref name="tei_analytic"/>
+            </zeroOrMore>
             <group>
-               <zeroOrMore>
-                  <ref name="tei_analytic"/>
-               </zeroOrMore>
-               <group>
-                  <choice>
-                     <group>
+               <choice>
+                  <group>
+                     <attribute name="type">
+                        <value>manuscript_publication</value>
+                     </attribute>
+                     <element name="monogr">
+                        <group>
+                           <element name="idno">
+                              <ref name="tei_att.typed.attributes"/>
+                              <data type="string">
+                                 <param name="pattern">[^,]+</param>
+                              </data>
+                           </element>
+                           <element name="title">
+                              <attribute name="type">
+                                 <value>main</value>
+                              </attribute>
+                              <text/>
+                           </element>
+                           <element name="title">
+                              <attribute name="type">
+                                 <value>short</value>
+                              </attribute>
+                              <text/>
+                           </element>
+                           <oneOrMore>
+                              <ref name="tei_editor"/>
+                           </oneOrMore>
+                           <element name="note">
+                              <attribute name="type">
+                                 <value>citation</value>
+                              </attribute>
+                              <text/>
+                           </element>
+                           <element name="note">
+                              <attribute name="type">
+                                 <value>description</value>
+                              </attribute>
+                              <text/>
+                           </element>
+                           <ref name="tei_edition"/>
+                           <ref name="tei_imprint"/>
+                        </group>
+                     </element>
+                  </group>
+                  <group>
+                     <optional>
                         <attribute name="type">
-                           <value>manuscript_publication</value>
+                           <data type="token">
+                              <except>
+                                 <value>manuscript_publication</value>
+                              </except>
+                           </data>
                         </attribute>
-                        <element name="monogr">
-                           <group>
-                              <element name="idno">
-                                 <ref name="tei_att.typed.attributes"/>
-                                 <data type="string">
-                                    <param name="pattern">[^,]+</param>
-                                 </data>
-                              </element>
-                              <element name="title">
-                                 <attribute name="type">
-                                    <value>main</value>
-                                 </attribute>
-                                 <text/>
-                              </element>
-                              <element name="title">
-                                 <attribute name="type">
-                                    <value>short</value>
-                                 </attribute>
-                                 <text/>
-                              </element>
-                              <oneOrMore>
-                                 <ref name="tei_editor"/>
-                              </oneOrMore>
-                              <element name="note">
-                                 <attribute name="type">
-                                    <value>citation</value>
-                                 </attribute>
-                                 <text/>
-                              </element>
-                              <element name="note">
-                                 <attribute name="type">
-                                    <value>description</value>
-                                 </attribute>
-                                 <text/>
-                              </element>
-                              <ref name="tei_edition"/>
-                              <ref name="tei_imprint"/>
-                           </group>
-                        </element>
-                     </group>
-                     <group>
-                        <ref name="tei_att.typed.attributes"/>
-                        <ref name="tei_monogr"/>
-                     </group>
-                  </choice>
-                  <zeroOrMore>
-                     <ref name="tei_series"/>
-                  </zeroOrMore>
-               </group>
+                     </optional>
+                     <ref name="tei_monogr"/>
+                  </group>
+               </choice>
                <zeroOrMore>
-                  <choice>
-                     <ref name="tei_model.noteLike"/>
-                     <ref name="tei_idno"/>
-                     <ref name="tei_model.ptrLike"/>
-                     <ref name="tei_relatedItem"/>
-                     <ref name="tei_citedRange"/>
-                  </choice>
+                  <ref name="tei_series"/>
                </zeroOrMore>
             </group>
-            <ref name="tei_att.global.attributes"/>
-            <ref name="tei_att.declarable.attributes"/>
-            <ref name="tei_att.sortable.attributes"/>
-            <ref name="tei_att.docStatus.attributes"/>
-            <empty/>
-         </element>
+            <zeroOrMore>
+               <choice>
+                  <ref name="tei_model.noteLike"/>
+                  <ref name="tei_model.ptrLike"/>
+                  <ref name="tei_relatedItem"/>
+                  <ref name="tei_citedRange"/>
+               </choice>
+            </zeroOrMore>
+         </group>
+         <empty/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-biblStruct-deprecate-altIdentifier-child-constraint-14">
+                  id="tei-epidoc_c-biblStruct-deprecate-altIdentifier-child-constraint-12">
             <rule context="tei:biblStruct">
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -5475,11 +5476,8 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
                            test="child::tei:idno">WARNING: use of deprecated method — the use of the idno element as a direct child of the biblStruct element will be removed from the TEI on 2016-09-18</sch:report>
             </rule>
          </pattern>
-         <ref name="tei_att.global.attributes"/>
-         <ref name="tei_att.declarable.attributes"/>
-         <ref name="tei_att.typed.attributes"/>
-         <ref name="tei_att.sortable.attributes"/>
          <ref name="tei_att.docStatus.attributes"/>
+         <ref name="tei_att.global.attributes"/>
          <empty/>
       </element>
    </define>
@@ -5520,7 +5518,7 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
             </choice>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-relatedItem-targetorcontent1-constraint-15">
+                  id="tei-epidoc_c-relatedItem-targetorcontent1-constraint-13">
             <rule context="tei:relatedItem">
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -5564,7 +5562,7 @@ relatedItem element must be empty</sch:report>
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-l-abstractModel-structure-l-constraint-16">
+                  id="tei-epidoc_c-l-abstractModel-structure-l-constraint-14">
             <rule context="tei:l">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -5633,7 +5631,7 @@ relatedItem element must be empty</sch:report>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-lg-abstractModel-structure-l-constraint-17">
+                  id="tei-epidoc_c-lg-abstractModel-structure-l-constraint-15">
             <rule context="tei:lg">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -6349,7 +6347,7 @@ Sample values include: 1] text; 2] corpus</a:documentation>
             <ref name="tei_model.pLike"/>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-quotation-quotationContents-constraint-18">
+                  id="tei-epidoc_c-quotation-quotationContents-constraint-16">
             <rule context="tei:quotation">
                <report xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -7514,7 +7512,7 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             </optional>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-div-abstractModel-structure-l-constraint-19">
+                  id="tei-epidoc_c-div-abstractModel-structure-l-constraint-17">
             <rule context="tei:div">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -7524,7 +7522,7 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-div-abstractModel-structure-p-constraint-20">
+                  id="tei-epidoc_c-div-abstractModel-structure-p-constraint-18">
             <rule context="tei:div">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -8139,7 +8137,7 @@ Sample values include: 1] glued; 2] pinned; 3] sewn</a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(editorial expansion) contains a sequence of letters added by an editor or transcriber when expanding an abbreviation. [11.3.1.2. Abbreviation and Expansion]</a:documentation>
          <ref name="tei_macro.xtext"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-ex-ex-constraint-14">
+                  id="tei-epidoc_c-ex-ex-constraint-12">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -8224,7 +8222,7 @@ Sample values include: 1] header; 2] footer; 3] pageNum(page number) ; 4] lineNu
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-space-space-constraint-15">
+                  id="tei-epidoc_c-space-space-constraint-13">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -8606,7 +8604,7 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(s-unit) contains a sentence-like division of a text. [17.1. Linguistic Segment Categories 8.4.1. Segmentation]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-s-noNestedS-constraint-25">
+                  id="tei-epidoc_c-s-noNestedS-constraint-23">
             <rule context="tei:s">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9172,7 +9170,7 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. Blocks, Segments, and Anchors]</a:documentation>
          <ref name="tei_macro.paraContent"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-ab-abstractModel-structure-p-constraint-26">
+                  id="tei-epidoc_c-ab-abstractModel-structure-p-constraint-24">
             <rule context="tei:ab">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9182,7 +9180,7 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-ab-abstractModel-structure-l-constraint-27">
+                  id="tei-epidoc_c-ab-abstractModel-structure-l-constraint-25">
             <rule context="tei:ab">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9346,7 +9344,7 @@ You must supply at least two values for @target on <name/>
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-28">
+                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-26">
             <rule context="tei:dimensions">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9356,7 +9354,7 @@ The element <name/> may appear once only
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-29">
+                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-27">
             <rule context="tei:dimensions">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9366,7 +9364,7 @@ The element <name/> may appear once only
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-30">
+                  id="tei-epidoc_c-dimensions-duplicateDim-constraint-28">
             <rule context="tei:dimensions">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -9827,7 +9825,7 @@ Suggested values include: 1] lettering; 2] nomenclature; 3] prosopography; 4] re
             </oneOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-msIdentifier-msId_minimal-constraint-31">
+                  id="tei-epidoc_c-msIdentifier-msId_minimal-constraint-29">
             <rule context="tei:msIdentifier">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -11343,7 +11341,7 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
             </choice>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-msPart-deprecate-altIdentifier-child-constraint-32">
+                  id="tei-epidoc_c-msPart-deprecate-altIdentifier-child-constraint-30">
             <rule context="tei:msPart">
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -12395,7 +12393,7 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-relation-activemutual-constraint-33">
+                  id="tei-epidoc_c-relation-activemutual-constraint-31">
             <rule context="tei:relation">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -12404,7 +12402,7 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-relation-activepassive-constraint-34">
+                  id="tei-epidoc_c-relation-activepassive-constraint-32">
             <rule context="tei:relation">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -12872,7 +12870,7 @@ Sample values include: 1] homeoteleuton; 2] homeoarchy; 3] paleographicConfusion
             </choice>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="tei-epidoc_c-variantEncoding-location-variantEncodingLocation-constraint-16">
+                  id="tei-epidoc_c-variantEncoding-location-variantEncodingLocation-constraint-14">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
