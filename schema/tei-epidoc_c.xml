@@ -1669,120 +1669,92 @@ End license statement: do not remove -->
                         </sequence>
                     </content>
                 </elementSpec>
-                <elementSpec ident="biblStruct" module="core" mode="change">
+                <elementSpec ident="biblStruct" module="core" mode="change" ns="http://www.tei-c.org/ns/1.0">
+                    <classes mode="replace">
+                        <memberOf key="model.biblLike" mode="add"/>
+                        <memberOf key="att.docStatus" mode="add"/>
+                        <memberOf key="att.global" mode="add"/>
+                        <memberOf key="att.typed" mode="delete"/>
+                    </classes>
                     <content>
-                        <element name="biblStruct" xmlns="http://relaxng.org/ns/structure/1.0">
-                            <group >
-                                
-                                <zeroOrMore>
-                                    <ref name="tei_analytic"/>
-                                </zeroOrMore>
-                                
-                                
-                                <group>
-                                    
-                                    <choice>
-                                        <group>
+                        <group xmlns="http://relaxng.org/ns/structure/1.0">
+                            <zeroOrMore>
+                                <ref name="tei_analytic"/>
+                            </zeroOrMore>
+                            <group>
+                                <choice>
+                                    <group>
+                                        <attribute name="type">
+                                            <value>manuscript_publication</value>
+                                        </attribute>
+                                        <element name="monogr">
+                                            <group>
+                                                <element name="idno">
+                                                    <ref name="tei_att.typed.attributes"/>
+                                                    <data type="string">
+                                                        <param name="pattern">[^,]+</param>
+                                                    </data>
+                                                </element>
+                                                <element name="title">
+                                                    <attribute name="type">
+                                                        <value>main</value>
+                                                    </attribute>
+                                                    <text/>
+                                                </element>
+                                                <element name="title">
+                                                    <attribute name="type">
+                                                        <value>short</value>
+                                                    </attribute>
+                                                    <text/>
+                                                </element>
+                                                <oneOrMore>
+                                                    <ref name="tei_editor"/>
+                                                </oneOrMore>
+                                                <element name="note">
+                                                    <attribute name="type">
+                                                        <value>citation</value>
+                                                    </attribute>
+                                                    <text/>
+                                                </element>
+                                                <element name="note">
+                                                    <attribute name="type">
+                                                        <value>description</value>
+                                                    </attribute>
+                                                    <text/>
+                                                </element>
+                                                <ref name="tei_edition"/>
+                                                <ref name="tei_imprint"/>
+                                            </group>
+                                        </element>
+                                    </group>
+                                    <group>
+                                        <optional>
                                             <attribute name="type">
-                                                <value>manuscript_publication</value>
+                                                <data type="token">
+                                                    <except>
+                                                        <value>manuscript_publication</value>
+                                                    </except>
+                                                </data>
                                             </attribute>
-                                            <element name="monogr">
-                                                <group>                          
-                                                    <element name="idno">
-                                                        <ref name="tei_att.typed.attributes"/>
-                                                        <data type="string">
-                                                            <param name="pattern">[^,]+</param>
-                                                        </data>
-                                                    </element>
-                                                    
-                                                    <element name="title">
-                                                        <attribute name="type">
-                                                            <value>main</value>
-                                                        </attribute>
-                                                        <text/>
-                                                    </element>
-                                                    <element name="title">
-                                                        <attribute name="type">
-                                                            <value>short</value>
-                                                        </attribute>
-                                                        <text/>
-                                                    </element>
-                                                    
-                                                    <oneOrMore>
-                                                        <ref name="tei_editor"/>
-                                                    </oneOrMore>
-                                                    
-                                                    <element name="note">
-                                                        <attribute name="type">
-                                                            <value>citation</value>
-                                                        </attribute>
-                                                        <text/>
-                                                    </element>
-                                                    
-                                                    <element name="note">
-                                                        <attribute name="type">
-                                                            <value>description</value>
-                                                        </attribute>
-                                                        <choice>
-                                                            <text/>
-                                                            <empty/>
-                                                        </choice>
-                                                    </element>
-                                                    
-                                                    <ref name="tei_edition"/>
-                                                    <ref name="tei_imprint"/>
-                                                    
-                                                </group>
-                                            </element>
-                                        </group>
-                                        <group>   
-                                            <ref name="tei_att.typed.attributes"/>
-                                            <ref name="tei_monogr"/>
-                                        </group>
-                                    </choice>
-                                    
-                                    <zeroOrMore>
-                                        <ref name="tei_series"/>
-                                    </zeroOrMore>
-                                    
-                                </group>
-                                
-                                
+                                        </optional>
+                                        <ref name="tei_monogr"/>
+                                    </group>
+                                </choice>
                                 <zeroOrMore>
-                                    <choice>
-                                        <ref name="tei_model.noteLike"/>
-                                        <ref name="tei_idno"/>
-                                        
-                                        <ref name="tei_model.ptrLike"/>
-                                        <ref name="tei_relatedItem"/>
-                                        <ref name="tei_citedRange"/>
-                                    </choice>
+                                    <ref name="tei_series"/>
                                 </zeroOrMore>
-                                
                             </group>
-                            <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                                id="tei-epidoc_c-biblStruct-deprecate-altIdentifier-child-constraint-12">
-                                <rule context="tei:biblStruct">
-                                    <sch:report xmlns="http://www.tei-c.org/ns/1.0"
-                                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                                        xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="nonfatal"
-                                        test="child::tei:idno"
-                                        >WARNING: use of deprecated method — the use of the idno element as a direct child of the biblStruct element will be removed from the TEI on 2016-09-18</sch:report>
-                                </rule>
-                                <rule context="tei:biblStruct">
-                                    <sch:report xmlns="http://www.tei-c.org/ns/1.0"
-                                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                                        xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="nonfatal"
-                                        test="not(child::@xml:id)"
-                                        >ERROR: @xml:id must be set</sch:report>
-                                </rule>
-                            </pattern>
-                            <ref name="tei_att.global.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
-                            <ref name="tei_att.declarable.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
-                            <ref name="tei_att.sortable.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
-                            <ref name="tei_att.docStatus.attributes" xmlns="http://relaxng.org/ns/structure/1.0"/>
-                            <empty xmlns="http://relaxng.org/ns/structure/1.0"/>
-                        </element>
+                            <zeroOrMore>
+                                <choice>
+                                    <ref name="tei_model.noteLike"/>
+                                    
+                                    <ref name="tei_model.ptrLike"/>
+                                    <ref name="tei_relatedItem"/>
+                                    <ref name="tei_citedRange"/>
+                                </choice>
+                            </zeroOrMore>
+                        </group>
+                        <empty xmlns="http://relaxng.org/ns/structure/1.0"/>
                     </content>
                 </elementSpec>
             </schemaSpec>
