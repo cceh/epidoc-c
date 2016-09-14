@@ -971,12 +971,12 @@ End license statement: do not remove -->
                 <elementSpec ident="titleStmt" module="header" mode="change"
                     ns="http://www.tei-c.org/ns/1.0">
                     <content>
-                        <rng:oneOrMore>
+                        <rng:zeroOrMore>
                             <rng:ref name="tei_title"/>
-                        </rng:oneOrMore>
-                        <rng:oneOrMore>
+                        </rng:zeroOrMore>
+                        <rng:zeroOrMore>
                             <rng:ref name="tei_model.respLike"/>
-                        </rng:oneOrMore>
+                        </rng:zeroOrMore>
                     </content>
                 </elementSpec>
                 <elementSpec ident="msIdentifier" module="msdescription" mode="change">
