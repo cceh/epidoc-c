@@ -2895,10 +2895,10 @@ Durch Setzen eines Häkchens kann gekennzeichnet werden, dass die Ortsangabe uns
 											<String>HerausgeberIn einfügen.</String>
 										</field>
 										<field name="largeIconPath">
-											<String>${framework}/img/user_female_purple_20.png</String>
+											<String>${framework}/img/add-20.png</String>
 										</field>
 										<field name="smallIconPath">
-											<String>${framework}/img/user_female_purple_16.png</String>
+											<String>${framework}/img/add-16.png</String>
 										</field>
 										<field name="accessKey">
 											<String></String>
@@ -6120,6 +6120,320 @@ insert_graphic_remove_temp_attribute</String>
 											<Boolean>false</Boolean>
 										</field>
 									</action>
+									<action>
+										<field name="id">
+											<String>insert_manuscript_publication_bibl</String>
+										</field>
+										<field name="name">
+											<String>insert_manuscript_publication_bibl</String>
+										</field>
+										<field name="description">
+											<String>Fügt ein biblStruct-Template für eine neue Publikation ein.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-16.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>fragment</String>
+																<String>                &lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" status="published" type="manuscript_publication" corresp="#" xml:id="" temp="true">
+                    &lt;monogr>
+                        &lt;idno type="key">&lt;/idno>
+                        &lt;title type="main">&lt;/title>
+                        &lt;title type="short">${
+                          ask('Öffentlichen Kurztitel eingeben (z. B. "P. Köln XV")', generic)
+                          }&lt;/title>
+                        &lt;editor>
+                            &lt;persName>
+                                &lt;forename>&lt;/forename>
+                                &lt;surname>&lt;/surname>
+                            &lt;/persName>
+                        &lt;/editor>
+                        &lt;note type="citation">&lt;/note>
+                        &lt;note type="description">&lt;/note>
+                        &lt;edition>&lt;/edition>
+                        &lt;imprint>
+                            &lt;pubPlace>&lt;/pubPlace>
+                            &lt;date>&lt;/date>
+                        &lt;/imprint>
+                    &lt;/monogr>
+                    &lt;series>
+                        &lt;title>Papyrologica Coloniensa&lt;/title>
+                        &lt;biblScope unit="volume">&lt;/biblScope>
+                    &lt;/series>
+                &lt;/biblStruct></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_manuscript_publication</String>
+										</field>
+										<field name="name">
+											<String>Einen Publikationseintrag hinzufügen.</String>
+										</field>
+										<field name="description">
+											<String>Einen Publikationseintrag hinzufügen.</String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/add-20.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>actionIDs</String>
+																<String>insert_manuscript_publication_bibl
+insert_manuscript_publication_gen_id
+insert_manuscript_publication_gen_key
+insert_manuscript_publication_delete_empty</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_manuscript_publication_gen_id</String>
+										</field>
+										<field name="name">
+											<String>insert_manuscript_publication_gen_id</String>
+										</field>
+										<field name="description">
+											<String>Generiert eine XML-ID aus der Kurzbezeichnung für eine neue Publikation.</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>xml:id</String>
+															</entry>
+															<entry>
+																<String>namespace</String>
+																<String></String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>${xpath_eval(
+replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="short"]/text()), "[\.;():,]", ""), "ö", "oe"), "ä", "ae"), "ü", "ue"), "ß", "ss"), "[^a-zA-Z0-9]", "-")
+)}</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_manuscript_publication_gen_key</String>
+										</field>
+										<field name="name">
+											<String>insert_manuscript_publication_gen_key</String>
+										</field>
+										<field name="description">
+											<String>Generiert einen internen Schlüssel aus der Kurzbezeichnung für eine neue Publikation</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>fragment</String>
+																<String>${xpath_eval(
+  replace(monogr/title[@type="short"]/text(), ",", "")
+)}</String>
+															</entry>
+															<entry>
+																<String>goToNextEditablePosition</String>
+																<String>true</String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>monogr/idno[@type="key"]</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>Inside as first child</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_manuscript_publication_delete_empty</String>
+										</field>
+										<field name="name">
+											<String>insert_manuscript_publication_delete_empty</String>
+										</field>
+										<field name="description">
+											<String>Entfernt eine neue Publikation wieder, wenn keine Kurzbezeichnung eingegeben wurde</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>string-length(.//title[@type="short"]) = 0</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocations</String>
+																<String>parent::biblStruct</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementsOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String>string-length(.//title[@type="short"]) > 0</String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocation</String>
+																<String>parent::biblStruct</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>temp</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
 								</action-array>
 							</field>
 							<field name="menubarDescriptor">
@@ -6134,38 +6448,7 @@ insert_graphic_remove_temp_attribute</String>
 										<String></String>
 									</field>
 									<field name="menuEntriesDescriptorList">
-										<menuEntry-array>
-											<menuItem>
-												<field name="actionID">
-													<String>add_book</String>
-												</field>
-											</menuItem>
-											<menuItem>
-												<field name="actionID">
-													<String>add_bookSection</String>
-												</field>
-											</menuItem>
-											<menuItem>
-												<field name="actionID">
-													<String>add_journalArticle</String>
-												</field>
-											</menuItem>
-											<menuItem>
-												<field name="actionID">
-													<String>add_webPublication</String>
-												</field>
-											</menuItem>
-											<menuItem>
-												<field name="actionID">
-													<String>insert_index_author</String>
-												</field>
-											</menuItem>
-											<menuItem>
-												<field name="actionID">
-													<String>insert_index_editor</String>
-												</field>
-											</menuItem>
-										</menuEntry-array>
+										<menuEntry-array/>
 									</field>
 								</menu>
 							</field>

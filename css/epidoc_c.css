@@ -1806,46 +1806,80 @@ TEI[style=index] place note {
 
 /* BIBLIOGRAPHIE
 ******************************************************************************************************************************************/
-TEI[style=index] text[type=listBibl]:before {
-    content: "BIBLIOGRAPHIE";
+TEI[style=index] listBibl:before {
+
+    content: "BIBLIOGRAPHISCHE LISTE: " 
+             oxy_xpath("head/title/text()")
+    ;
+
+    color: #FFFFFF;
+    background-color: #336699;
+    display: block;
+    margin-bottom: 1em;
+    padding: 0 0.2em;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 1em;
 }
-TEI[style=index] text[type=listBibl]{
-    -oxy-folded: false;
-    padding: 0;
+TEI[style=index] listBibl {
+    display: block;
+    -oxy-foldable: true;
+    -oxy-folded: true;
+    margin-bottom: 2em;
 }
-TEI[style=index] text[type=listBibl] body {
+
+TEI[style=index] listBibl title {
+    content: oxy_label(text, "Titel: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+    ;
+    display: block;
+    visibility: -oxy-collapse-text;
+    -oxy-display-tags: none;
+}
+
+TEI[style=index] listBibl idno {
+    content: oxy_label(text, "Interner Schlüssel: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 15)
+    ;
+}
+
+TEI[style=index] listBibl idno:after {
+    display: block;
+    content: oxy_label(text, "Der interne Schlüssel erscheint nur in der Publikationsauswahlliste der Oxygen-Eingabemaske für Papyri. Darf kein Komma enthalten.", styles, "font-size: smaller")
+             ;
+}
+
+TEI[style=index] listBibl body {
     padding: 0;
     margin: 1em;
 }
-TEI[style=index] listBibl:before {
-    display: none;
+
+TEI[style=index] text:before {
+    content: "BIBLIOGRAPHIE";
 }
-TEI[style=index] listBibl:after {
-    content: "";
-}
-TEI[style=index] listBibl {
-    border: none;
-    -oxy-foldable: false;
+
+TEI[style=index] text {
     -oxy-folded: false;
-    padding: 0;
-    margin: 0;
 }
+
 TEI[style=index] biblStruct {
-    content: oxy_label(text, "Art der Publikation: ", width, 14em, text-align, right)
-             oxy_editor(type, button, actionID, delete_index_bibl2, color, #000000)
-             oxy_editor(type, combo, edit, "@type", values, "Monographie, Sammelband, Sammelbandaufsatz, Zeitschrift, Zeitschriftenaufsatz, Reihe, Internetdokument")
-             oxy_editor(type, button, actionID, insert_index_bibl2, color, #000000)
-             oxy_xpath("if (@rend) then '\A\A&#x00A0;' else ()") attr("rend") oxy_xpath("if (@rend) then '\A' else ()");
+    content: oxy_xpath("if (@rend) then '\A\A&#x00A0;' else ()") attr("rend") oxy_xpath("if (@rend) then '\A' else ()");
     color: #000000;
     display: block;
     border: 1px solid #004D26;
-    margin: 0 0 1em 0;
+    margin: 0 0 1em 2em;
     vertical-align: middle;
+    -oxy-foldable: true;
+    -oxy-folded: true;
 }
-TEI[style=index] biblStruct:before {
-    content: "Eintrag (ID: "
+
+
+TEI[style=index] biblStruct[type="manuscript_publication"]:before {
+    content: "Eintrag: "
+             oxy_xpath(".//title[@type='main'][1]/text()")
+             " (ID: "
              attr("xml:id") ") "
-             oxy_editor(type, button, actionID, insert_index_bibl, transparent, true, color, #FFFFFF)
+             oxy_editor(type, button, actionID, insert_manuscript_publication, transparent, true, color, #FFFFFF)
              oxy_editor(type, button, actionID, delete_index_bibl, transparent, true, color, #FFFFFF)
              /* oxy_editor(type, button, actionID, insert_info_index_bibl, transparent, true, color, #FFFFFF) */
              ;
@@ -1858,6 +1892,28 @@ TEI[style=index] biblStruct:before {
     vertical-align: middle;
     font-size: 1em;
 }
+
+
+TEI[style=index] listBibl title[type=main] {
+    margin-top: 1em;
+}
+
+TEI[style=index] listBibl title[type=short] {
+    content: oxy_label(text, "Kurztitel: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+    ;
+    visibility: -oxy-collapse-text;
+    -oxy-display-tags: none;
+}
+
+TEI[style=index] listBibl edition {
+    content: oxy_label(text, "Auflage: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+    ;
+    visibility: -oxy-collapse-text;
+    -oxy-display-tags: none;
+}
+
 TEI[style=index] biblStruct note[type=short_title]{
     display: block;
     content: oxy_label(text, "Kurztitel: ", width, 14em, text-align, right)
@@ -1865,11 +1921,22 @@ TEI[style=index] biblStruct note[type=short_title]{
              ;
     visibility: -oxy-collapse-text;
 }
-TEI[style=index] biblStruct note[type=citation_form]{
+TEI[style=index] biblStruct note[type=citation]{
     display: block;
-    content: oxy_label(text, "Zitierform: ", width, 14em, text-align, right)
-             oxy_editor(type, text, edit, "#text", columns, 60)
+    content: oxy_label(text, "Zitierform: ", width, 10em, text-align, right)
+             oxy_textArea(edit, "#text", columns, 60, rows, 4)
              ;
+    white-space: pre-wrap;
+    margin-top: 2em;
+    visibility: -oxy-collapse-text;
+}
+TEI[style=index] biblStruct note[type=description]{
+    display: block;
+    content: oxy_label(text, "Beschreibung: ", width, 10em, text-align, right)
+             oxy_textArea(edit, "#text", columns, 60, rows, 4)
+             ;
+    margin-top: 2em;
+    white-space: pre-wrap;    
     visibility: -oxy-collapse-text;
 }
 TEI[style=index] biblStruct title[level=a]{
@@ -1906,6 +1973,7 @@ TEI[style=index] biblStruct[type=Monographie] title[level=s]{
              oxy_editor(type, text, edit, "#text", columns, 60);
     visibility: -oxy-collapse-text;
 }
+
 /******************************************** author, editor ***********************************************/
 TEI[style=index] biblStruct author:before {
     content: "AutorIn: "
@@ -1952,12 +2020,13 @@ TEI[style=index] biblStruct surname {
 }
 TEI[style=index] biblStruct editor:before {
     content: "HerausgeberIn: "
+             oxy_xpath("string-join(persName/*, ' ')")
+             oxy_editor(type, button, actionID, insert_index_editor, transparent, true, color, #FFFFFF)
              oxy_editor(type, button, actionID, delete_index_editor, transparent, true, color, #FFFFFF)
              /* oxy_editor(type, button, actionID, insert_info_index_editor, transparent, true, color, #FFFFFF) */;
     color: #FFFFFF;
     background-color: #336699;
     display: block;
-    margin-bottom: 1em;
     padding: 0 0.2em;
     font-weight: bold;
     vertical-align: middle;
@@ -1965,12 +2034,22 @@ TEI[style=index] biblStruct editor:before {
 }
 TEI[style=index] biblStruct editor {
     display: block;
+    width: 40em;
     border: 1px solid #004D26;
     margin: 1em 1em 1em 4em;
-    padding: 0em 0em 1em 0em;
+    padding: 0em 0em 0em 0em;
     -oxy-display-tags: none;
+    -oxy-foldable: true;
+    -oxy-folded: true;
     visibility: -oxy-collapse-text;
 }
+
+TEI[style=index] biblStruct editor:first-of-type {
+    
+    margin-top: 2em;
+
+}
+
 TEI[style=index] biblStruct editor note, TEI[style=index] biblStruct author note {
     display: block;
     padding-left: 1em;
@@ -1987,16 +2066,18 @@ TEI[style=index] biblStruct note {
     display: block;
 }
 /******************************** imprint ****************************************/
+
+
 TEI[style=index] biblStruct imprint pubPlace {
     display: block;
-    content: oxy_label(text, "Ort: ", width, 14em, text-align, right)
+    content: oxy_label(text, "Erscheinungsort: ", width, 10em, text-align, right)
              oxy_editor(type, text, edit, "#text", columns, 20)
              ;
     visibility: -oxy-collapse-text;
 }
 TEI[style=index] biblStruct imprint date {
     display: block;
-    content: oxy_label(text, "Jahr: ", width, 14em, text-align, right)
+    content: oxy_label(text, "Erscheinungsjahr: ", width, 10em, text-align, right)
              oxy_editor(type, text, edit, "#text", columns, 20)
              ;
     visibility: -oxy-collapse-text;
@@ -2045,6 +2126,26 @@ TEI[style=index] biblStruct biblScope[unit=part]{
     content: oxy_label(text, "Teil: ", width, 14em, text-align, right)
              oxy_editor(type, text, edit, "#text", columns, 10)
              ;
+    visibility: -oxy-collapse-text;
+}
+
+/******************************** series *************************************/
+
+TEI[style=index] biblStruct series title {
+    display: block;
+    content: oxy_label(text, "Titel der Reihe: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit "#text", columns, 60)
+             ;
+    margin-top: 2em;
+    visibility: -oxy-collapse-text;
+}
+
+TEI[style=index] biblStruct series biblScope {
+    display: block;
+    content: oxy_label(text, "Band: ", width, 10em, text-align, right)
+             oxy_editor(type, text, edit "#text", columns, 60)
+             ;
+    margin-top: 0;
     visibility: -oxy-collapse-text;
 }
 
