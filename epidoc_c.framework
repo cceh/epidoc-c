@@ -6016,7 +6016,7 @@ insert_graphic_remove_temp_attribute</String>
 											<String>Ändern auf unstrukturierte Angabe</String>
 										</field>
 										<field name="description">
-											<String>bla blabla</String>
+											<String>Ersetzt eine strukturierte Publikationsangabe durch eine unstrukturierte.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
@@ -6074,7 +6074,7 @@ insert_graphic_remove_temp_attribute</String>
 											<String>Ändern auf strukturierte Angabe</String>
 										</field>
 										<field name="description">
-											<String>sdfa asd sf asdf</String>
+											<String>Ersetzt eine unstrukturierte Publikationsangabe durch eine strukturierte.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
@@ -6128,7 +6128,7 @@ insert_graphic_remove_temp_attribute</String>
 											<String>insert_manuscript_publication_bibl</String>
 										</field>
 										<field name="description">
-											<String>Fügt ein biblStruct-Template für eine neue Publikation ein.</String>
+											<String>Publikationseintrag hinzufügen (1): Fragt nach einer Kurzbezeichnung und fügt ein biblStruct-Template ein.</String>
 										</field>
 										<field name="largeIconPath">
 											<String>${framework}/img/add-20.png</String>
@@ -6206,7 +6206,7 @@ insert_graphic_remove_temp_attribute</String>
 											<String>Einen Publikationseintrag hinzufügen.</String>
 										</field>
 										<field name="description">
-											<String>Einen Publikationseintrag hinzufügen.</String>
+											<String>Publikationseintrag hinzufügen: Sammelaktion. Betrifft die Publikationsübersicht in papyrologica-coloniensa.xml</String>
 										</field>
 										<field name="largeIconPath">
 											<String>${framework}/img/add-20.png</String>
@@ -6254,7 +6254,7 @@ insert_manuscript_publication_delete_empty</String>
 											<String>insert_manuscript_publication_gen_id</String>
 										</field>
 										<field name="description">
-											<String>Generiert eine XML-ID aus der Kurzbezeichnung für eine neue Publikation.</String>
+											<String>Publikationseintrag hinzufügen (2): Generiert eine XML-ID aus der Kurzbezeichnung für eine neue Publikation und fügt diese ein.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
@@ -6314,7 +6314,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 											<String>insert_manuscript_publication_delete_empty</String>
 										</field>
 										<field name="description">
-											<String>Entfernt eine neue Publikation wieder, wenn keine Kurzbezeichnung eingegeben wurde</String>
+											<String>Publikationseintrag hinzufügen (3): Entfernt eine neue Publikation wieder, wenn keine Kurzbezeichnung eingegeben wurde. Soll sicherstellen, dass ein Publikationseintrag immer eine Kurzbezeichnung (sowie eine XML-ID) hat.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
@@ -6380,7 +6380,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 											<String>change_manuscript_publication_select_idno</String>
 										</field>
 										<field name="description">
-											<String></String>
+											<String>Publikationsangabe bearbeiten (1): Wähle einen Publikationseintrag aus der Liste, die vom Server abgerufen und aus papyrologica-coloniensa.xml ausgelesen wird. Füge die ausgewählte Publikations-ID als "corresp"-Attribut in das idno-Element ein.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
@@ -6440,7 +6440,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 											<String>change_manuscript_publication</String>
 										</field>
 										<field name="description">
-											<String></String>
+											<String>Publikationsangabe bearbeiten: Sammelaktion. Betrifft die Eingabeoberfläche für Papyri.</String>
 										</field>
 										<field name="largeIconPath">
 											<String>${framework}/img/edit.png</String>
@@ -6487,7 +6487,7 @@ change_manuscript_publication_get_short_title</String>
 											<String>change_manuscript_publication_get_short_title</String>
 										</field>
 										<field name="description">
-											<String></String>
+											<String>Publikationsangabe bearbeiten (2): Rufe die Kurzbezeichnung für die Publikation mit der ausgewählten ID vom Server ab und schreibe sie als Text in das idno-Element.</String>
 										</field>
 										<field name="largeIconPath">
 											<String></String>
