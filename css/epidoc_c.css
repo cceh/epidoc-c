@@ -503,18 +503,30 @@ note[type=publication]:not([subtype=struct]) {
 }
 note[type=publication] idno {
     content:oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
-    
-            oxy_editor(type, combo, edit, "#text", columns, 30, editable, false,
-            values, oxy_xpath("doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubs')//text()"));
-
+            oxy_label(text, oxy_xpath("text()"), background-color, white);
     visibility: -oxy-collapse-text;
-} 
+    -oxy-placeholder-content: "keine Publikation ausgewählt";
+    -oxy-show-placeholder: always;
+}
+
+note[type=publication] idno:after {
+    content: oxy_button(
+                actionID, 'change_manuscript_publication'
+                transparent, true,
+                color, #FFFFFF
+            )
+            ;
+     margin-left: 1em;
+}
+
+
 
 note[type=publication] > bibl > biblScope {
     display: block;
-    margin-left: 10em;
+    margin-left: 9em;
     content: oxy_label(text, "Nummer / Seiten: ", width, 10em, text-align, right)   
              oxy_editor(type, text, edit, "#text", columns, 10);
+    visibility: -oxy-collapse-text;
 }
 
 note[type=publication]:not([subtype=struct]):after {

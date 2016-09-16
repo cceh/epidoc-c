@@ -6434,6 +6434,171 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 											<Boolean>false</Boolean>
 										</field>
 									</action>
+									<action>
+										<field name="id">
+											<String>change_manuscript_publication_select_idno</String>
+										</field>
+										<field name="name">
+											<String>change_manuscript_publication_select_idno</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>name</String>
+																<String>corresp</String>
+															</entry>
+															<entry>
+																<String>removeIfEmpty</String>
+																<String>false</String>
+															</entry>
+															<entry>
+																<String>value</String>
+																<String>#${ask("Publikation wählen", combobox, ${xpath_eval(
+      normalize-space(doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubs')//text())
+   )})}</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ChangeAttributeOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>change_manuscript_publication</String>
+										</field>
+										<field name="name">
+											<String>change_manuscript_publication</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String>${framework}/img/edit.png</String>
+										</field>
+										<field name="smallIconPath">
+											<String>${framework}/img/edit.png</String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>actionIDs</String>
+																<String>change_manuscript_publication_select_idno
+change_manuscript_publication_get_short_title</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>change_manuscript_publication_get_short_title</String>
+										</field>
+										<field name="name">
+											<String>change_manuscript_publication_get_short_title</String>
+										</field>
+										<field name="description">
+											<String></String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>script</String>
+																<String>declare default element namespace "http://www.tei-c.org/ns/1.0";
+
+let $id := substring-after(.//@corresp/data(.), "#")
+let $key := doc("http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubIdno&amp;amp;id=" || $id)//text()
+return &lt;idno corresp="{.//@corresp/data(.)}">{$key}&lt;/idno></String>
+															</entry>
+															<entry>
+																<String>sourceLocation</String>
+																<String>.</String>
+															</entry>
+															<entry>
+																<String>targetLocation</String>
+																<String>idno</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.XQueryOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
 								</action-array>
 							</field>
 							<field name="menubarDescriptor">
