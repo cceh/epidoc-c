@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-09-14T16:09:15Z. .
+Schema generated from ODD source 2016-09-16T10:56:31Z. .
 TEI Edition: Version 3.0.0. Last updated on
 	29th March 2016, revision 89ba24e
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.0.0/
@@ -5401,12 +5401,9 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
                      </attribute>
                      <element name="monogr">
                         <group>
-                           <element name="idno">
-                              <ref name="tei_att.typed.attributes"/>
-                              <data type="string">
-                                 <param name="pattern">[^,]+</param>
-                              </data>
-                           </element>
+                           <optional>
+                              <ref name="tei_idno"/>
+                           </optional>
                            <element name="title">
                               <attribute name="type">
                                  <value>main</value>

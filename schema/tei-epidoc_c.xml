@@ -1689,12 +1689,9 @@ End license statement: do not remove -->
                                         </attribute>
                                         <element name="monogr">
                                             <group>
-                                                <element name="idno">
-                                                    <ref name="tei_att.typed.attributes"/>
-                                                    <data type="string">
-                                                        <param name="pattern">[^,]+</param>
-                                                    </data>
-                                                </element>
+                                                <optional>
+                                                    <ref name="tei_idno"></ref>
+                                                </optional>
                                                 <element name="title">
                                                     <attribute name="type">
                                                         <value>main</value>
