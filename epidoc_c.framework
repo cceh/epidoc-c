@@ -6154,7 +6154,6 @@ insert_graphic_remove_temp_attribute</String>
 																<String>fragment</String>
 																<String>                &lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" status="published" type="manuscript_publication" corresp="#" xml:id="" temp="true">
                     &lt;monogr>
-                        &lt;idno type="key">&lt;/idno>
                         &lt;title type="main">&lt;/title>
                         &lt;title type="short">${
                           ask('Öffentlichen Kurztitel eingeben (z. B. "P. Köln XV")', generic)
@@ -6233,7 +6232,6 @@ insert_graphic_remove_temp_attribute</String>
 																<String>actionIDs</String>
 																<String>insert_manuscript_publication_bibl
 insert_manuscript_publication_gen_id
-insert_manuscript_publication_gen_key
 insert_manuscript_publication_delete_empty</String>
 															</entry>
 														</serializableOrderedMap>
@@ -6310,66 +6308,6 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 									</action>
 									<action>
 										<field name="id">
-											<String>insert_manuscript_publication_gen_key</String>
-										</field>
-										<field name="name">
-											<String>insert_manuscript_publication_gen_key</String>
-										</field>
-										<field name="description">
-											<String>Generiert einen internen Schlüssel aus der Kurzbezeichnung für eine neue Publikation</String>
-										</field>
-										<field name="largeIconPath">
-											<String></String>
-										</field>
-										<field name="smallIconPath">
-											<String></String>
-										</field>
-										<field name="accessKey">
-											<String></String>
-										</field>
-										<field name="accelerator">
-											<null/>
-										</field>
-										<field name="actionModes">
-											<actionMode-array>
-												<actionMode>
-													<field name="xpathCondition">
-														<String></String>
-													</field>
-													<field name="argValues">
-														<serializableOrderedMap>
-															<entry>
-																<String>fragment</String>
-																<String>${xpath_eval(
-  replace(monogr/title[@type="short"]/text(), ",", "")
-)}</String>
-															</entry>
-															<entry>
-																<String>goToNextEditablePosition</String>
-																<String>true</String>
-															</entry>
-															<entry>
-																<String>insertLocation</String>
-																<String>monogr/idno[@type="key"]</String>
-															</entry>
-															<entry>
-																<String>insertPosition</String>
-																<String>Inside as first child</String>
-															</entry>
-														</serializableOrderedMap>
-													</field>
-													<field name="operationID">
-														<String>ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation</String>
-													</field>
-												</actionMode>
-											</actionMode-array>
-										</field>
-										<field name="enabledInReadOnlyContext">
-											<Boolean>false</Boolean>
-										</field>
-									</action>
-									<action>
-										<field name="id">
 											<String>insert_manuscript_publication_delete_empty</String>
 										</field>
 										<field name="name">
@@ -6400,7 +6338,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 														<serializableOrderedMap>
 															<entry>
 																<String>elementLocations</String>
-																<String>parent::biblStruct</String>
+																<String>.</String>
 															</entry>
 														</serializableOrderedMap>
 													</field>
@@ -6416,7 +6354,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 														<serializableOrderedMap>
 															<entry>
 																<String>elementLocation</String>
-																<String>parent::biblStruct</String>
+																<String>.</String>
 															</entry>
 															<entry>
 																<String>name</String>

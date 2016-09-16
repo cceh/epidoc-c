@@ -1855,12 +1855,6 @@ TEI[style=index] listBibl idno {
     ;
 }
 
-TEI[style=index] listBibl idno:after {
-    display: block;
-    content: oxy_label(text, "Der interne Schlüssel erscheint nur in der Publikationsauswahlliste der Oxygen-Eingabemaske für Papyri. Darf kein Komma enthalten.", styles, "font-size: smaller")
-             ;
-}
-
 TEI[style=index] listBibl body {
     padding: 0;
     margin: 1em;
