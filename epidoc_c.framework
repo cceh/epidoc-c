@@ -6417,7 +6417,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 															<entry>
 																<String>value</String>
 																<String>#${ask("Publikation wählen", combobox, ${xpath_eval(
-      normalize-space(doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubs')//text())
+      normalize-space(doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=pubs')//text())
    )})}</String>
 															</entry>
 														</serializableOrderedMap>

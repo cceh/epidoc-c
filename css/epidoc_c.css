@@ -562,7 +562,7 @@ note[type=publication][subtype=struct]:after(2){
     content: oxy_xpath(
         oxy_concat(
                     oxy_concat(
-                        "doc('http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubdesc&key=", 
+                        "doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=pubdesc&key=", 
                         oxy_xpath("tei:bibl/tei:idno/text()")),
                     "')//text()")
                  );
