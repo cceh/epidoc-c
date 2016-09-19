@@ -6412,7 +6412,7 @@ replace(replace(replace(replace(replace(replace(lower-case(monogr/title[@type="s
 															</entry>
 															<entry>
 																<String>removeIfEmpty</String>
-																<String>false</String>
+																<String>true</String>
 															</entry>
 															<entry>
 																<String>value</String>
@@ -6513,9 +6513,12 @@ change_manuscript_publication_get_short_title</String>
 																<String>script</String>
 																<String>declare default element namespace "http://www.tei-c.org/ns/1.0";
 
+
 let $id := substring-after(.//@corresp/data(.), "#")
-let $key := doc("http://localhost:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=pubIdno&amp;amp;id=" || $id)//text()
-return &lt;idno corresp="{.//@corresp/data(.)}">{$key}&lt;/idno></String>
+return if ($id) then 
+  let $key := doc("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=pubIdno&amp;amp;id=" || $id)//text()
+  return &lt;idno corresp="{.//@corresp/data(.)}">{$key}&lt;/idno>
+else &lt;idno/></String>
 															</entry>
 															<entry>
 																<String>sourceLocation</String>
