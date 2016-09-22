@@ -1,5 +1,6 @@
 @namespace oxy url('http://www.oxygenxml.com/extensions/author');
 @namespace file url('http://exist-db.org/xquery/file');
+@namespace tei url('http://www.tei-c.org/ns/1.0');
 
 oxy|document {
     background-color: #BBBBBB !important;
