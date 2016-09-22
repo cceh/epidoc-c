@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialized version="17.1" xml:space="preserve">
+<serialized version="18.0" xml:space="preserve">
 	<serializableOrderedMap>
 		<entry>
 			<String>document.types</String>
@@ -6526,7 +6526,7 @@ else &lt;idno/></String>
 															</entry>
 															<entry>
 																<String>targetLocation</String>
-																<String>idno</String>
+																<String>.</String>
 															</entry>
 														</serializableOrderedMap>
 													</field>
@@ -6556,6 +6556,9 @@ else &lt;idno/></String>
 									<field name="menuEntriesDescriptorList">
 										<menuEntry-array/>
 									</field>
+									<field name="context">
+										<null/>
+									</field>
 								</menu>
 							</field>
 							<field name="popupMenuDescriptor">
@@ -6571,6 +6574,9 @@ else &lt;idno/></String>
 									</field>
 									<field name="menuEntriesDescriptorList">
 										<menuEntry-array/>
+									</field>
+									<field name="context">
+										<null/>
 									</field>
 								</menu>
 							</field>
@@ -6640,16 +6646,28 @@ else &lt;idno/></String>
 							<field name="tableSupportClassName">
 								<null/>
 							</field>
+							<field name="tableCellSeparatorSupportClassName">
+								<null/>
+							</field>
 							<field name="tableColWidthSupportClassName">
 								<null/>
 							</field>
 							<field name="customReferencesResolver">
 								<null/>
 							</field>
+							<field name="editPropertiesHandler">
+								<null/>
+							</field>
 							<field name="authorExtensionStateListener">
 								<null/>
 							</field>
 							<field name="attributesRecognizer">
+								<null/>
+							</field>
+							<field name="authorActionEventHandler">
+								<null/>
+							</field>
+							<field name="authorImageDecorator">
 								<null/>
 							</field>
 						</authorExtension>
