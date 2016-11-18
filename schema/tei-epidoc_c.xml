@@ -881,7 +881,7 @@ End license statement: do not remove -->
                                         <rng:choice>
                                             <rng:value>parallel zu den Fasern</rng:value>
                                             <rng:value>quer zu den Fasern</rng:value>
-                                            <rng:value>teils parallel, teils quer zur Faser</rng:value>
+                                            <rng:value>teils parallel, teils quer zu den Fasern</rng:value>
                                             <rng:value>andere (kein Papyrus)</rng:value>
                                             <rng:value>Haarseite (bei Pergament)</rng:value>
                                             <rng:value>Fleischseite (bei Pergament)</rng:value>
