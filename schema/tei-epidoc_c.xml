@@ -1669,7 +1669,8 @@ End license statement: do not remove -->
                         </sequence>
                     </content>
                 </elementSpec>
-                <elementSpec ident="biblStruct" module="core" mode="change" ns="http://www.tei-c.org/ns/1.0">
+                <elementSpec ident="biblStruct" module="core" mode="change"
+                    ns="http://www.tei-c.org/ns/1.0">
                     <classes mode="replace">
                         <memberOf key="model.biblLike" mode="add"/>
                         <memberOf key="att.docStatus" mode="add"/>
@@ -1690,34 +1691,34 @@ End license statement: do not remove -->
                                         <element name="monogr">
                                             <group>
                                                 <optional>
-                                                    <ref name="tei_idno"></ref>
+                                                  <ref name="tei_idno"/>
                                                 </optional>
                                                 <element name="title">
-                                                    <attribute name="type">
-                                                        <value>main</value>
-                                                    </attribute>
-                                                    <text/>
+                                                  <attribute name="type">
+                                                  <value>main</value>
+                                                  </attribute>
+                                                  <text/>
                                                 </element>
                                                 <element name="title">
-                                                    <attribute name="type">
-                                                        <value>short</value>
-                                                    </attribute>
-                                                    <text/>
+                                                  <attribute name="type">
+                                                  <value>short</value>
+                                                  </attribute>
+                                                  <text/>
                                                 </element>
                                                 <oneOrMore>
-                                                    <ref name="tei_editor"/>
+                                                  <ref name="tei_editor"/>
                                                 </oneOrMore>
                                                 <element name="note">
-                                                    <attribute name="type">
-                                                        <value>citation</value>
-                                                    </attribute>
-                                                    <text/>
+                                                  <attribute name="type">
+                                                  <value>citation</value>
+                                                  </attribute>
+                                                  <text/>
                                                 </element>
                                                 <element name="note">
-                                                    <attribute name="type">
-                                                        <value>description</value>
-                                                    </attribute>
-                                                    <text/>
+                                                  <attribute name="type">
+                                                  <value>description</value>
+                                                  </attribute>
+                                                  <text/>
                                                 </element>
                                                 <ref name="tei_edition"/>
                                                 <ref name="tei_imprint"/>
@@ -1728,9 +1729,9 @@ End license statement: do not remove -->
                                         <optional>
                                             <attribute name="type">
                                                 <data type="token">
-                                                    <except>
-                                                        <value>manuscript_publication</value>
-                                                    </except>
+                                                  <except>
+                                                  <value>manuscript_publication</value>
+                                                  </except>
                                                 </data>
                                             </attribute>
                                         </optional>
@@ -1744,7 +1745,6 @@ End license statement: do not remove -->
                             <zeroOrMore>
                                 <choice>
                                     <ref name="tei_model.noteLike"/>
-                                    
                                     <ref name="tei_model.ptrLike"/>
                                     <ref name="tei_relatedItem"/>
                                     <ref name="tei_citedRange"/>
