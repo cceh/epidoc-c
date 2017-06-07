@@ -6576,6 +6576,12 @@ else &lt;idno/></String>
 																<String>fragment</String>
 																<String>&lt;altIdentifier type="trismegistos" corresp="${xpath_eval(concat('#', //msItemStruct[last()]/@xml:id))}" xmlns="http://www.tei-c.org/ns/1.0">
     &lt;idno>&lt;/idno>
+&lt;/altIdentifier>
+&lt;altIdentifier type="hgv" corresp="${xpath_eval(concat('#', //msItemStruct[last()]/@xml:id))}" xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;idno>&lt;/idno>
+&lt;/altIdentifier>
+&lt;altIdentifier type="ddb" corresp="${xpath_eval(concat('#', //msItemStruct[last()]/@xml:id))}" xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;idno>&lt;/idno>
 &lt;/altIdentifier></String>
 															</entry>
 															<entry>

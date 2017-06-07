@@ -19,6 +19,12 @@
                         <altIdentifier type="trismegistos"">
                             <idno></idno>
                         </altIdentifier>
+                        <altIdentifier type="ddb"">
+                            <idno></idno>
+                        </altIdentifier>
+                        <altIdentifier type="hgv"">
+                            <idno></idno>
+                        </altIdentifier>
                         <altIdentifier type="legacy">
                             <idno></idno>
                         </altIdentifier>

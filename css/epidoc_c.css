@@ -296,6 +296,39 @@ altIdentifier[type="trismegistos"]:after {
              " " attr("rend");    
 }
 
+altIdentifier[type="ddb"] > idno {
+    margin-top: 1em;
+    content: oxy_label(text, "DDbDp-Nummer: ", width, 12em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+             " " attr("rend");    
+}
+
+altIdentifier[type="ddb"]:after {
+    margin-top: 1em;
+    content: oxy_label(text, "Entspricht Text: ", width, 12em, text-align, right)
+             oxy_combobox(edit, "@corresp", editable, false, 
+                values, oxy_xpath("string-join(//msItemStruct/@xml:id/concat('#', .), ',')"),
+                labels, oxy_xpath("string-join(//msItemStruct/string-join((@xml:id, string-join((locus/text(), (title/text(), '(kein Titel)')[1]), ': ')), ' – '), ',')")
+             )
+             " " attr("rend");    
+}
+
+altIdentifier[type="hgv"] > idno {
+    margin-top: 1em;
+    content: oxy_label(text, "HGV-Nummer: ", width, 12em, text-align, right)
+             oxy_editor(type, text, edit, "#text", columns, 30)
+             " " attr("rend");    
+}
+
+altIdentifier[type="hgv"]:after {
+    margin-top: 1em;
+    content: oxy_label(text, "Entspricht Text: ", width, 12em, text-align, right)
+             oxy_combobox(edit, "@corresp", editable, false, 
+                values, oxy_xpath("string-join(//msItemStruct/@xml:id/concat('#', .), ',')"),
+                labels, oxy_xpath("string-join(//msItemStruct/string-join((@xml:id, string-join((locus/text(), (title/text(), '(kein Titel)')[1]), ': ')), ' – '), ',')")
+             )
+             " " attr("rend");    
+}
 
 
 altIdentifier[type="legacy"] > idno {
