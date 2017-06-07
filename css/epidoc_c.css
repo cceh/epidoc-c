@@ -286,6 +286,17 @@ altIdentifier[type="trismegistos"] > idno {
              " " attr("rend");    
 }
 
+altIdentifier[type="trismegistos"]:after {
+    margin-top: 1em;
+    content: oxy_label(text, "Entspricht Text: ", width, 12em, text-align, right)
+             oxy_combobox(edit, "@corresp", editable, false, 
+                values, oxy_xpath("string-join(//msItemStruct/@xml:id/concat('#', .), ',')"),
+                labels, oxy_xpath("string-join(//msItemStruct/string-join((@xml:id, string-join((locus/text(), (title/text(), '(kein Titel)')[1]), ': ')), ' – '), ',')")
+             )
+             " " attr("rend");    
+}
+
+
 
 altIdentifier[type="legacy"] > idno {
     margin-top: 1em;
@@ -406,7 +417,7 @@ msContents * {
     color: #000000;
 }
 msContents:after {
-    content: oxy_editor(type, button, actionID, insert_msItemStruct, transparent, true, color, #FFFFFF);
+    content: oxy_editor(type, button, actionID, insert_new_text_description, transparent, true, color, #FFFFFF);
     padding: 0.2em;
     display: block;
     background-color: #004D26;
@@ -422,6 +433,7 @@ msItemStruct {
     counter-increment: itemStruct;
     margin: 3em 2em;
     content: "\A"
+             oxy_label(text, oxy_xpath(oxy_concat('//altIdentifier[@corresp="#', attr('xml:id'), '"]/concat("TM ", idno)')), width, 10em, text-align, left, styles, "font-weight:'bold';", background-color, transparent) "\A\A"
              oxy_label(text, "Fragmentarisch: ", width, 10em, text-align, right)
              oxy_editor(type, check, edit, "@defective", values, "true", uncheckedValues, "true", labels, "ja", fontInherit, true)
              oxy_editor(type, check, edit, "@defective", values, "false", uncheckedValues, "false", labels, "nein", fontInherit, true);
@@ -434,7 +446,7 @@ msItemStruct {
 }
 msItemStruct:before {
     display: block;
-    content: "Text Nr." counter(itemStruct)
+    content: "Text Nr." counter(itemStruct) " – " attr('xml:id')
              oxy_editor(type, button, actionID, delete_msItemStruct, transparent, true, color, #FFFFFF);
     vertical-align: middle;
     background-color: #004D26;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialized version="18.0" xml:space="preserve">
+<serialized version="19.0" xml:space="preserve">
 	<serializableOrderedMap>
 		<entry>
 			<String>document.types</String>
@@ -431,9 +431,6 @@
   &lt;msIdentifier>
       &lt;idno>&lt;/idno>
       &lt;collection>Köln, Papyrussammlung&lt;/collection>
-      &lt;altIdentifier type="trismegistos">
-        &lt;idno>&lt;/idno>
-      &lt;/altIdentifier>
       &lt;altIdentifier type="legacy">
         &lt;idno>&lt;/idno>
       &lt;/altIdentifier>
@@ -608,10 +605,15 @@
 														<String>self::msItemStruct</String>
 													</field>
 													<field name="argValues">
-														<serializableOrderedMap/>
+														<serializableOrderedMap>
+															<entry>
+																<String>elementLocations</String>
+																<String>let $id := ./@xml:id/data(.) return  (//altIdentifier[@corresp=concat("#", $id)], .)</String>
+															</entry>
+														</serializableOrderedMap>
 													</field>
 													<field name="operationID">
-														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementOperation</String>
+														<String>ro.sync.ecss.extensions.commons.operations.DeleteElementsOperation</String>
 													</field>
 												</actionMode>
 											</actionMode-array>
@@ -625,7 +627,7 @@
 											<String>insert_msItemStruct</String>
 										</field>
 										<field name="name">
-											<String>+ Text</String>
+											<String>insert_msItemStruct</String>
 										</field>
 										<field name="description">
 											<String>Beschreibung eines Textes hinzufügen.</String>
@@ -6540,6 +6542,126 @@ else &lt;idno/></String>
 											<Boolean>false</Boolean>
 										</field>
 									</action>
+									<action>
+										<field name="id">
+											<String>insert_new_tm</String>
+										</field>
+										<field name="name">
+											<String>insert_new_tm</String>
+										</field>
+										<field name="description">
+											<String>Add new text description part 2: insert corresponding TM-No. element</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>fragment</String>
+																<String>&lt;altIdentifier type="trismegistos" corresp="${xpath_eval(concat('#', //msItemStruct[last()]/@xml:id))}" xmlns="http://www.tei-c.org/ns/1.0">
+    &lt;idno>&lt;/idno>
+&lt;/altIdentifier></String>
+															</entry>
+															<entry>
+																<String>insertLocation</String>
+																<String>//altIdentifier[@type='trismegistos'][last()]</String>
+															</entry>
+															<entry>
+																<String>insertPosition</String>
+																<String>After</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
+									<action>
+										<field name="id">
+											<String>insert_new_text_description</String>
+										</field>
+										<field name="name">
+											<String>+ Text</String>
+										</field>
+										<field name="description">
+											<String>Add a new text description</String>
+										</field>
+										<field name="largeIconPath">
+											<String></String>
+										</field>
+										<field name="smallIconPath">
+											<String></String>
+										</field>
+										<field name="accessKey">
+											<String></String>
+										</field>
+										<field name="accelerator">
+											<null/>
+										</field>
+										<field name="actionModes">
+											<actionMode-array>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>actionIDs</String>
+																<String>insert_msItemStruct
+insert_new_tm</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
+													</field>
+												</actionMode>
+												<actionMode>
+													<field name="xpathCondition">
+														<String></String>
+													</field>
+													<field name="argValues">
+														<serializableOrderedMap>
+															<entry>
+																<String>actionIDs</String>
+																<String>insert_msItemStruct
+add_new_tm</String>
+															</entry>
+														</serializableOrderedMap>
+													</field>
+													<field name="operationID">
+														<String>ro.sync.ecss.extensions.commons.operations.ExecuteMultipleActionsOperation</String>
+													</field>
+												</actionMode>
+											</actionMode-array>
+										</field>
+										<field name="enabledInReadOnlyContext">
+											<Boolean>false</Boolean>
+										</field>
+									</action>
 								</action-array>
 							</field>
 							<field name="menubarDescriptor">
@@ -6765,6 +6887,9 @@ else &lt;idno/></String>
 						<null/>
 					</field>
 					<field name="customAttributeValueEditor">
+						<null/>
+					</field>
+					<field name="textModeExternalObjectInsertionHandler">
 						<null/>
 					</field>
 				</documentTypeDescriptor>
