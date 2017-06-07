@@ -51,7 +51,13 @@ teiHeader:before {
              ; 
 }
 text:before {
-    content: "EDITION";
+    content: "EDITION"
+              oxy_label(text, "Entspricht Text: ", width, 12em, text-align, right)
+             oxy_combobox(edit, "@corresp", editable, false, 
+                values, oxy_xpath("string-join(//msItemStruct/@xml:id/concat('#', .), ',')"),
+                labels, oxy_xpath("string-join(//msItemStruct/string-join((@xml:id, string-join((locus/text(), (title/text(), '(kein Titel)')[1]), ': ')), ' – '), ',')")
+             )
+             " " attr("rend");
 }
 facsimile:before {
     content: "FAKSIMILE";
