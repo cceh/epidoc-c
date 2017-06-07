@@ -22,7 +22,7 @@ TEI:before {
              " " attr("rend")
             ;
     -oxy-editable: false;
-    link: "http://papyri.uni-koeln.de:8080/apps/papyri/stueck/"attr('xml:id');
+    link: "http://papyri.uni-koeln.de/stueck/"attr('xml:id');
 }
 teiHeader, text, facsimile {
     margin: 0.5em;
