@@ -201,9 +201,17 @@ respStmt name {
     -oxy-display-tags: none;
 }
 
-publicationStmt {
+publicationStmt * {
     display: none;
 }
+
+publicationStmt availability {
+    display: block;
+    content:
+        oxy_checkbox(edit, "status", values, "restricted", uncheckedValues, "", labels, "Datensatz für unregistrierte Benutzer verbegen")
+    ;
+}
+
 
 
 /* msDesc, msPart 
