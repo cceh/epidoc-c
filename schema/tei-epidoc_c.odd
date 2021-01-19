@@ -239,7 +239,7 @@ End license statement: do not remove -->
                 </elementSpec>
                 <elementSpec ident="ex" module="transcr" mode="change">
                     <!-- testing for <ex> outside of <expan> -->
-                    <constraintSpec scheme="isoschematron" ident="ex">
+                    <constraintSpec scheme="schematron" ident="ex">
                         <constraint><sch:rule context="tei:ex"><sch:report
                                     test="not(ancestor::tei:expan)"
                                     >ex should only appear inside expan</sch:report><sch:report
@@ -249,7 +249,7 @@ End license statement: do not remove -->
                 </elementSpec>
                 <elementSpec ident="expan" module="transcr" mode="change">
                     <!-- testing for <expan> with no descendant <ex> -->
-                    <constraintSpec scheme="isoschematron" ident="expan">
+                    <constraintSpec scheme="schematron" ident="expan">
                         <constraint><sch:rule context="tei:expan"><sch:report
                                     test="not(descendant::tei:ex)"
                                     >expan should contain ex</sch:report></sch:rule></constraint>
@@ -257,7 +257,7 @@ End license statement: do not remove -->
                 </elementSpec>
                 <elementSpec ident="gap" module="core" mode="change">
                     <!-- testing for <gap> with both quantity/extent, no unit, or contained in supplied -->
-                    <constraintSpec ident="gap" scheme="isoschematron">
+                    <constraintSpec ident="gap" scheme="schematron">
                         <constraint><sch:rule context="tei:gap"><sch:report
                                     test="@quantity and @extent"
                                     >gap 
@@ -444,7 +444,7 @@ End license statement: do not remove -->
                 </elementSpec>
                 <elementSpec ident="space" module="transcr" mode="change">
                     <!-- testing for <space> with both quantity/extent or no unit -->
-                    <constraintSpec ident="space" scheme="isoschematron">
+                    <constraintSpec ident="space" scheme="schematron">
                         <constraint><sch:rule context="tei:space"><sch:report
                                     test="@quantity and @extent"
                                     >space 
@@ -505,7 +505,7 @@ End license statement: do not remove -->
                 </elementSpec>
                 <!--       CHANGING ATTRIBUTE CLASSES         -->
                 <!--<classSpec type="atts" ident="att.datable.custom" mode="change">
-                    <constraintSpec scheme="isoschematron" ident="datable.custom">
+                    <constraintSpec scheme="schematron" ident="datable.custom">
                          <constraint>
                              <sch:rule context="tei:*[contains(@datingMethod,'julian')]">
                                  <sch:report test="@when-custom[not(matches(.,'-?(\d{4})(-\d{2}(-\d{2})?)?'))]">
