@@ -221,29 +221,6 @@ fileDesc titleStmt title {
   -oxy-placeholder-content: "Titel des Textträgers (optional)";
 }
 /************************* RESP **************************/
-/* respStmt {
-    display: block;
-    margin: 2em 3em;
-    border: 1px solid #004D26;
-    -oxy-foldable: true;
-    -oxy-folded: true;
-}
-respStmt *:first-child {
-    padding-top: 1em;
-}
-respStmt:before {
-    display: block;
-    content: 
-        "BearbeiterIn"
-        oxy_editor(type, button, actionID, insert_respStmt, transparent, true, color, #FFFFFF)
-        oxy_editor(type, button, actionID, delete_respStmt, transparent, true, color, #FFFFFF)
-        ;
-    vertical-align: middle;
-    background-color: #004D26;
-    color: #FFFFFF;
-    font-weight: bold;
-    padding: 0.2em 0em 0.2em 0.5em;
-}   */
 respStmt {
   -oxy-display-tags: none;
   display: block;
@@ -437,6 +414,17 @@ msItemStruct > listBibl > bibl > biblScope {
   -oxy-display-tags: none;
   visibility: -oxy-collapse-text;
 }
+sourceDesc > listBibl > bibl > note:before,
+msItemStruct > listBibl > bibl > note:before {
+  content: oxy_label(text, "Kommentar: ", width, 4.25em, text-align, right);
+}
+sourceDesc > listBibl > bibl > note,
+msItemStruct > listBibl > bibl > note {
+  display: block;
+  content: oxy_editor(type, text, edit, "#text", columns, 30);
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+}
 msContents listBibl {
   margin: 2em 3em;
 }
@@ -554,7 +542,7 @@ note[type=publication]:not([subtype=struct]) {
   visibility: -oxy-collapse-text;
 }
 note[type=publication] idno {
-  content: oxy_label(text, "Publikation: ", width, 10em, text-align, right) oxy_label(text, oxy_xpath("text()"), background-color, #ffffff);
+  content: oxy_label(text, "Publikation: ", width, 10em, text-align, right) oxy_label(text, oxy_xpath("text()"), background-color, #ffffff) oxy_combobox(edit, "@corresp", editable, false, columns, 20, labels, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)"), values, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-values')/data(.)"), tooltips, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)"), onChange, oxy_action(name, 'Insert', operation, 'XQueryUpdateOperation', arg-script, "insert node <product>{xs:string(@corresp)}</product>     as last into ."));
   visibility: -oxy-collapse-text;
   -oxy-placeholder-content: "keine Publikation ausgewählt";
   -oxy-show-placeholder: always;
@@ -1088,120 +1076,280 @@ note[type=preparation]:after {
 note[type=color] {
   content: oxy_label(text, "Farbe: ", width, 7.25em, text-align, right) oxy_editor(type, text, edit, "#text", columns, 30);
 }
-condition:before {
-  display: block;
-  content: url("../img/edit.png") " " "Zustand/Erhaltung" /* oxy_editor(type, button, actionID, insert_info_note_illustrations, transparent, true, color, #FFFFFF)*/;
-  vertical-align: middle;
-  background-color: #004D26;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 0.2em 0em 0.2em 0.5em;
-}
 condition {
-  content: oxy_xpath("if(@rend) then concat('\A', @rend, '\A') else ()");
-  /* color: #0059B3; */
-  -oxy-foldable: true;
-  -oxy-folded: true;
-  margin: 2em 3em;
-  background-color: #FFFFFF;
-  border: 1px solid #004D26;
-}
-layout:before {
-  display: block;
-  content: "Layoutelement" oxy_editor(type, button, actionID, insert_layout, transparent, true, color, #ffffff) oxy_editor(type, button, actionID, delete_layout, transparent, true, color, #ffffff) oxy_editor(type, button, actionID, insert_info_layout, transparent, true, color, #ffffff);
-  vertical-align: middle;
-  background-color: #004D26;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 0.2em 0 0.2em 0.5em;
-}
-layout {
-  content: oxy_xpath("if (@rend) then concat('\A', @rend) else ()") "\A" oxy_label(text, "ID: ", width, 7.25em, text-align, right) oxy_xpath("@xml:id") /* oxy_editor(type, text, edit, "@xml:id", columns, 30) */ oxy_editor(type, button, actionID, insert_info_layout_ID, transparent, true, color, #ffffff);
-  -oxy-foldable: true;
-  -oxy-folded: true;
-  -oxy-display-tags: none;
-  margin: 2em 3em;
-  background-color: #FFFFFF;
-  border: 1px solid #004D26;
-}
-layout note[type=type] {
-  display: block;
-  content: oxy_label(text, "Art: ", width, 7.25em, text-align, right) oxy_editor(type, combo, edit, "#text", editable, false) oxy_editor(type, button, actionID, insert_info_layout_note, transparent, true, color, #ffffff) oxy_xpath("if (@rend) then concat('\A', @rend) else ()");
-  padding-bottom: 0.5em;
-  -oxy-display-tags: none;
-  visibility: -oxy-collapse-text;
-}
-layout locus:before {
-  display: block;
-  content: "Lokalisierung des Schreibbereichs";
-  background-color: #004D26;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 0.2em 0 0.2em 0.5em;
-}
-layout locus:-pap-show-info:before {
-  -oxy-append-content: oxy_editor(type, button, actionID, remove-show-info-pseudoclass, transparent, true, color, #ffffff);
-}
-layout locus:not(:-pap-show-info):before {
-  -oxy-append-content: oxy_editor(type, button, actionID, add-show-info-pseudoclass, transparent, true, color, #ffffff);
-}
-layout locus:-pap-show-info:before(2) {
-  content: "Wurde bei 'Art' des Layoutelementes 'Schreibbereich' ausgewählt, kann hier angegeben werden, auf welcher Fläche des Textträgers sich der Schreibbereich (z.B. die Seite oder Kolumne) befindet und wo er auf der Fläche angeordnet ist.";
-}
-layout locus {
-  display: block;
-  content: oxy_xpath("if (@rend) then concat('\A', @rend, '\A') else ()") "\A" oxy_label(text, "Ziel: ", width, 7.25em, text-align, right) oxy_editor(type, combo, edit, "@target", values, oxy_xpath("string-join(('#',for $layout in //layout return concat('#', $layout/@xml:id)), ',')"), editable, false, columns, 20) oxy_editor(type, button, actionID, insert_info_layout_locus_target, transparent, true, color, #ffffff) "\A" oxy_label(text, "Anordnung: ", width, 7.25em, text-align, right) oxy_editor(type, text, edit, "@n", columns, 20) oxy_editor(type, button, actionID, insert_info_layout_locus_n, transparent, true, color, #ffffff);
   -oxy-display-tags: none;
   visibility: -oxy-collapse-text;
   margin: 0 3em;
   padding-bottom: 1em;
   background-color: #FFFFFF;
   border: 1px solid #004D26;
+  -oxy-foldable: true;
+  -oxy-folded: false;
+  margin: 2em 3em;
 }
-layout desc {
-  content: oxy_label(text, "Beschreibung: ", width, 7.25em, text-align, right) oxy_editor(type, text, edit, "#text", columns, 30) oxy_editor(type, button, actionID, insert_info_layout_desc, transparent, true, color, #ffffff) oxy_xpath("if (@rend) then concat('\A', @rend) else ()");
-  -oxy-display-tags: none;
-  visibility: -oxy-collapse-text;
-  padding: 0.5em 0;
-}
-layoutDesc > summary:before {
+condition:before(2) {
   display: block;
-  content: url("../img/edit.png") " " "Beschreibung des Layouts" oxy_editor(type, button, actionID, insert_info_layout2, transparent, true, color, #ffffff);
-  vertical-align: middle;
+  content: url("../img/edit.png") "Zustand / Erhaltung";
   background-color: #004D26;
   color: #FFFFFF;
   font-weight: bold;
-  padding: 0.2em 0em 0.2em 0.5em;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
 }
-layoutDesc > summary {
-  content: oxy_xpath("if(@rend) then concat('\A', @rend, '\A') else ()");
-  -oxy-foldable: true;
-  -oxy-folded: true;
-  margin: 2em 3em;
+condition > p {
+  padding: 0.5em 0;
+  -oxy-placeholder-content: "Text";
+  display: block;
+  visibility: unset;
+}
+collation {
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+  margin: 0 3em;
+  padding-bottom: 1em;
   background-color: #FFFFFF;
   border: 1px solid #004D26;
+  -oxy-foldable: true;
+  -oxy-folded: false;
+  margin: 2em 3em;
+}
+collation:before(2) {
+  display: block;
+  content: url("../img/edit.png") "Bindung";
+  background-color: #004D26;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
+}
+collation > p {
+  padding: 0.5em 0;
+  -oxy-placeholder-content: "Text";
+  display: block;
+  visibility: unset;
+}
+collation {
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+  margin: 0 3em;
+  padding-bottom: 1em;
+  background-color: #FFFFFF;
+  border: 1px solid #004D26;
+  -oxy-foldable: true;
+  -oxy-folded: false;
+  margin: 2em 3em;
+}
+collation:before(2) {
+  display: block;
+  content: url("../img/edit.png") "Bindung";
+  background-color: #004D26;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
+}
+collation > p {
+  padding: 0.5em 0;
+  -oxy-placeholder-content: "Text";
+  display: block;
+  visibility: unset;
+}
+layoutDesc > summary {
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+  margin: 0 3em;
+  padding-bottom: 1em;
+  background-color: #FFFFFF;
+  border: 1px solid #004D26;
+  -oxy-foldable: true;
+  -oxy-folded: false;
+  margin: 2em 3em;
+  visbility: visible;
+}
+layoutDesc > summary:before(2) {
+  display: block;
+  content: url("../img/edit.png") "Beschreibung des Layouts";
+  background-color: #004D26;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
+}
+layoutDesc > summary:before(2):-pap-show-info_block {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layoutDesc > summary:before(2):not(:-pap-show-info_block) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layoutDesc > summary:-pap-show-info_block:before {
+  display: block;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  content: "Beschreibung von Layouteigenschaften (in freier Form).";
 }
 layoutDesc > summary > p {
   padding: 0.5em 0;
   -oxy-placeholder-content: "Text";
-}
-collation:before {
+  visibility: unset;
   display: block;
-  content: url("../img/edit.png") " " "Bindung" /* oxy_editor(type, button, actionID, insert_info_note_illustrations, transparent, true, color, #FFFFFF)*/;
-  vertical-align: middle;
+}
+layout {
+  -oxy-display-tags: none;
+  margin: 0 3em;
+  padding-bottom: 1em;
+  background-color: #FFFFFF;
+  border: 1px solid #004D26;
+  -oxy-foldable: true;
+  -oxy-folded: false;
+  visibility: -oxy-collapse-text;
+  content: oxy_label(text, "ID: ", width, 7.25em, text-align, right) oxy_xpath("@xml:id");
+}
+layout:before(2) {
+  display: block;
+  content: "Layoutelement";
   background-color: #004D26;
   color: #FFFFFF;
   font-weight: bold;
-  padding: 0.2em 0em 0.2em 0.5em;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
 }
-collation {
-  content: oxy_xpath("if(@rend) then concat('\A', @rend, '\A') else ()");
-  /* color: #0059B3; */
-  -oxy-foldable: true;
-  -oxy-folded: true;
-  margin: 2em 3em;
+layout:before(2) {
+  -oxy-append-content: oxy_editor(type, button, actionID, insert_layout, transparent, true, color, #ffffff) oxy_editor(type, button, actionID, delete_layout, transparent, true, color, #ffffff);
+}
+layout:before(2):-pap-show-info_block {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layout:before(2):not(:-pap-show-info_block) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layout:-pap-show-info_block:before {
+  display: block;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  content: oxy_xpath("doc('${framework}/documentation.html')//*[@id='layout']/*[@class='desc']/normalize-space(.)");
+}
+layout note[type=type] {
+  padding-bottom: 0.5em;
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+}
+layout note[type=type]:-pap-show-info_id_text,
+layout note[type=type]:not(:-pap-show-info_id_text) {
+  -oxy-append-content: oxy_label(text, oxy_concat("Art", ":"), width, 7.25em, text-align, right) oxy_combobox(edit, "#text", editable, false, columns, 30);
+}
+layout note[type=type]:-pap-show-info_id_text {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_id_text'), transparent, true);
+}
+layout note[type=type]:not(:-pap-show-info_id_text) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_id_text'), transparent, true);
+}
+layout note[type=type]:-pap-show-info_id_text {
+  -oxy-append-content: oxy_htmlContent(content, 'Art des Layoutelementes. Es kann zwischen &#39;Fläche&#39; (z.B. Vorderseite, Rückseite) und &#39;Schreibbereich&#39; (z.B. Seite, Kolumne) gewählt werden, wobei &#39;Fläche&#39; einen Teil des physischen Textträgers meint, während &#39;Schreibbereich&#39; eine logische Sicht auf den Textträger meint. Ein &#39;Schreibbereich&#39; kann auf einer &#39;Fläche&#39; lokalisiert sein.', width, 100%, fontInherit, true);
+}
+layout note[type=type]:-pap-show-info_id_text {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout note[type=type]:not(:-pap-show-info_id_text) {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout locus {
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+  margin: 0 3em;
+  padding-bottom: 1em;
   background-color: #FFFFFF;
   border: 1px solid #004D26;
+  content: "";
+}
+layout locus:before(2) {
+  display: block;
+  content: "Lokalisierung des Schreibbereichs";
+  background-color: #004D26;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0.2em 0 0.2em 0.5em;
+  margin-bottom: 1em;
+}
+layout locus:before(2):-pap-show-info_block {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layout locus:before(2):not(:-pap-show-info_block) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_block'), transparent, true);
+}
+layout locus:-pap-show-info_block:before {
+  display: block;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  content: "Wurde bei 'Art' des Layoutelementes 'Schreibbereich' ausgewählt, kann hier angegeben werden, auf welcher Fläche des Textträgers sich der Schreibbereich (z.B. die Seite oder Kolumne) befindet und wo er auf der Fläche angeordnet ist.";
+}
+layout locus:-pap-show-info_attr_target,
+layout locus:not(:-pap-show-info_attr_target) {
+  -oxy-append-content: oxy_label(text, oxy_concat("Ziel", ":"), width, 7.25em, text-align, right) oxy_combobox(edit, "@target", values, oxy_xpath("string-join(('#',for $layout in //layout return concat('#', $layout/@xml:id)), ',')"), editable, false, columns, 20);
+}
+layout locus:-pap-show-info_attr_target {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_attr_target'), transparent, true);
+}
+layout locus:not(:-pap-show-info_attr_target) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_attr_target'), transparent, true);
+}
+layout locus:-pap-show-info_attr_target {
+  -oxy-append-content: oxy_htmlContent(content, 'Hier kann angegeben werden, auf welcher Fläche sich der Schreibbereich befindet, indem der Identifikator der zuvor definierten Fläche ausgewählt wird.', width, 100%, fontInherit, true);
+}
+layout locus:-pap-show-info_attr_target {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout locus:not(:-pap-show-info_attr_target) {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout locus:-pap-show-info_attr_n,
+layout locus:not(:-pap-show-info_attr_n) {
+  -oxy-append-content: oxy_label(text, oxy_concat("Anordnung", ":"), width, 7.25em, text-align, right) oxy_textfield(edit, "@n", columns, 20, tooltip, oxy_xpath('"Angabe der Anordnung des Schreibbereichs auf der Fläche, z.B. &lsquo;rechts&rsquo; oder &lsquo;links&rsquo;."'));
+}
+layout locus:-pap-show-info_attr_n {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_attr_n'), transparent, true);
+}
+layout locus:not(:-pap-show-info_attr_n) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_attr_n'), transparent, true);
+}
+layout locus:-pap-show-info_attr_n {
+  -oxy-append-content: oxy_htmlContent(content, 'Angabe der Anordnung des Schreibbereichs auf der Fläche, z.B. &lsquo;rechts&rsquo; oder &lsquo;links&rsquo;.', width, 100%, fontInherit, true);
+}
+layout locus:-pap-show-info_attr_n {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout locus:not(:-pap-show-info_attr_n) {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout desc {
+  -oxy-display-tags: none;
+  visibility: -oxy-collapse-text;
+}
+layout desc:-pap-show-info_id_text,
+layout desc:not(:-pap-show-info_id_text) {
+  -oxy-append-content: oxy_label(text, oxy_concat("Beschreibung", ":"), width, 7.25em, text-align, right) oxy_textfield(edit, "#text", columns, 30, tooltip, oxy_xpath('"&quot;Beschreibung des Layoutelementes, z.B. &#39;Vorderseite&#39;, &#39;Rückseite&#39;, &#39;Recto&#39;, &#39;Verso&#39; bei einer Fläche oder &#39;Seite 1&#39;, &#39;Seite 2&#39;, &#39;erste Kolumne&#39; etc. bei einem Schreibbereich&quot;"'));
+}
+layout desc:-pap-show-info_id_text {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe ausblenden', description, 'Hilfe ausblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-removePseudoClassNames, '-pap-show-info_id_text'), transparent, true);
+}
+layout desc:not(:-pap-show-info_id_text) {
+  -oxy-append-content: oxy_button(action, oxy_action(name, 'Hilfe einblenden', description, 'Hilfe einblenden', icon, url('${framework}/img/info-16.png'), operation, 'ChangePseudoClassesOperation', arg-setPseudoClassNames, '-pap-show-info_id_text'), transparent, true);
+}
+layout desc:-pap-show-info_id_text {
+  -oxy-append-content: oxy_htmlContent(content, '&quot;Beschreibung des Layoutelementes, z.B. &#39;Vorderseite&#39;, &#39;Rückseite&#39;, &#39;Recto&#39;, &#39;Verso&#39; bei einer Fläche oder &#39;Seite 1&#39;, &#39;Seite 2&#39;, &#39;erste Kolumne&#39; etc. bei einem Schreibbereich&quot;', width, 100%, fontInherit, true);
+}
+layout desc:-pap-show-info_id_text {
+  display: block;
+  -oxy-append-content: "\A";
+}
+layout desc:not(:-pap-show-info_id_text) {
+  display: block;
+  -oxy-append-content: "\A";
 }
 /* History 
 ******************************************************************************************************************************************/
@@ -1460,7 +1608,7 @@ graphic:before(1) {
   position: absolute;
 }
 graphic {
-  content: "\A" oxy_label(text, "bezieht sich auf: ", width, 8.5em, text-align, right) oxy_editor(type, combo, edit, "@corresp", values, oxy_xpath("string-join(//layout/concat('#', @xml:id), ',')"));
+  content: "\A" oxy_label(text, "bezieht sich auf: ", width, 8.5em, text-align, right) oxy_popup(edit, '@corresp', values, oxy_xpath("string-join(//layout/concat('#', @xml:id), ',')"), labels, oxy_xpath("string-join(//layout/(desc[normalize-space(.) != '']/data(.), concat('#', @xml:id))[1], ',')"), tooltips, oxy_xpath("string-join(//layout/concat('#', @xml:id), ',')"), rendererSeparator, ", ", selectionMode, multiple);
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
