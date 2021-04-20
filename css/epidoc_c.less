@@ -2,6 +2,8 @@
 @namespace file url('http://exist-db.org/xquery/file');
 @namespace tei url('http://www.tei-c.org/ns/1.0');
 
+@backendUrl: "http://papyri.uni-koeln.de:8080/exist/apps/papyri";
+
 oxy|document {
     background-color: #BBBBBB !important;
     padding-left: 1em !important;
@@ -554,21 +556,25 @@ note[type=publication]:not([subtype=struct]) {
             oxy_editor(type, text, edit, "#text", columns, 30);
     visibility: -oxy-collapse-text;
 }
-note[type=publication] idno {    
+
+
+@publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)");
+@publicationValues: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-values')/data(.)");
+note[type=publication] idno {
     content:oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
             oxy_combobox(           
             edit, "@corresp",
             editable, false,
             columns, 20,
-            labels, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)"),
-            values, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-values')/data(.)"),
-            tooltips, oxy_xpath("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)"),
+            labels, @publicationLabels,
+            values, @publicationValues,
+            tooltips, @publicationLabels,
             onChange, oxy_action(
                 name, 'Insert',
                 operation, 'XQueryUpdateOperation',
-                arg-script, `"\
+                arg-script, "let $backendURL = \"{@backendURL}\" " `"\
                   let $pubId := substring-after(@corresp, '#') \
-                  let $pubDesc := doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=pubIdno&amp;id='||$pubId) \
+                  let $pubDesc := doc('$backendURL/modules/oxygen-tools.xql?what=pubIdno&amp;id='||$pubId) \
                   return replace value of node . with $pubDesc \
                 "`
               )
@@ -620,7 +626,7 @@ note[type=publication][subtype=struct]:after(2){
     content: oxy_xpath(
         oxy_concat(
                     oxy_concat(
-                        "doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=pubdesc&key=", 
+                        "doc('@{backendUrl}/modules/oxygen-tools.xql?what=pubdesc&key=", 
                         oxy_xpath("tei:bibl/tei:idno/text()")),
                     "')//text()")
                  );
@@ -1786,7 +1792,7 @@ surface {
    content:         
         oxy_label(text, "Bild verknüpfen: ", width, 8.5em, text-align, right)
         oxy_editor(type, combo, edit, "@temp-url", editable, false,
-            values, oxy_xpath(oxy_concat("doc('http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)") ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"))
+            values, oxy_xpath(oxy_concat("doc('@{backendUrl}/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)") ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"))
             )
         oxy_editor(type, button, actionID, choose_graphic, transparent, true, color, #FFFFFF)
         oxy_editor(type, button, actionID, insert_all_graphics, transparent, true);

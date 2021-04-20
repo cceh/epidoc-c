@@ -5821,7 +5821,7 @@ declare namespace file="http://exist-db.org/xquery/file";
 
 let $cfn := tokenize(document-uri(), "/")[last()]
 let $id := //tei:TEI/@xml:id/data(.)
-let $url := concat("http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;amp;dir=", $cfn, "&amp;amp;id=",$id)
+let $url := concat("http://papyri.uni-koeln.de:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=file&amp;amp;dir=", $cfn, "&amp;amp;id=",$id)
 let $graphics := doc($url)/graphics/tei:graphic
 return  $graphics</String>
 															</entry>
@@ -5939,7 +5939,7 @@ declare namespace file="http://exist-db.org/xquery/file";
 
 let $filename := //surface/@temp-url/data(.)
 let $id := //TEI/@xml:id/data(.)
-let $url :=  "http://papyri.uni-koeln.de:8080/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir="||tokenize(document-uri(), "/")[last()]||"&amp;amp;file="||$filename||"&amp;amp;id="||$id
+let $url :=  "http://papyri.uni-koeln.de:8080/exist/apps/papyri/modules/oxygen-tools.xql?what=file&amp;#038;dir="||tokenize(document-uri(), "/")[last()]||"&amp;amp;file="||$filename||"&amp;amp;id="||$id
 
 let $graphic := doc($url)
 return $graphic</String>
