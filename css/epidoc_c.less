@@ -572,11 +572,12 @@ note[type=publication] idno {
             onChange, oxy_action(
                 name, 'Insert',
                 operation, 'XQueryUpdateOperation',
-                arg-script, "let $backendURL = \"{@backendURL}\" " `"\
-                  let $pubId := substring-after(@corresp, '#') \
-                  let $pubDesc := doc('$backendURL/modules/oxygen-tools.xql?what=pubIdno&amp;id='||$pubId) \
-                  return replace value of node . with $pubDesc \
-                "`
+                arg-script, oxy_concat(
+                "let $backendURL := '@{backendUrl}'",
+                "let $pubId := substring-after(@corresp, '#')",
+                "let $pubDesc := doc($backendURL || '/modules/oxygen-tools.xql?what=pubIdno&amp;id=' || $pubId)",
+                "return replace value of node . with $pubDesc"
+                )
               )
             );
                           
