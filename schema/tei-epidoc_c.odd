@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/odd/p5odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/odd/p5odds.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- TODO: -->
+<!-- 
+    * restrict tagdocs from <p> outside of <encodingDesc> 
+-->
 <!-- Start license statement: do not remove 
     
 EpiDoc Schema
@@ -214,6 +218,7 @@ End license statement: do not remove -->
                 <moduleRef key="dictionaries" except="case colloc def dictScrap entry
                     entryFree etym gram gramGrp hom hyph iType lbl mood number oRef orth pRef
                     per pos pron re sense stress subc superEntry syll tns usg xr"/>
+                <moduleRef key="tagdocs" include="gi tag val att"></moduleRef>
 
                 <!--        CHANGED ELEMENT SPECS        -->
                 <elementSpec ident="add" module="core" mode="change">
