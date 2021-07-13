@@ -1496,6 +1496,9 @@ End license statement: do not remove -->
                             <rng:ref name="support"/>
                             <rng:ref name="condition"/>
                             <rng:ref name="collation"/>
+                            <rng:optional>
+                                <rng:ref name="foliation"/>
+                            </rng:optional>
                         </rng:group>
                     </content>
                 </elementSpec>
