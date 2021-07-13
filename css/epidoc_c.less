@@ -141,6 +141,21 @@ note[type=structural_markers] p, /* note[type=script] p ,*/ collation p, conditi
     -oxy-placeholder-content: "Text";
 }
 
+foliation {
+  display: none;
+}
+
+/*foliation {
+  .pap-block("Folierung");
+  .pap-foldable(true);
+  
+  visibility: -oxy-collapse-text;
+     -oxy-append-content: oxy_label(text, "Typ: ", width, 8.5em, text-align, right)
+           oxy_textfield(edit, "@type")
+           oxy_label(text, "Beschreibung: ", width, 8.5em, text-align, right)
+           oxy_textfield(edit, "#text");
+}
+*/
 
 /* HEADER-Elemente
 *******************************************************************************************************************************************/
@@ -493,17 +508,24 @@ msItemStruct:before {
     padding: 0.2em 0em 0.2em 0.5em;
 }
 
-locus {
-  content: "Bla"
-}
 
 locus {
   content:
         oxy_label(text, "Lokalisierung: ", width, 10em, text-align, right)
-        oxy_editor(type, combo, edit, "@target", values, oxy_xpath("string-join(for $layout in //layout return concat('#', $layout/@xml:id), ',')"))
+        oxy_combobox(edit, "@target", editable, false, width, 10em,
+          values, oxy_xpath("string-join(//layout/concat('#', @xml:id), ',')"),
+          labels, oxy_xpath("string-join(//layout/replace(normalize-space(desc), ',', '\\\\,'), ',')")
+          
+        )
         oxy_editor(type, text, edit, "#text", columns, 30)
         oxy_editor(type, button, actionID, insert_info_msItem_locus, transparent, true, color, #FFFFFF)
         oxy_xpath("if (@rend) then concat('\A\A', @rend) else ()");
+}
+
+// TODO! editable in author mode, switch to locus only, add, remove etc
+locusGrp {
+  .pap-block("Textstellenlokalisierung");
+  .pap-foldable(true);
 }
 
 
@@ -561,8 +583,8 @@ note[type=publication]:not([subtype=struct]) {
 }
 
 
-@publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)");
-@publicationValues: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-values')/data(.)");
+@publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)", evaluate, static);
+@publicationValues: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-values')/data(.)", evaluate, static);
 note[type=publication] idno {
     content:oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
             oxy_combobox(           
@@ -619,7 +641,7 @@ note[type=publication][subtype=struct]:after(1) {
         );
 }
 
-note[type=publication][subtype=struct]:after(2){
+note[type=publication][subtype=struct] idno:after{
     display: block;
     margin-top: 2em;
     margin-left: 13em;
@@ -627,13 +649,7 @@ note[type=publication][subtype=struct]:after(2){
     width:  90%;
     font-style: italic;
     font-size: small;
-    content: oxy_xpath(
-        oxy_concat(
-                    oxy_concat(
-                        "doc('@{backendUrl}/modules/oxygen-tools.xql?what=pubdesc&key=", 
-                        oxy_xpath("tei:bibl/tei:idno/text()")),
-                    "')//text()")
-                 );
+    content: oxy_xpath("./text()");
 }
 
 note[type=text_type]{
@@ -1097,6 +1113,7 @@ note[type=structural_markers] {
     margin-bottom: 1em;
     background-color: #FFFFFF;
     border: 1px solid #004D26;
+    display: block;
 }
 
 .pap-foldable(@folded: false) {
@@ -1463,14 +1480,14 @@ layout {
   .pap-block("Layoutelement");
   .pap-foldable();
   .pap-insert-delete-buttons(insert_layout, delete_layout);
-  @infotext: oxy_xpath("doc('${framework}/documentation.html')//*[@id='layout']/*[@class='desc']/normalize-space(.)");
+  @infotext: oxy_xpath("doc('${framework}/documentation.html')//*[@id='layout']/*[@class='desc']/normalize-space(.)", evaluate, static);
   .pap-info(@infotext);
   
   
   visibility: -oxy-collapse-text;
   
   content: oxy_label(text, "ID: ", width, 7.25em, text-align, right)
-           oxy_xpath("@xml:id");
+           attr("xml:id");
 
   note[type=type] {
     @infotext: "Art des Layoutelementes. Es kann zwischen &#39;Fläche&#39; (z.B. Vorderseite, Rückseite) und &#39;Schreibbereich&#39; (z.B. Seite, Kolumne) gewählt werden, wobei &#39;Fläche&#39; einen Teil des physischen Textträgers meint, während &#39;Schreibbereich&#39; eine logische Sicht auf den Textträger meint. Ein &#39;Schreibbereich&#39; kann auf einer &#39;Fläche&#39; lokalisiert sein.";
@@ -1792,10 +1809,15 @@ body supplied:after {
 ************************************************************************************************************************************************/
 
 surface {
+  display: none
+}
+  /*
+surface {
    content:         
         oxy_label(text, "Bild verknüpfen: ", width, 8.5em, text-align, right)
         oxy_editor(type, combo, edit, "@temp-url", editable, false,
-            values, oxy_xpath(oxy_concat("doc('@{backendUrl}/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)") ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"))
+            values, oxy_xpath(
+              oxy_concat("doc('@{backendUrl}/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)", evaluate, static) ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"), evaluate, static)
             )
         oxy_editor(type, button, actionID, choose_graphic, transparent, true, color, #FFFFFF)
         oxy_editor(type, button, actionID, insert_all_graphics, transparent, true);
@@ -1817,7 +1839,7 @@ graphic[url]:before(2) {
 }
 
 graphic:before(1) {
-/*    content: url(oxy_concat(attr(url), "?thumb=1"));*/
+/\*    content: url(oxy_concat(attr(url), "?thumb=1"));*\/
     height: 120px;
     text-align: right;
     position: absolute;
@@ -1829,8 +1851,8 @@ graphic {
     @labels: oxy_xpath("string-join(//layout/(desc[normalize-space(.) != '']/data(.), concat('#', @xml:id))[1], ',')");
     
     content:  
-        /* "\A\A"
-        "\9\9\9" oxy_url(attr(url)) */
+        /\* "\A\A"
+        "\9\9\9" oxy_url(attr(url)) *\/
         "\A"
         oxy_label(text, "bezieht sich auf: ", width, 8.5em, text-align, right)
         oxy_popup(
@@ -1873,7 +1895,7 @@ graphic desc[type="modified"] {
             oxy_editor(type, text, edit, "#text", columns, 30, text-align, right);
     -oxy-editable: false;
 }
-
+*/
 /* REGISTER
 **************************************************************************************************************************************************/
 
