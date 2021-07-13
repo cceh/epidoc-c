@@ -2,6 +2,9 @@
 @namespace file url('http://exist-db.org/xquery/file');
 @namespace tei url('http://www.tei-c.org/ns/1.0');
 
+@import (inline) 'tei.css';
+
+
 @backendUrl: "http://papyri.uni-koeln.de:8080/exist/apps/papyri";
 
 oxy|document {
@@ -1091,8 +1094,7 @@ note[type=structural_markers] {
   
     -oxy-display-tags: none;
     visibility: -oxy-collapse-text;
-    margin: 0 3em;
-    padding-bottom: 1em;
+    margin-bottom: 1em;
     background-color: #FFFFFF;
     border: 1px solid #004D26;
 }
@@ -2332,5 +2334,41 @@ TEI[style=index] biblStruct series biblScope {
              ;
     margin-top: 0;
     visibility: -oxy-collapse-text;
+}
+
+/* *** Inline Documentation Elements *** */
+
+encodingDesc p {
+  margin-bottom: 1em;
+  
+  hi {
+    -oxy-display-tags: none;
+  }
+  
+  lb:before{
+      content:"";
+  }
+
+}
+
+tag, gi, att, val {
+  font-family: monospace;
+  -oxy-display-tags: none;
+}
+
+val {
+  font-style: italic;
+}
+
+/* EncodingDesc */
+
+encodingDesc {
+  .pap-block("Hinweise zur Kodierung / Modellierung des Datensatzes");
+  .pap-foldable();
+  
+  .pap-info("Für komplexere Datensätze kann hier optional eine Freitextbeschreibung der Kodierung des Datensatzes angegeben werden, beispielsweise: Was bedeutet hier ein Textträgerteil (Fragment, Kodexlage, Seite?), wie sind einzelne Objektelemente (Seiten, Lagen, Schreibbereiche, Abbildungen) miteinander verknüpft?");
+
+  
+  visibility: visible;
 }
 
