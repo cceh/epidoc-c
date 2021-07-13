@@ -753,7 +753,10 @@ End license statement: do not remove -->
                 <elementSpec ident="msItemStruct" module="msdescription" mode="change">
                     <content>
                         <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
-                            <rng:ref name="locus"/>
+                            <rng:choice>
+                                <rng:ref name="locus"/>
+                                <rng:ref name="locusGrp"/>
+                            </rng:choice>
                             <rng:oneOrMore>
                                 <rng:ref name="respStmt"/>
                             </rng:oneOrMore>
