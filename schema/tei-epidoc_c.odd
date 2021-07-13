@@ -717,34 +717,20 @@ End license statement: do not remove -->
                 <!-- OBS: das Folgende manuell hinzugefügt! noch über ROMA anpassen! -->
                 <elementSpec ident="msPart" module="msdescription" mode="change">
                     <content>
-                        <rng:group xmlns="http://relaxng.org/ns/structure/1.0">
-                            <rng:ref name="msIdentifier"/>
-                            <rng:zeroOrMore>
-                                <rng:ref name="model.headLike"/>
-                            </rng:zeroOrMore>
-                            <rng:choice>
-                                <rng:oneOrMore>
-                                    <rng:ref name="model.pLike"/>
-                                </rng:oneOrMore>
-                                <rng:group>
-                                    <rng:optional>
-                                        <rng:ref name="msContents"/>
-                                    </rng:optional>
-                                    <rng:optional>
-                                        <rng:ref name="physDesc"/>
-                                    </rng:optional>
-                                    <rng:optional>
-                                        <rng:ref name="history"/>
-                                    </rng:optional>
-                                    <rng:optional>
-                                        <rng:ref name="additional"/>
-                                    </rng:optional>
-                                    <rng:zeroOrMore>
-                                        <rng:ref name="msPart"/>
-                                    </rng:zeroOrMore>
-                                </rng:group>
-                            </rng:choice>
-                        </rng:group>
+                        <sequence>
+                            <elementRef key="msIdentifier"/>
+                            <classRef key="model.headLike" minOccurs="0" maxOccurs="unbounded"/>
+                            <alternate>
+                                <classRef key="model.pLike" maxOccurs="unbounded"/>
+                                <sequence>
+                                    <elementRef key="msContents" minOccurs="0"/>
+                                    <elementRef key="physDesc" minOccurs="0"/>
+                                    <elementRef key="history" minOccurs="0"/>
+                                    <elementRef key="additional" minOccurs="0"/>
+                                    <elementRef key="msPart" minOccurs="0"/>
+                                </sequence>
+                            </alternate>
+                        </sequence>
                     </content>
                     <attList>
                         <attDef ident="sameAs" mode="delete" usage="req">
