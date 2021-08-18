@@ -5,6 +5,9 @@
 			<String>document.types</String>
 			<documentTypeDescriptor-array>
 				<documentTypeDescriptor>
+					<field name="webResources">
+						<null/>
+					</field>
 					<field name="extensionPatch">
 						<null/>
 					</field>
@@ -474,13 +477,13 @@
             &lt;collation>&lt;p>&lt;/p>&lt;/collation>
         &lt;/supportDesc>
         &lt;layoutDesc>
+          &lt;summary>&lt;p>&lt;/p>&lt;/summary>
             &lt;layout xml:id="LE_${id}">
                 &lt;note type="type">&lt;/note>
                 &lt;locus>&lt;/locus>
                 &lt;desc>&lt;/desc>
             &lt;/layout>
         &lt;/layoutDesc>
-        &lt;layoutDesc>&lt;p>&lt;/p>&lt;/layoutDesc>
     &lt;/objectDesc>
 &lt;/physDesc>
 &lt;history>
