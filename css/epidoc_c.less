@@ -5,7 +5,7 @@
 @import (inline) 'tei.css';
 
 
-@backendUrl: "http://papyri.uni-koeln.de:8080/exist/apps/papyri";
+@backendUrl: "http://papyri.uni-koeln.de";
 
 oxy|document {
     background-color: #BBBBBB !important;
@@ -271,6 +271,9 @@ msPart {
     border-left: 1px solid #527A52;
     border-right: 1px solid #527A52;
     border-bottom: 1px solid #527A52;
+    
+    .pap-vertical-space();
+    
 }
 
 /* sourceDesc */
@@ -514,7 +517,7 @@ locus {
         oxy_label(text, "Lokalisierung: ", width, 10em, text-align, right)
         oxy_combobox(edit, "@target", editable, false, width, 10em,
           values, oxy_xpath("string-join(//layout/concat('#', @xml:id), ',')"),
-          labels, oxy_xpath("string-join(//layout/replace(normalize-space(desc), ',', '\\\\,'), ',')")
+          labels, oxy_xpath("string-join(//layout/replace(normalize-space((desc/text(), @xml:id)[1]), ',', '\\\\,'), ',')")
           
         )
         oxy_editor(type, text, edit, "#text", columns, 30)
@@ -522,10 +525,53 @@ locus {
         oxy_xpath("if (@rend) then concat('\A\A', @rend) else ()");
 }
 
-// TODO! editable in author mode, switch to locus only, add, remove etc
+msItemStruct > locus {
+  -oxy-append-content: oxy_button(action, oxy_action(
+          name, "Auf Lokalisierungsgruppe umschalten",
+          description, "Auf Lokalisierungsgruppe umschalten",
+          operation, "InsertOrReplaceFragmentOperation",
+          arg-fragment, '<locusGrp xmlns="http://www.tei-c.org/ns/1.0"><locus>${caret}</locus></locusGrp>',
+          arg-insertLocation, ".",
+          arg-insertPosition, "Replace"
+        ));
+}
+
 locusGrp {
-  .pap-block("Textstellenlokalisierung");
+  .pap-block("Textstellenlokalisierung  " oxy_button(
+        fontInherit, true,
+        transparent, true,
+        color, lightgrey,
+        action, oxy_action(
+          name, "(Auf Einzellokalisierung umschalten)",
+          description, "Auf Einzellokalisierung umschalten",
+          operation, "InsertOrReplaceFragmentOperation",
+          arg-fragment, '<locus xmlns="http://www.tei-c.org/ns/1.0">${caret}</locus>',
+          arg-insertLocation, ".",
+          arg-insertPosition, "Replace"
+        )));
   .pap-foldable(true);
+  
+   > locus {
+     .pap-insert-delete-buttons-with-inplace-actions(
+       @insert_action: oxy_action(
+          name, "[+]",
+          description, "Textstellenlokalisierung hinzufügen",
+          icon, url("${framework}/img/add-16.png"),
+          operation, "InsertFragmentOperation",
+          arg-fragment, '<locus xmlns="http://www.tei-c.org/ns/1.0">${caret}</locus>',
+          arg-insertLocation, ".",
+          arg-insertPosition, "After"
+        ),
+       @remove_action: oxy_action(
+          name, "[-]",
+          description, "Textstellenlokalisierung entfernen",
+          icon, url("${framework}/img/remove-16.png"),
+          operation, "DeleteElementOperation",
+          arg-elementLocation, ".",
+        ),
+       @preventRemoveLast: true
+     );
+   }
 }
 
 
@@ -1075,16 +1121,26 @@ note[type=structural_markers] {
      -oxy-append-content: "\A";
    }
 
-} 
+}
 
-.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true) when (@values = false) {
-  @control: oxy_combobox(edit, @edit, editable, @editable, columns, @columns);
+.pap-vertical-space(@height: 18) {
+  -oxy-append-content: oxy_htmlContent(content, '<div style="height: @{height}px;"></div>');
+}
+
+.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) when (@values = false) {
+  @control: oxy_combobox(edit, @edit, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
   
   .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
 }
 
-.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true) when not (@values = false) {
-  @control: oxy_combobox(edit, @edit, values, @values, editable, @editable, columns, @columns);
+.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) when not (@values = false) {
+  @control: oxy_combobox(edit, @edit, values, @values, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
+  
+  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
+}
+
+.pap-dropdown-with-labels(@label, @edit, @values, @labels, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) {
+   @control: oxy_combobox(edit, @edit, values, @values, labels, @labels, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
   
   .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
 }
@@ -1125,13 +1181,30 @@ note[type=structural_markers] {
   content: "";
 }
 
-.pap-insert-delete-buttons(@insert_action, @remove_action) {
+.pap-block-insert-delete-buttons(@insert_action, @remove_action) {
   &:before(2) {
     -oxy-append-content:
         oxy_editor(type, button, actionID, @insert_action, transparent, true, color, #FFFFFF)
         oxy_editor(type, button, actionID, @remove_action, transparent, true, color, #FFFFFF);
   }
 }
+
+.pap-insert-delete-buttons-with-inplace-actions(@insert_action, @remove_action, @preventRemoveLast: false) when (@preventRemoveLast = false) {
+    -oxy-append-content:
+        oxy_button(action, @insert_action, transparent, true, color, #FFFFFF)
+        oxy_button(action, @remove_action, transparent, true, color, #FFFFFF);
+}
+
+.pap-insert-delete-buttons-with-inplace-actions(@insert_action, @remove_action, @preventRemoveLast: false) when (@preventRemoveLast = true) {
+    -oxy-append-content:
+        oxy_button(action, @insert_action, transparent, true, color, #FFFFFF);
+
+    &:not(:first-child) {
+      -oxy-append-content:    
+        oxy_button(action, @remove_action, transparent, true, color, #FFFFFF);
+    }
+}
+
 
 physDesc:before {
     content: "Physische Beschreibung";
@@ -1479,7 +1552,7 @@ layoutDesc > summary {
 layout {
   .pap-block("Layoutelement");
   .pap-foldable();
-  .pap-insert-delete-buttons(insert_layout, delete_layout);
+  .pap-block-insert-delete-buttons(insert_layout, delete_layout);
   @infotext: oxy_xpath("doc('${framework}/documentation.html')//*[@id='layout']/*[@class='desc']/normalize-space(.)", evaluate, static);
   .pap-info(@infotext);
   
@@ -1499,16 +1572,18 @@ layout {
   }
   
   locus {
-    .pap-block("Lokalisierung des Schreibbereichs");
+    .pap-block("Lokalisierung des Schreibbereichs / Kodexlage");
     .pap-reset-content();
 
     .pap-info("Wurde bei 'Art' des Layoutelementes 'Schreibbereich' ausgewählt, kann hier angegeben werden, auf welcher Fläche des Textträgers sich der Schreibbereich (z.B. die Seite oder Kolumne) befindet und wo er auf der Fläche angeordnet ist.");
 
-    .pap-dropdown(
+    .pap-dropdown-with-labels(
         "Ziel",
         "@target", 
-        oxy_xpath("string-join(('#',for $layout in //layout return concat('#', $layout/@xml:id)), ',')"),
-        "Hier kann angegeben werden, auf welcher Fläche sich der Schreibbereich befindet, indem der Identifikator der zuvor definierten Fläche ausgewählt wird."
+        oxy_xpath("//layout[note[@type = 'type'] = ('Fläche', 'Kodexlage')]/('#' || @xml:id) => string-join(',')"),
+        oxy_xpath("//layout[note[@type = 'type'] = ('Fläche', 'Kodexlage')]/(if (desc/text()) then replace(desc, ',', ';') || ' (#' || @xml:id || ')' else '#' || data(@xml:id)) => string-join(',')"),
+        "Hier kann angegeben werden, auf welcher Fläche sich der Schreibbereich befindet, indem der Identifikator der zuvor definierten Fläche ausgewählt wird.",
+        @canRemoveValue: true
        );
     
 
@@ -1526,6 +1601,8 @@ layout {
     -oxy-display-tags: none;
     visibility: -oxy-collapse-text;
   }
+  
+  .pap-textfield("Nummer", "@n", "Optionaler (alpha-)numerischer Identifikator des Layoutelements (z.B. Seitenzahl bei Kodizes).", false, 30);
 }
 
 
@@ -1808,20 +1885,27 @@ body supplied:after {
 /* FAKSIMILE
 ************************************************************************************************************************************************/
 
-surface {
+/*surface {
   display: none
-}
-  /*
+}*/
+  
 surface {
    content:         
-        oxy_label(text, "Bild verknüpfen: ", width, 8.5em, text-align, right)
-        oxy_editor(type, combo, edit, "@temp-url", editable, false,
-            values, oxy_xpath(
-              oxy_concat("doc('@{backendUrl}/modules/oxygen-tools.xql?what=values&id=", oxy_xpath("root()/TEI/@xml:id/data(.)", evaluate, static) ,"&dir=",  oxy_substring(oxy_substring(oxy_base-uri(), oxy_lastindexof(oxy_base-uri(), '/')), 1) ,"')//text()"), evaluate, static)
-            )
-        oxy_editor(type, button, actionID, choose_graphic, transparent, true, color, #FFFFFF)
-        oxy_editor(type, button, actionID, insert_all_graphics, transparent, true);
+        oxy_button(action, oxy_action(
+          name, "Bildverknüpfungen aktualisieren",
+          operation, 'XQueryOperation',
+                arg-sourceLocation, "/*",
+                arg-script, oxy_concat(
+                "let $backendURL := '@{backendUrl}'",
+                "let $xmlId := /*/data(@xml:id)",
+                "let $results := doc($backendURL || '/modules/oxygen-tools.xql?what=graphics&amp;id=' || $xmlId)",
+                "return $results/graphics/*"
+                )
+        ),
+          transparent, true
+        )
 }
+
 
 graphic > desc[type="type"][subtype="thumb"], graphic > desc[type="type"][subtype="preview"] {
     display: none;
@@ -1829,9 +1913,8 @@ graphic > desc[type="type"][subtype="thumb"], graphic > desc[type="type"][subtyp
 
 graphic[url]:before(2) {
     content: 
-        "Bild: " oxy_substring(oxy_substring(attr(url), oxy_lastindexof(attr(url), "/")), 1)
+        "Bild: " oxy_unescapeURLValue(oxy_substring(oxy_substring(attr(url), oxy_lastindexof(attr(url), "/")), 1))
         oxy_concat(" (", attr(mimeType),")")
-        oxy_editor(type, button, actionID, delete_graphic, transparent, true, color, #FFFFFF)
         ;
     vertical-align: middle;
     display: block;
@@ -1839,8 +1922,7 @@ graphic[url]:before(2) {
 }
 
 graphic:before(1) {
-/\*    content: url(oxy_concat(attr(url), "?thumb=1"));*\/
-    height: 120px;
+    content: oxy_url(oxy_concat(attr(url), "?thumb=1"));
     text-align: right;
     position: absolute;
 }
@@ -1851,8 +1933,8 @@ graphic {
     @labels: oxy_xpath("string-join(//layout/(desc[normalize-space(.) != '']/data(.), concat('#', @xml:id))[1], ',')");
     
     content:  
-        /\* "\A\A"
-        "\9\9\9" oxy_url(attr(url)) *\/
+        /* "\A\A"
+        "\9\9\9" oxy_url(attr(url)) */
         "\A"
         oxy_label(text, "bezieht sich auf: ", width, 8.5em, text-align, right)
         oxy_popup(
@@ -1895,7 +1977,7 @@ graphic desc[type="modified"] {
             oxy_editor(type, text, edit, "#text", columns, 30, text-align, right);
     -oxy-editable: false;
 }
-*/
+
 /* REGISTER
 **************************************************************************************************************************************************/
 
