@@ -274,6 +274,17 @@ msPart {
     
     .pap-vertical-space();
     
+   /* .pap-dropdown(
+      @label: "Art",
+      @edit: "@type",
+      @infotext: "Art des Textträgerteils (optional)."
+     );
+     
+    .pap-textfield(
+      @label: "Nummer",
+      @edit: "@n",
+      @infotext: "Optionaler (alpha)numerischer Identifikatior des Textträgerteils, z.B. Nr. der Kodexlage."
+    );*/
 }
 
 /* sourceDesc */
@@ -1885,21 +1896,100 @@ body supplied:after {
 /* FAKSIMILE
 ************************************************************************************************************************************************/
 
-/*surface {
-  display: none
-}*/
-  
 surface {
    content:         
         oxy_button(action, oxy_action(
           name, "Bildverknüpfungen aktualisieren",
-          operation, 'XQueryOperation',
-                arg-sourceLocation, "/*",
+          operation, 'JSOperation',
                 arg-script, oxy_concat(
-                "let $backendURL := '@{backendUrl}'",
-                "let $xmlId := /*/data(@xml:id)",
-                "let $results := doc($backendURL || '/modules/oxygen-tools.xql?what=graphics&amp;id=' || $xmlId)",
-                "return $results/graphics/*"
+                
+                // JA, das ist Javascript-Code in einer SCSS-Datei der Java-Code ausführt.
+                
+                "function doOperation() {",
+                "  const IOUtils = Packages.org.apache.commons.io.IOUtils;"
+                
+                "  const dialog = makeWaitingDialog();"
+
+                "  const documentController = authorAccess.getDocumentController();"
+                "  const rootElem = documentController.getAuthorDocumentNode().getRootElement();"
+                "  const xmlId = rootElem.getAttribute('xml:id').getValue();"
+                
+                   // make connection and load responses in a new thread to keep UI responsive
+                   // and to be able to show the waiting dialog
+                "  const thread = new Packages.java.lang.Thread(function() {"
+                "  try {"
+                     // connect to backend
+                "    const conn = new Packages.java.net.URL('@{backendUrl}/modules/oxygen-tools.xql?what=graphics&id=' + xmlId).openConnection();"
+                "    conn.setReadTimeout(0);"
+                "    conn.connect();"
+                
+                     // read response
+                "    const is = conn.getInputStream();"
+                "    const writer = new Packages.java.io.StringWriter();"
+                "    IOUtils.copy(is, writer, 'UTF-8');"
+                "    const result = writer.toString();"
+                
+                     // hide waiting dialog
+                "    dialog.setVisible(false);"
+                
+                     // insert new tei:graphic elements into document (on main thread)
+                "    Packages.javax.swing.SwingUtilities.invokeAndWait(new Packages.java.lang.Runnable({"
+                "      run: function() { "
+                "        try {"
+                "          insertXMLResult(documentController, result)"
+                "        }  catch (exception) {"
+                "          dialog.dispose();"
+                "          authorAccess.getWorkspaceAccess().showErrorMessage('Fehler: ' + exception.toString());"
+                "          return;"
+                "        }"
+                "      }})"
+                "    );"
+                
+                " } catch (exception) {"
+                "    dialog.dispose();"
+                "    authorAccess.getWorkspaceAccess().showErrorMessage('Fehler: ' + exception.toString());"
+                "    return;"
+                " }"
+                
+                "});"
+                
+                // first start the worker thread, then show waiting dialog
+                " thread.start();"
+                " dialog.setVisible(true);  "
+                "}"
+                
+                "function makeWaitingDialog() {"
+                "  const JOptionPane = Packages.javax.swing.JOptionPane;"
+                "  const JDialog = Packages.javax.swing.JDialog;"
+                "  const pane = new JOptionPane('Bildverknüpfungen werden aktualisiert. Dies kann etwas dauern...', JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, [], null);"
+                "  const parentFrame = authorAccess.getWorkspaceAccess().getParentFrame();"
+                "  const dialog = new JDialog(parentFrame);"
+                "  dialog.setContentPane(pane);"
+                "  dialog.pack();"
+                "  dialog.setLocationRelativeTo(parentFrame);"
+                "  dialog.setModal(true);"
+                "  return dialog;"
+                "}"
+                
+                "function insertXMLResult(documentController, result) {"
+                 "  const nodes = documentController.findNodesByXPath('//surface', true, true, true);"
+                 "  const surfaceNodes = Packages.java.util.Arrays.asList(nodes);"
+                 
+                 "  if (surfaceNodes == null || surfaceNodes.isEmpty()) {"
+                 "    authorAccess.getWorkspaceAccess().showErrorMessage('Fehler: Kein surface-Element gefunden');"
+                 "    return;"
+                 "  }"
+                 
+                 "  const surfaceNode = surfaceNodes.get(0);"
+                 "  const start = surfaceNode.getStartOffset();"
+                 "  const end = surfaceNode.getEndOffset();"
+                 "  documentController.beginCompoundEdit();",
+                 "  documentController.delete(start, end);"
+                 "  documentController.insertXMLFragmentSchemaAware(result, start);",         
+                 "  documentController.endCompoundEdit();"
+                 
+                 "  authorAccess.getWorkspaceAccess().showStatusMessage('Bildverknüpfungen aktualisiert.');"                 
+                 "}"
                 )
         ),
           transparent, true
