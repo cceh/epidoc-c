@@ -2446,6 +2446,15 @@ TEI[style=index] biblStruct persName {
 TEI[style=index] biblStruct note {
     display: block;
 }
+
+TEI[style=index] biblStruct ref[type=feature_link] {
+      .pap-textfield(
+        "Link zur Übersicht",
+        "@target",
+        "Die Weboberfläche der Datenbank bietet eine Liste von Publikationen. Publikationen, denen Datensätze zugeordnet sind, erscheinen als Link. Dieser Link führt normalerweise auf eine generierte Liste der zugeordneten Datensätze. Ist in diesem Datensatz ein Link eingetragen (z.B. auf eine Ausgewählte Stücke-Seite), wird dieser als Publikationslink genutzt.",
+        @columns: 40
+      );
+}
 /******************************** imprint ****************************************/
 
 

@@ -5719,9 +5719,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
 																<String>                &lt;biblStruct xmlns="http://www.tei-c.org/ns/1.0" status="published" type="manuscript_publication" corresp="#" xml:id="" temp="true">
                     &lt;monogr>
                         &lt;title type="main">&lt;/title>
-                        &lt;title type="short">${
-                          ask('Öffentlichen Kurztitel eingeben (z. B. "P. Köln XV")', generic)
-                          }&lt;/title>
+                        &lt;title type="short">${ask('Öffentlichen Kurztitel eingeben (z. B. "P. Köln XV")', generic)}&lt;/title>
                         &lt;editor>
                             &lt;persName>
                                 &lt;forename>&lt;/forename>
@@ -5735,6 +5733,7 @@ Alternativ zur Angabe einzelner Maße oder ergänzend dazu können Anmerkungen i
                             &lt;pubPlace>&lt;/pubPlace>
                             &lt;date>&lt;/date>
                         &lt;/imprint>
+                      &lt;ref type="feature_link" target=""/>
                     &lt;/monogr>
                     &lt;series>
                         &lt;title>Papyrologica Coloniensa&lt;/title>

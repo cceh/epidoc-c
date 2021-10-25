@@ -1863,6 +1863,14 @@ End license statement: do not remove -->
                                                 </element>
                                                 <ref name="tei_edition"/>
                                                 <ref name="tei_imprint"/>
+                                                <zeroOrMore>
+                                                    <element name="ref">
+                                                        <attribute name="type">
+                                                            <value>feature_link</value>
+                                                        </attribute>
+                                                        <attribute name="target"/>
+                                                    </element>
+                                                </zeroOrMore>
                                             </group>
                                         </element>
                                     </group>
