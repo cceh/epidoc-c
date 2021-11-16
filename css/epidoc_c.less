@@ -1240,6 +1240,11 @@ objectType {
               oxy_editor(type, combo, edit, "#text", editable, false);
     padding-top: 1em;
 }
+msPart objectType {
+    content: oxy_label(text, "Objekttyp: ", width, 7.25em, text-align, right)
+              oxy_editor(type, combo, edit, "#text", editable, false, canRemoveValue, true);
+    padding-top: 1em;
+}
 objectType:after {
     content: "\A";
 }
@@ -1265,6 +1270,10 @@ material > material:first-child {
     visibility: -oxy-collapse-text;
     -oxy-display-tags: none;
     display: block;
+}
+msPart material > material:first-child {
+      content: oxy_label(text, "Material: ", width, 7.25em, text-align, right)
+              oxy_editor(type, combo, edit, "#text", editable, false, canRemoveValue, true);
 }
 material > material[type=note]{
     content: oxy_label(text, "Anmerkung: ", width, 7.25em, text-align, right)
