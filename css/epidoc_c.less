@@ -274,17 +274,19 @@ msPart {
     
     .pap-vertical-space();
     
-   /* .pap-dropdown(
+    .pap-dropdown(
       @label: "Art",
       @edit: "@type",
-      @infotext: "Art des Textträgerteils (optional)."
+      @infotext: "Art des Textträgerteils (optional).",
+      @labelWidth: 12em
      );
      
     .pap-textfield(
-      @label: "Nummer",
+      @label: "Nummer / Bezeichnung",
       @edit: "@n",
-      @infotext: "Optionaler (alpha)numerischer Identifikatior des Textträgerteils, z.B. Nr. der Kodexlage."
-    );*/
+      @infotext: "Optionaler (alpha)numerischer Identifikatior des Textträgerteils, z.B. &quot;Fr. A&quot; oder Nr. der Kodexlage.",
+      @labelWidth: 12em
+    );
 }
 
 /* sourceDesc */
@@ -1102,7 +1104,7 @@ note[type=structural_markers] {
     }
 }
 
-.pap-form-control(@label, @edit, @control, @infotext, @editable: false, @columns: 20, @lineBreakAfter: true) {
+.pap-form-control(@label, @edit, @control, @infotext, @editable: false, @columns: 20, @lineBreakAfter: true, @labelWitdh: 7.25em) {
   @infoScope: replace(replace(@edit, '@', 'attr_'), '#', 'id_');
   @infoScopeSelector: ~':-pap-show-info_@{infoScope}';
   @notInfoScopeSelector: ~':not(:-pap-show-info_@{infoScope})';
@@ -1112,7 +1114,7 @@ note[type=structural_markers] {
   
   &@{infoScopeSelector}, &@{notInfoScopeSelector} {
     -oxy-append-content:
-      oxy_label(text, oxy_concat(@label, ":"), width, 7.25em, text-align, right)
+      oxy_label(text, oxy_concat(@label, ": "), width, @labelWitdh, text-align, right)
       @control
       ;
  }
@@ -1138,28 +1140,28 @@ note[type=structural_markers] {
   -oxy-append-content: oxy_htmlContent(content, '<div style="height: @{height}px;"></div>');
 }
 
-.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) when (@values = false) {
+.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false, @labelWidth: 7.25em) when (@values = false) {
   @control: oxy_combobox(edit, @edit, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
   
-  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
+  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter, @labelWidth);
 }
 
-.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) when not (@values = false) {
+.pap-dropdown(@label, @edit, @values: false, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false, @labelWidth: 7.25em) when not (@values = false) {
   @control: oxy_combobox(edit, @edit, values, @values, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
   
-  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
+  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter, @labelWidth);
 }
 
-.pap-dropdown-with-labels(@label, @edit, @values, @labels, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false) {
+.pap-dropdown-with-labels(@label, @edit, @values, @labels, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @canRemoveValue: false, @labelWidth: 7.25em) {
    @control: oxy_combobox(edit, @edit, values, @values, labels, @labels, editable, @editable, columns, @columns, canRemoveValue, @canRemoveValue);
   
-  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
+  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter, @labelWidth);
 }
 
-.pap-textfield(@label, @edit, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true) {
+.pap-textfield(@label, @edit, @infotext: false, @editable: false, @columns: 20, @lineBreakAfter: true, @labelWidth: 7.25em) {
   @control: oxy_textfield(edit, @edit, columns, @columns, tooltip, oxy_xpath('"@{infotext}"'));
   
-  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter);
+  .pap-form-control(@label, @edit, @control, @infotext, @editable, @columns, @lineBreakAfter, @labelWidth);
 }
 
 

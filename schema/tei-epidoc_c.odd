@@ -738,6 +738,35 @@ End license statement: do not remove -->
                         </sequence>
                     </content>
                     <attList>
+                      <!--  <attDef ident="type" mode="replace" usage="req">
+                            <valList type="closed">
+                                <valItem ident="apparatus">
+                                    <desc xml:lang="en" versionDate="2020-02-17">to contain apparatus criticus or textual notes</desc>
+                                </valItem>
+                                <valItem ident="bibliography">
+                                    <desc xml:lang="en" versionDate="2020-02-17">to contain iographical information, previous publications, etc.</desc>
+                                </valItem>
+                                <valItem ident="commentary">
+                                    <desc xml:lang="en" versionDate="2020-02-17">to contain all editorial commentary, historical/prosopographical discussion, etc.</desc>
+                                </valItem>
+                                <valItem ident="edition">
+                                    <desc xml:lang="en" versionDate="2020-02-17">to contain the text of the edition itself; may include multiple text-parts</desc>
+                                </valItem>
+                                <valItem ident="textpart">
+                                    <desc xml:lang="en" versionDate="2020-02-17">used to divide a div[type=edition] into multiple parts (fragments, columns, faces, etc.)</desc>
+                                </valItem>
+                                <valItem ident="translation">
+                                    <desc xml:lang="en" versionDate="2020-02-17">to contain a translation of the text into one or more modern languages</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>-->
+                        <attDef ident="type" mode="replace" usage="opt">
+                            <valList type="closed">
+                                <valItem ident=""/>
+                                <valItem ident="Fragment"/>
+                                <valItem ident="Lage"/>
+                            </valList>
+                        </attDef>
                         <attDef ident="sameAs" mode="delete" usage="req">
                             <defaultVal>inventory_object</defaultVal>
                             <valList type="closed" mode="replace">
