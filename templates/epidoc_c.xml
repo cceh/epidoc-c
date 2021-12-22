@@ -181,21 +181,19 @@
     <text>
         <body>
             <div type="edition">
-                <div type="edition">
-                    <ab></ab>
-                </div>
-                <div type="translation">
-                    <ab></ab>
-                </div>
-                <div type="apparatus">
-                    <ab></ab>
-                </div>
-                <div type="commentary">
-                    <ab></ab>
-                </div>
-                <div type="bibliography">
-                    <ab></ab>
-                </div>
+                <ab></ab>
+            </div>
+            <div type="translation">
+                <ab></ab>
+            </div>
+            <div type="apparatus">
+                <ab></ab>
+            </div>
+            <div type="commentary">
+                <ab></ab>
+            </div>
+            <div type="bibliography">
+                <ab></ab>
             </div>
         </body>
     </text>
