@@ -6,6 +6,40 @@
 
 
 @backendUrl: "http://papyri.uni-koeln.de";
+@accentBackgroundColor: #004D26;
+
+@iconAdd: url("${framework}/img/add-16.png");
+@iconRemove: url("${framework}/img/remove-16.png");
+@iconChange: url("${framework}/img/change-16.png");
+
+.pap-insert-template-fragment-button(
+  @actionName; 
+  @actionIcon: @iconAdd; 
+  @template: "epidoc_c.xml"; 
+  @sourceXPath: ""; 
+  @targetXPath: "."; 
+  @mode: "insert";
+  @oxyButtonParameters: transparent, true, showText, true
+) {
+    -oxy-append-content: oxy_button(
+             @oxyButtonParameters,
+             action, oxy_action(
+                 name, @actionName,
+                 icon, @actionIcon,
+                 operation, 'XQueryUpdateOperation',
+                 arg-script, oxy_concat(
+                 "declare namespace tei='http://www.tei-c.org/ns/1.0';",
+                 "let $fragment := ", "doc('", oxy_url("${framework}", "templates/@{template}"), "')@{sourceXPath} ",
+                 "return if ('@{mode}' eq 'insert') ",
+                 "  then insert node $fragment into @{targetXPath} ",
+                 "else if ('@{mode}' eq 'replace') ",
+                 "  then replace node @{targetXPath} with $fragment ",
+                 "else () "
+                 )
+             )
+        )
+} 
+        
 
 oxy|document {
     background-color: #BBBBBB !important;
@@ -44,7 +78,7 @@ teiHeader:before, text:before, facsimile:before {
     color: #FFFFFF;
     font-weight: bold;
     font-size: 1em;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     padding: 0.3em 0.7em 0.3em 0.5em;
     margin: 0;
     vertical-align: top;
@@ -215,7 +249,7 @@ publicationStmt availability {
 
 msDesc:before {
     display: block;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     content: "Beschreibung des Textträgers"
              oxy_editor(type, button, actionID, insert_info_msDesc, transparent, true, color, #FFFFFF)
@@ -227,7 +261,7 @@ msDesc:before {
 
 msPart:before {
     display: block;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     content: "Textträger-Teil"
              oxy_editor(type, button, actionID, delete_msPart, transparent, true, color, #FFFFFF)
@@ -239,7 +273,7 @@ msPart:before {
 msDesc { 
     background-color: #FFFFFF;
     display: block;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     margin: 2em 0 0.5em 0;
     padding: 0;
     content: oxy_xpath("if (@rend) then concat('\A', @rend) else ()");
@@ -253,14 +287,14 @@ msPart {
     margin: 2em 0 0.5em 0;
     background-color: #FFFFFF;
     display: block;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     -oxy-foldable: true;
 }
 msDesc:after, msPart:after {
     content: oxy_editor(type, button, actionID, insert_msPart, transparent, true, color, #FFFFFF);
     padding: 0.2em;
     display: block;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     vertical-align: middle;
     font-weight: bold;
@@ -375,7 +409,7 @@ sourceDesc > listBibl:before, msItemStruct > listBibl:before {
         oxy_editor(type, button, actionID, insert_info_listBibl, transparent, true, color, #FFFFFF)
         ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -385,7 +419,7 @@ sourceDesc > listBibl, msItemStruct > listBibl {
     content: oxy_xpath("if (@rend) then concat('\A', @rend, '\A') else ()");
     /* color: #0059B3; */
     margin: 1em 0;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     -oxy-foldable: true;
     -oxy-folded: true;
 }
@@ -410,7 +444,7 @@ sourceDesc > listBibl > bibl:before, msItemStruct > listBibl > bibl:before {
     margin-bottom: 1em;
     padding: 0.2em 0em 0.2em 0.5em;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
 }
@@ -429,7 +463,7 @@ sourceDesc > listBibl > bibl, msItemStruct > listBibl > bibl {
         ;
     /* oxy_xpath("string-join(doc('/C:/Users/Ulrike/Dropbox/CCeH/Akademie/Papyri/Modellierung/bibl.xml')//*, ',')") */
     margin: 1em 0;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     background-color: #FFFFFF;
     -oxy-foldable: true;
     visibility: -oxy-collapse-text;
@@ -466,7 +500,7 @@ msContents:before {
     content: "Beschreibung der Texte"
              oxy_editor(type, button, actionID, insert_info_msContents, transparent, true, color, #FFFFFF);
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -477,7 +511,7 @@ msContents {
     counter-reset: itemStruct;
     content: oxy_xpath("if (@rend) then concat('\A', @rend) else ()");
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     /* color: #0059B3; */
     -oxy-foldable: true;
     -oxy-folded: true;
@@ -489,7 +523,7 @@ msContents:after {
     content: oxy_editor(type, button, actionID, insert_new_text_description, transparent, true, color, #FFFFFF);
     padding: 0.2em;
     display: block;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
 }
 msContents respStmt *, msContents note[type=content] *, msContents note[type=general] *, msContents note[type=illustrations] *,
 msContents note[type=orig_date] *,
@@ -509,7 +543,7 @@ msItemStruct {
     vertical-align: middle;
     padding-bottom: 2em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     -oxy-foldable: true;
     -oxy-folded: true;
 }
@@ -518,7 +552,7 @@ msItemStruct:before {
     content: "Text Nr." counter(itemStruct) " – " attr('xml:id')
              oxy_editor(type, button, actionID, delete_msItemStruct, transparent, true, color, #FFFFFF);
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -569,7 +603,7 @@ locusGrp {
        @insert_action: oxy_action(
           name, "[+]",
           description, "Textstellenlokalisierung hinzufügen",
-          icon, url("${framework}/img/add-16.png"),
+          icon, @iconAdd,
           operation, "InsertFragmentOperation",
           arg-fragment, '<locus xmlns="http://www.tei-c.org/ns/1.0">${caret}</locus>',
           arg-insertLocation, ".",
@@ -578,7 +612,7 @@ locusGrp {
        @remove_action: oxy_action(
           name, "[-]",
           description, "Textstellenlokalisierung entfernen",
-          icon, url("${framework}/img/remove-16.png"),
+          icon, @iconRemove,
           operation, "DeleteElementOperation",
           arg-elementLocation, ".",
         ),
@@ -603,7 +637,7 @@ note[type=content]:before {
              oxy_editor(type, button, actionID, insert_info_note_summary, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -615,7 +649,7 @@ note[type=content] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=availability]{
     display: block;
@@ -626,30 +660,170 @@ note[type=availability]{
     visibility: -oxy-collapse-text;
 }
 
-
+        
 note[type=publication] {
-    margin-top: 1em;
-    margin-bottom: 1em;
+
+    /* a reusable button to remove a publication entry */
+    @removePublicationButton: oxy_button(
+                 showText, false,
+                 transparent, true,
+                 action, oxy_action(
+                     name, oxy_concat('Publikation entfernen'),
+                     icon, @iconRemove,
+                     operation, 'DeleteElementOperation',
+                     arg-elementLocation, "ancestor-or-self::tei:bibl"
+                 )
+            );
+
+     /* element style */ 
+      
+    .pap-block("Publikation");
+    .pap-foldable();
+    
+    margin: 1em 48px 1em 48px;
+    visibility: -oxy-collapse-text !important;
+    
+    listBibl {
+      padding: 0;
+      margin: 0;
+    }
+    
+    listBibl * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* a button to add entries (shown at the bottom of the list) */
+    listBibl:after(1) {
+      .pap-insert-template-fragment-button(
+         @actionName: "Publikation hinzufügen";
+         @sourceXPath: "//tei:note[@type='publication']//tei:bibl[1]"; 
+       );
+       
+    }
+    
+    bibl {
+     display: block;
+     border-left: 3px dotted @accentBackgroundColor;
+     padding-left: 0.5rem;
+     margin-bottom: 1rem;
+    }
+    
+    /*  Unstrukturierte (Freitext-)-Publikation */
+    bibl:not([type=struct]) {
+      content:oxy_label(text, "Publikation: ")
+            oxy_textfield(edit, "#text", columns, 30, visible, true, width, calc(100% - 30rem))
+            @removePublicationButton
+      ;
+        
+        .pap-insert-template-fragment-button(
+          @actionName: "Ändern auf Publikationsverweis";
+          @actionIcon: @iconChange;
+          @mode: "replace";
+          @sourceXPath: "//tei:note[@type='publication']//tei:bibl[1]";
+         );
+    
+   }
+
+    
+       
+    /*  Strukturierte Publikation (Verweis auf Publikationseintrag) */
+    bibl[type=struct] {
+     display: block;
+     
+     * {
+       -oxy-display-tags: none;
+     }
+     
+     idno {
+       @publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)", evaluate, static);
+       @publicationValues: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-values')/data(.)", evaluate, static);
+        
+       display: inline;
+       white-space: nowrap;
+       content:  
+             oxy_label(text, "Publikation: ")
+             oxy_combobox(           
+             edit, "@corresp",
+             editable, false,
+             width, calc(100% - 60rem),
+             labels, @publicationLabels,
+             values, @publicationValues,
+             tooltips, @publicationLabels,
+             onChange, oxy_action(
+                 name, 'Insert',
+                 operation, 'XQueryUpdateOperation',
+                 arg-script, oxy_concat(
+                 "let $backendURL := '@{backendUrl}'",
+                 "let $pubId := substring-after(@corresp, '#')",
+                 "let $pubDesc := doc($backendURL || '/modules/oxygen-tools.xql?what=pubIdno&amp;id=' || $pubId)",
+                 "return replace value of node . with $pubDesc"
+                 )
+               )
+             );
+     }
+
+     
+     biblScope {
+       display: inline;
+       visibility: -oxy-collapse-text;
+       white-space: nowrap;
+       content:  oxy_label(text, "Nr. / Seiten: ")
+                oxy_editor(type, text, edit, "#text", columns, 10);
+     }
+     
+     biblScope:after {
+      content: @removePublicationButton;
+     }
+     
+          
+     &:after(1) {
+        display: block;
+        visibility: -oxy-collapse-text;
+        font-style: italic;
+        font-size: small;
+        content: oxy_xpath("normalize-space(tei:idno)");
+        white-space: normal;
+     } 
+     
+      &:after(2) {
+       display: block;
+       /* get an unstructured publication bibl from main template */
+       .pap-insert-template-fragment-button(
+          @actionName: "Ändern auf Freitextangabe";
+          @actionIcon: @iconChange;
+          @mode: "replace";
+          @template: "fragments/_publication-bibl-unstructured.xml";
+         );
+     }
+  }
 }
 
-
+/*
 note[type=publication]:not([subtype=struct]) {
-    display: block;
-    content: 
-            oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
-            oxy_editor(type, text, edit, "#text", columns, 30);
-    visibility: -oxy-collapse-text;
+
 }
 
+note[type=publication][subtype=struct] {
+  display: block;
+  visibility: -oxy-collapse-text;
 
-@publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)", evaluate, static);
+  bibl {
+    
+  }
+  
+  
+}
+*/
+
+/*@publicationLabels: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-labels')/data(.)", evaluate, static);
 @publicationValues: oxy_xpath("doc('@{backendUrl}/modules/oxygen-tools.xql?what=choosePub-values')/data(.)", evaluate, static);
 note[type=publication] idno {
     content:oxy_label(text, "Publikation: ", width, 10em, text-align, right) 
             oxy_combobox(           
             edit, "@corresp",
             editable, false,
-            columns, 20,
+            columns, 40,
             labels, @publicationLabels,
             values, @publicationValues,
             tooltips, @publicationLabels,
@@ -668,7 +842,15 @@ note[type=publication] idno {
     visibility: -oxy-collapse-text;
 }
 
-
+note[type=publication][subtype=struct] idno:after{
+    display: block;
+    margin-left: 13em;
+    height: 5em;
+    width:  90%;
+    font-style: italic;
+    font-size: small;
+    content: oxy_xpath("./text()");
+}
 
 note[type=publication] > bibl > biblScope {
     display: block;
@@ -676,8 +858,8 @@ note[type=publication] > bibl > biblScope {
     content: oxy_label(text, "Nummer / Seiten: ", width, 10em, text-align, right)   
              oxy_editor(type, text, edit, "#text", columns, 10);
     visibility: -oxy-collapse-text;
-}
-
+}*/
+/*
 note[type=publication]:not([subtype=struct]):after {
     display: block;
     margin-left: 10em;
@@ -699,18 +881,7 @@ note[type=publication][subtype=struct]:after(1) {
              transparent, true
         );
 }
-
-note[type=publication][subtype=struct] idno:after{
-    display: block;
-    margin-top: 2em;
-    margin-left: 13em;
-    height: 5em;
-    width:  90%;
-    font-style: italic;
-    font-size: small;
-    content: oxy_xpath("./text()");
-}
-
+*/
 note[type=text_type]{
     content: oxy_label(text, "Textsorte: ", width, 10em, text-align, right)
              oxy_editor(type, combo, edit, "#text", editable, false);
@@ -723,7 +894,7 @@ note[type=illustrations]:before {
              oxy_editor(type, button, actionID, insert_info_note_illustrations, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -735,7 +906,7 @@ note[type=illustrations] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=status]{
     content: oxy_label(text, "Status: ", width, 10em, text-align, right)
@@ -752,7 +923,7 @@ note[type=orig_date]:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -764,7 +935,7 @@ note[type=orig_date] {
     padding-bottom: 1em;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
     -oxy-foldable: true;
     -oxy-folded: true;
@@ -781,7 +952,7 @@ note[type=orig_date] date {
     display: block;
     padding: 0 0 1em 0;
     margin: 1em 1em 0 0;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     background-color: #FFFFFF;
     font-size: 1em;
     visibility: -oxy-collapse-text;
@@ -796,7 +967,7 @@ note[type=orig_date] date:before {
     padding: 0 0.2em;
     vertical-align: middle;
     color: #FFFFFF;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     font-weight: bold;
     font-size: 1em;
 }
@@ -812,7 +983,7 @@ note[type=orig_place]:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -824,7 +995,7 @@ note[type=orig_place] {
     margin: 2em 3em;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
     -oxy-foldable: true;
     -oxy-folded: true;
@@ -839,7 +1010,7 @@ note[type=orig_place] place:before {
     padding: 0 0.2em;
     vertical-align: middle;
     color: #FFFFFF;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     font-weight: bold;
     font-size: 1em;
 }
@@ -847,7 +1018,7 @@ note[type=orig_place] place {
     display: block;
     padding: 0 0 1em 0;
     margin: 1em 1em 0 0;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     background-color: #FFFFFF;
     font-size: 1em;
     visibility: -oxy-collapse-text;
@@ -884,7 +1055,7 @@ msItemStruct note[type=general]:before {
              oxy_editor(type, button, actionID, insert_info_note_general_text, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -895,7 +1066,7 @@ msItemStruct note[type=general] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 
 textLang:before {
@@ -905,7 +1076,7 @@ textLang:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -917,7 +1088,7 @@ textLang {
     padding-bottom: 1em;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
     -oxy-foldable: true;
     -oxy-folded: true;
@@ -928,7 +1099,7 @@ note[type=script]:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -939,7 +1110,7 @@ note[type=script]{
     padding-bottom: 1em;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
 }
 note[type=script]:after {
@@ -959,7 +1130,7 @@ note[type=language]:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -970,7 +1141,7 @@ note[type=language]{
     padding-bottom: 1em;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
 }
 note[type=language]:after {
@@ -1005,7 +1176,7 @@ note[type=hand_desc]:before {
             "Beschreibung der Hand"
              oxy_editor(type, button, actionID, insert_info_note_handDesc, transparent, true, color, #FFFFFF);
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1017,7 +1188,7 @@ note[type=hand_desc] {
     -oxy-folded: true;
     margin: 1em 2em 0em 2em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=structural_markers]:before {
     display: block;
@@ -1025,7 +1196,7 @@ note[type=structural_markers]:before {
             "Gliederungszeichen"
              /* oxy_editor(type, button, actionID, insert_info_note_illustrations, transparent, true, color, #FFFFFF)*/;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1037,7 +1208,7 @@ note[type=structural_markers] {
     -oxy-folded: true;
     margin: 0em 2em 1em 2em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 
 
@@ -1170,7 +1341,7 @@ note[type=structural_markers] {
     display: block;
     content: @title;
   
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0 0.2em 0.5em;
@@ -1181,7 +1352,7 @@ note[type=structural_markers] {
     visibility: -oxy-collapse-text;
     margin-bottom: 1em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     display: block;
 }
 
@@ -1223,7 +1394,7 @@ physDesc:before {
     content: "Physische Beschreibung";
     display: block;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1235,7 +1406,7 @@ physDesc {
    -oxy-foldable: true; 
    -oxy-folded: true;
    background-color: #FFFFFF;
-   border: 1px solid #004D26;
+   border: 1px solid @accentBackgroundColor;
 }
 objectType {
     content: oxy_label(text, "Objekttyp: ", width, 7.25em, text-align, right)
@@ -1254,7 +1425,7 @@ support > material:before {
     display: block;
     content: "Material";
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1264,7 +1435,7 @@ support > material {
     -oxy-folded: true;
     margin: 0 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 material > material:first-child {
     content: oxy_label(text, "Material: ", width, 7.25em, text-align, right)
@@ -1291,7 +1462,7 @@ dimensions:before {
              oxy_editor(type, button, actionID, insert_info_masse, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1303,7 +1474,7 @@ dimensions {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 dimensions > *:first-child {
     margin-top: 1em;
@@ -1400,7 +1571,7 @@ note[type=dimensions]:before {
              oxy_editor(type, button, actionID, insert_info_note_Masse_B, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1412,7 +1583,7 @@ note[type=dimensions] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=dimensions] p {
     -oxy-placeholder-content: "Text";
@@ -1424,7 +1595,7 @@ note[type=Fragment]:before {
              oxy_editor(type, button, actionID, insert_info_note_Fragment, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1436,7 +1607,7 @@ note[type=Fragment] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=Blatt]:before {
     display: block;
@@ -1445,7 +1616,7 @@ note[type=Blatt]:before {
              oxy_editor(type, button, actionID, insert_info_note_Blatt, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1457,7 +1628,7 @@ note[type=Blatt] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=Rekto]:before {
     display: block;
@@ -1466,7 +1637,7 @@ note[type=Rekto]:before {
              oxy_editor(type, button, actionID, insert_info_note_Rekto, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1478,7 +1649,7 @@ note[type=Rekto] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=Verso]:before {
     display: block;
@@ -1487,7 +1658,7 @@ note[type=Verso]:before {
              oxy_editor(type, button, actionID, insert_info_note_Verso, transparent, true, color, #FFFFFF)
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1499,7 +1670,7 @@ note[type=Verso] {
     -oxy-folded: true;
     margin: 2em 3em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 note[type=Fragment] p, note[type=Blatt] p, note[type=Rekto] p, note[type=Verso] p {
     padding: 0.5em 0;
@@ -1634,7 +1805,7 @@ history:before {
     content: "Provenienz und Erwerb";
     display: block;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1646,7 +1817,7 @@ history {
     -oxy-folded: true;
     margin: 2em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 
 
@@ -1658,7 +1829,7 @@ provenance:before {
     display: block;
     padding: 0 0 0 0.3em;
     vertical-align: top;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-size: 1em;
     font-weight: bold;
@@ -1670,7 +1841,7 @@ provenance {
     margin: 0.5em 1em 0.5em 0;
     color: #000000;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     font-size: 1em;
     -oxy-foldable: true;
 }    
@@ -1762,7 +1933,7 @@ acquisition note[type=general]:before {
              /* oxy_editor(type, button, actionID, insert_info_note_illustrations, transparent, true, color, #FFFFFF)*/
              ;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1774,7 +1945,7 @@ acquisition note[type=general]{
     -oxy-folded: true;
     margin: 1em 1em 1em 0;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 
 
@@ -1786,7 +1957,7 @@ additional:before {
     content: "Aufbewahrung";
     display: block;
     vertical-align: middle;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     color: #FFFFFF;
     font-weight: bold;
     padding: 0.2em 0em 0.2em 0.5em;
@@ -1798,7 +1969,7 @@ additional {
     -oxy-folded: true;
     margin: 2em;
     background-color: #FFFFFF;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
 }
 
 
@@ -2105,7 +2276,7 @@ TEI[style=index] place {
     content: oxy_xpath("if (@rend) then '&#x00A0;' else ()") attr("rend");
     color: #888888;
     display: block;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     margin-bottom: 1em;
     visibility: -oxy-collapse-text;
 }
@@ -2120,7 +2291,7 @@ TEI[style=index] place:before {
              oxy_editor(type, button, actionID, insert_info_index_place, transparent, true, color, #FFFFFF)
              ;
     color: #FFFFFF;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     display: block;
     margin-bottom: 1em;
     padding: 0 0.2em;
@@ -2258,7 +2429,7 @@ TEI[style=index] biblStruct {
     content: oxy_xpath("if (@rend) then '\A\A&#x00A0;' else ()") attr("rend") oxy_xpath("if (@rend) then '\A' else ()");
     color: #000000;
     display: block;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     margin: 0 0 1em 2em;
     vertical-align: middle;
     -oxy-foldable: true;
@@ -2276,7 +2447,7 @@ TEI[style=index] biblStruct[type="manuscript_publication"]:before {
              /* oxy_editor(type, button, actionID, insert_info_index_bibl, transparent, true, color, #FFFFFF) */
              ;
     color: #FFFFFF;
-    background-color: #004D26;
+    background-color: @accentBackgroundColor;
     display: block;
     margin-bottom: 1em;
     padding: 0 0.2em;
@@ -2383,7 +2554,7 @@ TEI[style=index] biblStruct author:before {
 }
 TEI[style=index] biblStruct author {
     display: block;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     margin: 1em 1em 1em 4em;
     padding: 0em 0em 1em 0em;
     visibility: -oxy-collapse-text;
@@ -2427,7 +2598,7 @@ TEI[style=index] biblStruct editor:before {
 TEI[style=index] biblStruct editor {
     display: block;
     width: 40em;
-    border: 1px solid #004D26;
+    border: 1px solid @accentBackgroundColor;
     margin: 1em 1em 1em 4em;
     padding: 0em 0em 0em 0em;
     -oxy-display-tags: none;

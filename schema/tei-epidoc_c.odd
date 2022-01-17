@@ -806,16 +806,22 @@ End license statement: do not remove -->
                                     <rng:value>publication</rng:value>
                                 </rng:attribute>
                                 <rng:choice>
-                                    <rng:text/>
-                                    <rng:group>
-                                        <rng:attribute name="subtype">
-                                            <rng:value>struct</rng:value>
-                                        </rng:attribute>
-                                        <rng:element name="bibl">
-                                            <rng:ref name="tei_idno"/>
-                                            <rng:ref name="tei_biblScope"/>
-                                        </rng:element>
-                                    </rng:group>
+                                    <rng:element name="listBibl">
+                                        <rng:oneOrMore>
+                                            <rng:element name="bibl">
+                                               <rng:choice>
+                                                   <rng:text/>
+                                                   <rng:group>
+                                                       <rng:attribute name="type">
+                                                           <rng:value>struct</rng:value>
+                                                       </rng:attribute>
+                                                       <rng:ref name="tei_idno"/>
+                                                       <rng:ref name="tei_biblScope"/>
+                                                   </rng:group>
+                                               </rng:choice>
+                                            </rng:element>
+                                        </rng:oneOrMore>
+                                    </rng:element>
                                 </rng:choice>
                             </rng:element>
                             <rng:element name="note">
