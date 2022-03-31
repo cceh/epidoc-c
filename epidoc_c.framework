@@ -557,7 +557,7 @@
 														<serializableOrderedMap>
 															<entry>
 																<String>fragment</String>
-																<String>&lt;msItemStruct defective="false" xml:id="T_${id}" xmlns="http://www.tei-c.org/ns/1.0">
+																<String>&lt;msItemStruct defective="true" xml:id="T_${id}" xmlns="http://www.tei-c.org/ns/1.0">
     &lt;locus target="#"/>
      &lt;respStmt>
          &lt;resp>HerausgeberIn&lt;/resp>
@@ -573,14 +573,14 @@
             &lt;biblScope/>
         &lt;/bibl>
     &lt;/listBibl>
-    &lt;note type="availability">in Bearbeitung&lt;/note>
+    &lt;note type="availability">publiziert&lt;/note>
     &lt;note type="publication"/>
-    &lt;note type="text_type">nicht ermittelt&lt;/note>
+    &lt;note type="text_type">dokumentarisch&lt;/note>
     &lt;note type="content">
         &lt;p/>
     &lt;/note>
     &lt;note type="illustrations">
-        &lt;p/>
+        &lt;p>keine&lt;/p>
     &lt;/note>
     &lt;note type="orig_date">
         &lt;date type="Zeitraum" cert="high">&lt;note/>&lt;/date>
@@ -594,11 +594,11 @@
   &lt;note type="general">&lt;p>&lt;/p>&lt;/note>
     &lt;textLang mainLang="nicht ermittelt">
         &lt;note type="language">
-            &lt;term type="language">nicht ermittelt&lt;/term>
+            &lt;term type="language">Griechisch&lt;/term>
         &lt;/note>
         &lt;note type="script">
             &lt;term type="script">&lt;/term>
-            &lt;note type="writing_direction">nicht ermittelt&lt;/note>
+            &lt;note type="writing_direction">Griechisch&lt;/note>
             &lt;note type="ink">&lt;/note>
             &lt;note type="hand_desc">&lt;p>&lt;/p>&lt;/note>
             &lt;note type="structural_markers">&lt;p>&lt;/p>&lt;/note>

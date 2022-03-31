@@ -30,7 +30,7 @@
                         </altIdentifier>
                     </msIdentifier>
                     <msContents>
-                        <msItemStruct defective="false" xml:id="T_${id}">
+                        <msItemStruct defective="true" xml:id="T_${id}">
                             <locus target="#"/>
                             <respStmt>
                                 <resp>HerausgeberIn</resp>
@@ -46,16 +46,17 @@
                                     <biblScope/>
                                 </bibl>
                             </listBibl>
-                            <note type="availability">in Bearbeitung</note>
+                            <note type="availability">unpubliziert</note>
                             <note type="publication"><listBibl>
-                                <bibl type="struct"><idno></idno> <biblScope></biblScope></bibl>
-                            </listBibl></note>
-                            <note type="text_type">nicht ermittelt</note>
+                                    <bibl type="struct"><idno/>
+                                        <biblScope/></bibl>
+                                </listBibl></note>
+                            <note type="text_type">dokumentarisch</note>
                             <note type="content">
                                 <p/>
                             </note>
                             <note type="illustrations">
-                                <p/>
+                                <p>keine</p>
                             </note>
                             <note type="orig_date">
                                 <date type="Zeitraum" cert="high"><note/></date>
@@ -71,10 +72,10 @@
                             </note>
                             <textLang mainLang="nicht ermittelt">
                                 <note type="language">
-                                    <term type="language">nicht ermittelt</term>
+                                    <term type="language">Griechisch</term>
                                 </note>
                                 <note type="script">
-                                    <term type="script"/>
+                                    <term type="script">Griechisch</term>
                                     <note type="writing_direction">nicht ermittelt</note>
                                     <note type="ink"/>
                                     <note type="hand_desc">
@@ -91,21 +92,21 @@
                         <objectDesc>
                             <supportDesc>
                                 <support>
-                                    <objectType></objectType>
+                                    <objectType>Blatt</objectType>
                                     <material>
-                                        <material></material>
-                                        <material type="note"></material>
+                                        <material>Papyrus</material>
+                                        <material type="note"/>
                                     </material>
                                     <dimensions>
-                                        <width unit="cm"></width>
-                                        <height unit="cm"></height>
-                                        <depth unit="cm"></depth>
-                                        <dim type="length" unit="cm"></dim>
-                                        <dim type="diameter" unit="cm"></dim>
-                                        <dim type="circumference" unit="cm"></dim>
+                                        <width unit="cm"/>
+                                        <height unit="cm"/>
+                                        <depth unit="cm"/>
+                                        <dim type="length" unit="cm"/>
+                                        <dim type="diameter" unit="cm"/>
+                                        <dim type="circumference" unit="cm"/>
                                     </dimensions>
                                     <note type="dimensions">
-                                        <p></p>
+                                        <p/>
                                     </note>
                                     <note type="Fragment">
                                         <p/>
@@ -119,8 +120,8 @@
                                     <note type="Verso">
                                         <p/>
                                     </note>
-                                    <note type="preparation"></note>
-                                    <note type="color"></note>
+                                    <note type="preparation"/>
+                                    <note type="color"/>
                                 </support>
                                 <condition><p></p></condition>
                                 <collation><p></p></collation>
