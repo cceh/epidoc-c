@@ -884,7 +884,8 @@ note[type=publication][subtype=struct]:after(1) {
 */
 note[type=text_type]{
     content: oxy_label(text, "Textsorte: ", width, 10em, text-align, right)
-             oxy_editor(type, combo, edit, "#text", editable, false);
+             oxy_editor(type, combo, edit, "#text", editable, false)
+             " " oxy_editor(type, check, edit, "@cert", values, "low", uncheckedValues, "high", labels, "unsicher", fontInherit, true);
     padding-top: 0.4em;
 }
 note[type=illustrations]:before {
