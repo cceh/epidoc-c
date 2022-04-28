@@ -14,8 +14,8 @@ jobs:
       - name: Get the file name
         id: get_filename
         run: |
-          echo ::set-output name=tag-name::${{GITHUB_REF#refs/tags/}}
-          echo ::set-output name=zip-filename::epidoc-c-${{GITHUB_REF#refs/tags/}}.zip
+          echo ::set-output name=tag-name::${GITHUB_REF#refs/tags/}
+          echo ::set-output name=zip-filename::epidoc-c-${GITHUB_REF#refs/tags/}.zip
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         id: create_zip
