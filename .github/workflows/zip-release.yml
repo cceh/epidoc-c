@@ -8,12 +8,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        run: echo ${{ github.sha }} > Release.txt
-      - name: Test
-        run: cat Release.txt
+      - name: Get the file name
+        id: get_filename
+        run: echo ::set-output name=filename::${GITHUB_REF#refs/tags/}.zip
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        id: create_zip
+        with:
+          type: 'zip'
+          filename: ${{steps.get_filename.outputs.filename}}
+          exclusions: '*.git*'  
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: Release.txt
+          files: ${{steps.get_filename.outputs.filename}}
