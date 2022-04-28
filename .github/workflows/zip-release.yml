@@ -14,7 +14,7 @@ jobs:
       - name: Get the file name
         id: get_filename
         env:
-          TAG_NAME: ${{GITHUB_REF#refs/tags/}}
+          TAG_NAME: ${GITHUB_REF#refs/tags/}
         run: |
           echo ::set-output name=tag-name::$TAG_NAME
           echo ::set-output name=zip-filename::epidoc-c-$TAG_NAME.zip
