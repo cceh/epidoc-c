@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - with:
+        with:
           path: 'epidoc-c'
       - name: Get the file name
         id: get_filename
