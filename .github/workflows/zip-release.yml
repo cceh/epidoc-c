@@ -1,6 +1,6 @@
 name: Epidoc-C ZIP release
 
-on: push
+on: create
 
 jobs:
   build:
