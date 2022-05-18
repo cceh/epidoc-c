@@ -574,8 +574,11 @@
         &lt;/bibl>
     &lt;/listBibl>
     &lt;note type="availability">publiziert&lt;/note>
-    &lt;note type="publication"/>
-    &lt;note type="text_type">dokumentarisch&lt;/note>
+    &lt;note type="publication">&lt;listBibl>
+                                    &lt;bibl type="struct">&lt;idno/>
+                                        &lt;biblScope/>&lt;/bibl>
+                                &lt;/listBibl>&lt;/note>
+      &lt;note type="text_type">dokumentarisch&lt;/note>
     &lt;note type="content">
         &lt;p/>
     &lt;/note>
@@ -597,8 +600,8 @@
             &lt;term type="language">Griechisch&lt;/term>
         &lt;/note>
         &lt;note type="script">
-            &lt;term type="script">&lt;/term>
-            &lt;note type="writing_direction">Griechisch&lt;/note>
+            &lt;term type="script">Griechisch&lt;/term>
+            &lt;note type="writing_direction">nicht ermittelt&lt;/note>
             &lt;note type="ink">&lt;/note>
             &lt;note type="hand_desc">&lt;p>&lt;/p>&lt;/note>
             &lt;note type="structural_markers">&lt;p>&lt;/p>&lt;/note>
