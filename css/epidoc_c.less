@@ -204,6 +204,37 @@ fileDesc titleStmt title {
     -oxy-placeholder-content: "Titel des Textträgers (optional)";
 }
 
+/************************* profileDesc (keywords) **************************/
+
+textClass {
+  -oxy-editable: false;
+}
+
+profileDesc {
+  display: block;
+  -oxy-foldable: true;
+  -oxy-folded: true;
+  
+   term {
+      display: block;
+   }
+   term[ref]:after {
+       content: oxy_htmlContent(content, oxy_concat('&nbsp; (GND: <a href="', attr('ref'), '">', attr('key') ,'</a>)'));
+   }
+}
+
+profileDesc:before {
+    display: block;
+    background-color: @accentBackgroundColor;
+    color: #FFFFFF;
+    content: "Schlagwörter für Text "
+             oxy_xpath(oxy_concat("//msItemStruct[@xml:id = substring-after('", attr("corresp"), "', '#')]/string-join((@xml:id, tei:title), ' ')"))
+             ;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 0.2em 0em 0.2em 0.5em;
+}
 
 /************************* RESP **************************/
 
@@ -547,6 +578,8 @@ msItemStruct {
     -oxy-foldable: true;
     -oxy-folded: true;
 }
+
+
 msItemStruct:before {
     display: block;
     content: "Text Nr." counter(itemStruct) " – " attr('xml:id')
