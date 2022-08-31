@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/odd/p5odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/odd/p5odds.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- TODO: -->
-<!-- 
-    * restrict tagdocs from <p> outside of <encodingDesc> 
--->
 <!-- Start license statement: do not remove 
     
 EpiDoc Schema
@@ -47,6 +43,7 @@ End license statement: do not remove -->
                 <author xml:id="SJD">Scott DiGiulio</author>
                 <author xml:id="HC">Hugh Cayless</author>
                 <author xml:id="IV">Irene Vagionakis</author>
+            <author xml:id="MF">Martina Filosa</author>
             </titleStmt>
             <publicationStmt>
                 <p>Released under GNU GPL 3.0</p>
@@ -56,6 +53,7 @@ End license statement: do not remove -->
             </sourceDesc>
         </fileDesc>
         <revisionDesc>
+            <change who="#MF" when="2021-11-18">release 9.3: Aligned schema with TEI v. 4.3.0</change>
             <change who="#IV" when="2020-10-13">release 9.2: Aligned schema with TEI v. 4.1.0</change>
             <change who="#SV" when="2020-09-14">aligned schema with TEI v. 4.1.0 in anticipation of release 9.2</change>
             <change who="#SV" when="2020-09-14">added suggested values for biblScope[@unit] (as per FR #129)</change>
@@ -187,7 +185,7 @@ End license statement: do not remove -->
         <body>
             <p>EpiDoc TEI Customization starts with modules tei, core, textstructure and header</p>
             <schemaSpec ident="tei-epidoc" docLang="en" prefix="tei_" start="TEI teiCorpus" xml:lang="en"
-                source="https://www.tei-c.org/Vault/P5/4.1.0/xml/tei/odd/p5subset.xml">
+                source="https://www.tei-c.org/Vault/P5/4.3.0/xml/tei/odd/p5subset.xml">
 
                 <!--       MODULES USED BY THE EPIDOC SCHEMA       -->
                 <moduleRef key="core"/>
