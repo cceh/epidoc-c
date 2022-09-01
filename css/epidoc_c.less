@@ -201,14 +201,18 @@ fileDesc titleStmt title {
     display: block;
     font-weight: bold;
     font-size: 2em;
-    margin: 1em 0;
+    margin: 1em 0 0.5em 0;
     -oxy-placeholder-content: "Titel des Textträgers (optional)";
 }
 
 fileDesc titleStmt {
   -oxy-editable: false;
-  
+
   funder {
+    display: none;
+  }
+  
+  funder:has(name:not(:empty)) {
     display: block;
     margin-bottom: 1rem;
         
@@ -233,9 +237,9 @@ fileDesc titleStmt {
     
     
     name {
-      -oxy-display-tags: none;
       display: block;
-    
+      -oxy-display-tags: none;
+
       &[type=institution]:before {
          content: oxy_label(text, "Institution: ", width, 10em, text-align, right);
       }
@@ -245,7 +249,7 @@ fileDesc titleStmt {
       }
     }
     
-    &:has(name:not(:empty)):after {
+    &:after {
      display:block;
      -oxy-foldable: true;
      -oxy-folded: true;
@@ -323,8 +327,9 @@ publicationStmt * {
 
 publicationStmt availability {
     display: block;
+    margin: none;
     content:
-        oxy_checkbox(edit, "status", values, "restricted", uncheckedValues, "", labels, "Datensatz für unregistrierte Benutzer verbegen")
+        oxy_checkbox(edit, "status", values, "restricted", uncheckedValues, "", labels, "Datensatz für unregistrierte Benutzer verbergen")
     ;
 }
 
