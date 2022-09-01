@@ -197,11 +197,66 @@ foliation {
 
 /* titleStmt */
 fileDesc titleStmt title {
+    -oxy-editable: true;
     display: block;
     font-weight: bold;
     font-size: 2em;
     margin: 1em 0;
     -oxy-placeholder-content: "Titel des Textträgers (optional)";
+}
+
+fileDesc titleStmt {
+  -oxy-editable: false;
+  
+  funder {
+    display: block;
+    margin-bottom: 1rem;
+        
+    &:before(1) {
+       display: block;
+       background-color: @accentBackgroundColor;
+       color: #FFFFFF;
+       content: "Förderung dieses Datensatzes";
+       vertical-align: middle;
+       font-weight: bold;
+       font-size: 0.8em;
+       padding: 0.2em 0em 0.2em 0.5em;
+       
+       &:has([type=institution]:not(:empty)) {
+          -oxy-append-content: ": " oxy_xpath("name[@type='institution']/data(.)");
+       }
+       
+       &:has([type=program]:not(:empty)) {
+          -oxy-append-content: " (" oxy_xpath("name[@type='program']/data(.)") ")";
+       }
+    }
+    
+    
+    name {
+      -oxy-display-tags: none;
+      display: block;
+    
+      &[type=institution]:before {
+         content: oxy_label(text, "Institution: ", width, 10em, text-align, right);
+      }
+      
+       &[type=program]:before {
+         content: oxy_label(text, "Förderprogramm: ", width, 10em, text-align, right);
+      }
+    }
+    
+    &:has(name:not(:empty)):after {
+     display:block;
+     -oxy-foldable: true;
+     -oxy-folded: true;
+     content: 
+              oxy_label(text, "Förderzeitraum: ", width, 10em, text-align, right)
+              oxy_datePicker(edit, "@from", hoverPseudoclassName, 'showBorder', format, "yyyy-MM-dd")
+              oxy_label(text, " bis ")
+              oxy_datePicker(edit, "@to", hoverPseudoclassName, 'showBorder', format, "yyyy-MM-dd");
+    }
+    
+  }
 }
 
 /************************* profileDesc (keywords) **************************/

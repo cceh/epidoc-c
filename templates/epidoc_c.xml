@@ -4,6 +4,10 @@
         <fileDesc>
             <titleStmt>
                 <title></title>
+                <funder>
+                    <name type="institution"></name>
+                    <name type="program"/>
+                </funder>
             </titleStmt>
             <publicationStmt>
                 <authority>Institut für Altertumskunde der Universität zu Köln</authority>

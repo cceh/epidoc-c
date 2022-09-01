@@ -1155,7 +1155,7 @@ End license statement: do not remove -->
                             <rng:ref name="tei_title"/>
                         </rng:zeroOrMore>
                         <rng:zeroOrMore>
-                            <rng:ref name="tei_model.respLike"/>
+                            <rng:ref name="tei_funder"/>
                         </rng:zeroOrMore>
                     </content>
                 </elementSpec>
@@ -1170,6 +1170,24 @@ End license statement: do not remove -->
                                 <rng:ref name="altIdentifier"/>
                             </rng:oneOrMore>
                         </rng:group>
+                    </content>
+                </elementSpec>
+                <elementSpec ident="funder" module="core" mode="change">
+                    <content>
+                        <rng:element name="name">
+                            <rng:attribute name="type">
+                                <rng:value>institution</rng:value>
+                            </rng:attribute>
+                            <rng:ref name="tei_att.canonical.attributes"/>
+                            <rng:text />
+                        </rng:element>
+                        <rng:element name="name">
+                            <rng:attribute name="type">
+                                <rng:value>program</rng:value>
+                            </rng:attribute>
+                            <rng:ref name="tei_att.canonical.attributes"/>
+                            <rng:text />
+                        </rng:element>
                     </content>
                 </elementSpec>
                 <elementSpec ident="collection" module="msdescription" mode="change">
